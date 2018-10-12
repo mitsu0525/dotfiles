@@ -1,9 +1,0 @@
-#
-sudo = 'sudo '
-
-# git
-co = checkout
-c = commit
-f = fetch
-p = push
-
