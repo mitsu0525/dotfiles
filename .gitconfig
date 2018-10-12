@@ -1,0 +1,8 @@
+[user]
+	name = k-mituys
+	email = k-mituys@ist.osaka-u.ac.jp
+
+[alias]
+	st = status
+ 	co = checkout
+ 	ci = commit
