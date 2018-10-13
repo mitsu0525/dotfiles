@@ -5,8 +5,8 @@ scriptencoding utf-8
 set t_Co=256
 set background=dark
 syntax on
-set list                " 不可視文字の可視化
 set number              " 行番号の表示
+set cursorline          " カーソルラインをハイライト
 set ruler               " カーソル位置が右下に表示される
 set wildmenu            " コマンドライン補完が強力になる
 set showcmd             " コマンドを画面の最下部に表示する
@@ -33,8 +33,7 @@ endif
 " ESC to jj
 inoremap <silent> jj <ESC>
 " 日本語入力で”っj”と入力してもEnterキーで確定させればインサートモードを抜ける
-inoremap <silent> っｊ <ESC>
-inoremap <silent> っj <ESC>
+inoremap <silent> ｊｊ <ESC>
 
 nnoremap <Space>w  :<C-u>w<CR>
 nnoremap <Space>q  :<C-u>q<CR>
@@ -71,4 +70,30 @@ nnoremap j gj
 nnoremap k gk
 nnoremap gj j
 nnoremap gk k
+
+" マウス
+if has('mouse')
+    set mouse=a
+    if has('mouse_sgr')
+        set ttymouse=sgr
+    elseif v:version > 703 || v:version is 703 && has('patch632')
+        set ttymouse=sgr
+    else
+        set ttymouse=xterm2
+    endif
+endif
+
+" ペースト
+if &term =~ "xterm"
+    let &t_SI .= "\e[?2004h"
+    let &t_EI .= "\e[?2004l"
+    let &pastetoggle = "\e[201~"
+
+    function XTermPasteBegin(ret)
+        set paste
+        return a:ret
+    endfunction
+
+    inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
+endif
 
