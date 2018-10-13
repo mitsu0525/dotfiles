@@ -11,6 +11,7 @@ do
     #無視したいファイルやディレクトリ
     [ "$f" = ".git" ] && continue
     [ "$f" = ".config" ] && continue
+    [ "$f" = ".DS_STORE" ] && continue
     ln -snfv ${DOT_DIRECTORY}/${f} ${HOME}/${f}
 done
 
