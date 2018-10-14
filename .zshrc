@@ -1,29 +1,33 @@
-#
-# Executes commands at the start of an interactive session.
-#
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
+umask 022
+limit coredumpsize 0
+bindkey -d
 
-# Source Prezto.
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+# Return if zsh is called from Vim
+if [[ -n $VIMRUNTIME ]]; then
+    return 0
 fi
 
-# Customize to your needs...
+# tmux_automatically_attach attachs tmux session
+# automatically when your are in zsh
+if [[ -x ~/bin/tmuxx ]]; then
+    ~/bin/tmuxx
+fi
 
-#adb
-export PATH=$PATH:/Users/k-mituys/Library/Android/sdk/platform-tools
+if [[ -f ~/.zplug/init.zsh ]]; then
+    export ZPLUG_LOADFILE=~/.zsh/zplug.zsh
+    source ~/.zplug/init.zsh
 
-# open current directory in Finder
-alias f='open .'
+    if ! zplug check --verbose; then
+        printf "Install? [y/N]: "
+        if read -q; then
+            echo; zplug install
+        fi
+        echo
+    fi
+    zplug load --verbose
+fi
 
-# cd to the path of the front Finder window
-cdf() {
-	target=`osascript -e 'tell application "Finder" to if (count of Finder windows) > 0 then get POSIX path of (target of front Finder window as text)'`
-	if [ "$target" != "" ]; then
-		cd "$target"; pwd
-	else
-		echo 'No Finder window found' >&2
-	fi
-}
+if [[ -f ~/.zshrc.local ]]; then
+    source ~/.zshrc.local
+fi
+

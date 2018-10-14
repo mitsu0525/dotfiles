@@ -1,8 +1,0 @@
-# common aliases
-alias sudo='sudo '
-if is_osx; then
-    alias sudo="${ZSH_VERSION:+nocorrect} sudo "
-fi
-
-# vim
-alias vi = 'vim'
