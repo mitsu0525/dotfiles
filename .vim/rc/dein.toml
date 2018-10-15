@@ -10,3 +10,9 @@ hook_add = '''
   au MyAutoCmd VimEnter * nested colorscheme solarized
 '''
 
+[[plugins]] # コメントアウト
+repo = 'scrooloose/nerdcommenter'
+
+[[plugins]] # ツリー表示
+repo = 'scrooloose/nerdtree'
+
