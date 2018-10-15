@@ -3,7 +3,7 @@ function tree-fzf() {
   local SELECTED_FILE=$(tree --charset=o -f | fzf --query "$LBUFFER" | tr -d '\||`|-' | xargs echo)
 
   if [ "$SELECTED_FILE" != "" ]; then
-    if [ -f "$SELECTED_FILE" ]; then
+    if [ -e "$SELECTED_FILE" ]; then
       BUFFER="$EDITOR $SELECTED_FILE"
     elif [ -d "$SELECTED_FILE" ]; then
       BUFFER="cd $SELECTED_FILE"
