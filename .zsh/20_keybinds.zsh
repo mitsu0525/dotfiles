@@ -1,5 +1,3 @@
-# 履歴をインクリメンタルに追加
-setopt inc_append_history
 # Ctrl-t
 function tree-fzf() {
   local SELECTED_FILE=$(tree --charset=o -f | fzf --query "$LBUFFER" | tr -d '\||`|-' | xargs echo)
@@ -11,7 +9,6 @@ function tree-fzf() {
 
   zle reset-prompt
 }
-
 zle -N tree-fzf
 bindkey "^t" tree-fzf
 
@@ -43,6 +40,5 @@ fzf-z-search() {
         return 1
     fi
 }
-
 zle -N fzf-z-search
 bindkey '^f' fzf-z-search
