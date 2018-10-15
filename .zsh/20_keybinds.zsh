@@ -1,5 +1,3 @@
-# 履歴をインクリメンタルに追加
-setopt inc_append_history
 # Ctrl-t
 function tree-fzf() {
   local SELECTED_FILE=$(tree --charset=o -f | fzf --query "$LBUFFER" | tr -d '\||`|-' | xargs echo)
