@@ -131,10 +131,6 @@ function prompt_steeef_setup {
   unsetopt XTRACE KSH_ARRAYS
   prompt_opts=(cr percent sp subst)
 
-  # Load required functions.
-  autoload -Uz add-zsh-hook
-  autoload -Uz vcs_info
-
   # Add hook for calling vcs_info before each command.
   add-zsh-hook precmd prompt_steeef_precmd
 
@@ -183,8 +179,8 @@ function prompt_steeef_setup {
 
   # Define prompts.　at ${_prompt_steeef_colors[2]}%m%f
   PROMPT="
-${_prompt_steeef_colors[2]}%n%f : ${_prompt_steeef_colors[1]}%~%f ${vcs_info_msg_0_}
-$python_info[virtualenv]> "
+${_prompt_steeef_colors[2]}%n%f : ${_prompt_steeef_colors[1]}%~%f "'${vcs_info_msg_0_}'"
+"'${python_info[virtualenv]}'"> "
   RPROMPT='[%F{red}%D{%H:%M:%S}%f]'
 }
 
