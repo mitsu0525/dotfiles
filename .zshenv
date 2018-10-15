@@ -72,7 +72,7 @@ export HISTSIZE=1000000
 export SAVEHIST=1000000
 
 # fzf - command-line fuzzy finder (https://github.com/junegunn/fzf)
-export FZF_DEFAULT_OPTS="--extended --ansi --multi"
+export FZF_DEFAULT_OPTS="--height 40% --reverse --border"
 
 # History
 # History file

@@ -17,6 +17,10 @@ zplug "junegunn/fzf-bin", \
     rename-to:"fzf", \
     frozen:1
 
+zplug "junegunn/fzf", \
+    as:command, \
+    use:bin/fzf-tmux
+
 zplug "peco/peco", \
     as:command, \
     from:gh-r, \
@@ -37,3 +41,8 @@ zplug "zsh-users/zsh-syntax-highlighting", defer:2
 # ZSH port of Fish shell's history search feature
 zplug "zsh-users/zsh-history-substring-search"
 
+# This plugin adds many useful aliases and functions.
+zplug "plugins/git", from:oh-my-zsh
+
+# zplugなどでzをインストールしとく
+zplug "rupa/z", use:z.sh

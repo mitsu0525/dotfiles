@@ -37,13 +37,3 @@ autoload -Uz run-help-git
 autoload -Uz run-help-svk
 autoload -Uz run-help-svn
 
-# jenegunn/fzf
-export FZF_DEFAULT_OPTS='
---extended
---ansi
---multi
---bind=ctrl-u:page-up
---bind=ctrl-d:page-down
---bind=ctrl-z:toggle-all
-'
-
