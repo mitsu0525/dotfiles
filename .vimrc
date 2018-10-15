@@ -1,7 +1,7 @@
 " reset augroup
 augroup MyAutoCmd
   autocmd!
-augroup END
+augroup END  
 
 " dein Scripts-----------------------------
 if &compatible
@@ -46,7 +46,6 @@ if dein#check_install()
 endif
 "End dein Scripts-------------------------
 
-
 " 文字コードをutf-8に設定
 set encoding=utf-8
 scriptencoding utf-8
@@ -58,6 +57,26 @@ set cursorline          " カーソルラインをハイライト
 set ruler               " カーソル位置が右下に表示される
 set wildmenu            " コマンドライン補完が強力になる
 set showcmd             " コマンドを画面の最下部に表示する
+set helplang& helplang=ja " Language help
+
+" 1 tab == 4 spaces
+set shiftwidth=4
+set tabstop=4
+" When starting a new line, indent in automatic
+set autoindent
+" When you create a new line, perform advanced automatic indentation
+set smartindent
+" Blank is inserted only the number of 'shiftwidth'.
+set smarttab
+
+" Ignore case
+set ignorecase
+" Smart ignore case
+set smartcase
+" Enable the incremental search
+set incsearch
+" Emphasize the search pattern
+set hlsearch
 
 " Swapファイル, Backupファイルを全て無効化する
 set nowritebackup
@@ -68,7 +87,7 @@ set noswapfile
 set showbreak=↪
 
 " カーソルを文字が存在しない部分でも動けるようにする
-set virtualedit=all
+" set virtualedit=all
 
 set backspace=indent,eol,start " Backspaceキーの影響範囲に制限を設けない
 set whichwrap=b,s,h,l,<,>,[,]  " 行頭行末の左右移動で行をまたぐ
