@@ -76,6 +76,8 @@ set smartcase
 set incsearch
 " Emphasize the search pattern
 set hlsearch
+" Return top when search to end
+set wrapscan
 
 " Swapファイル, Backupファイルを全て無効化する
 set nowritebackup
@@ -214,7 +216,12 @@ let g:NERDTrimTrailingWhitespace = 1
 let g:NERDToggleCheckAllLines = 1
 
 let g:NERDTreeShowBookmarks=1
+let g:NERDTreeShowHidden=1
+let g:NERDTreeQuitOnOpen=1
+let g:NERDTreeIgnore=['\.DS_Store$']
+" autocmd vimenter * NERDTree
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 nnoremap <silent><C-o> :NERDTreeToggle<CR>
 

@@ -66,11 +66,6 @@ export CORRECT_IGNORE_FILE='.*'
 export WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 export WORDCHARS='*?.[]~&;!#$%^(){}<>'
 
-# History file and its size
-export HISTFILE=~/.zsh_history
-export HISTSIZE=1000000
-export SAVEHIST=1000000
-
 # fzf - command-line fuzzy finder (https://github.com/junegunn/fzf)
 export FZF_DEFAULT_OPTS="--height 40% --reverse --border"
 
@@ -90,7 +85,7 @@ if [[ $UID == 0 ]]; then
 fi
 
 # available $INTERACTIVE_FILTER
-export INTERACTIVE_FILTER="fzf:peco:percol:gof:pick"
+export INTERACTIVE_FILTER="fzf"
 
 export DOTPATH=${0:A:h}
 
@@ -108,6 +103,38 @@ PATH=$PATH:${JAVA_HOME}/bin:${PLAY_HOME}
 # pyenv
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+
+terminfo_down_sc=$terminfo[cud1]$terminfo[cuu1]$terminfo[sc]$terminfo[cud1]
+left_down_prompt_preexec() {
+    print -rn -- $terminfo[el]
+}
+add-zsh-hook preexec left_down_prompt_preexec
+
+function zle-keymap-select zle-line-init zle-line-finish
+{
+    case $KEYMAP in
+        main|viins)
+            PROMPT_2="$fg[cyan]-- INSERT --$reset_color"
+            ;;
+        vicmd)
+            PROMPT_2="$fg[white]-- NORMAL --$reset_color"
+            ;;
+        vivis|vivli)
+            PROMPT_2="$fg[yellow]-- VISUAL --$reset_color"
+            ;;
+    esac
+# Define prompts.　at ${_prompt_steeef_colors[2]}%m%f
+PROMPT="
+${_prompt_steeef_colors[2]}%n%f : ${_prompt_steeef_colors[1]}%~%f "'${vcs_info_msg_0_}'"
+%{$terminfo_down_sc$PROMPT_2$terminfo[rc]%}"'${python_info[virtualenv]}'"> "
+RPROMPT='[%F{red}%D{%H:%M:%S}%f]'
+
+    zle reset-prompt
+}
+zle -N zle-line-init
+zle -N zle-line-finish
+zle -N zle-keymap-select
+zle -N edit-command-line
 
 function prompt_steeef_precmd {
   # Check for untracked files or updated submodules since vcs_info does not.
@@ -177,11 +204,11 @@ function prompt_steeef_setup {
   # Set python-info parameters.
   zstyle ':prezto:module:python:info:virtualenv' format '(%v)'
 
-  # Define prompts.　at ${_prompt_steeef_colors[2]}%m%f
-  PROMPT="
-${_prompt_steeef_colors[2]}%n%f : ${_prompt_steeef_colors[1]}%~%f "'${vcs_info_msg_0_}'"
-"'${python_info[virtualenv]}'"> "
-  RPROMPT='[%F{red}%D{%H:%M:%S}%f]'
+#   # Define prompts.　at ${_prompt_steeef_colors[2]}%m%f
+#   PROMPT="
+# ${_prompt_steeef_colors[2]}%n%f : ${_prompt_steeef_colors[1]}%~%f "'${vcs_info_msg_0_}'"
+# %{$terminfo_down_sc$PROMPT_2$terminfo[rc]%}"'${python_info[virtualenv]}'"> "
+#   RPROMPT='[%F{red}%D{%H:%M:%S}%f]'
 }
 
 prompt_steeef_setup "$@" 
