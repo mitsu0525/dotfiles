@@ -1,7 +1,7 @@
 " reset augroup
 augroup MyAutoCmd
   autocmd!
-augroup END  
+augroup END
 
 " dein Scripts-----------------------------
 if &compatible
@@ -45,61 +45,56 @@ if dein#check_install()
 endif
 "End dein Scripts-------------------------
 
-" 文字コードをutf-8に設定
+" 文字コード
 set encoding=utf-8
 scriptencoding utf-8
+set fileencoding=utf-8 " 保存時の文字コード
+set fileencodings=ucs-boms,utf-8,euc-jp,cp932 " 読み込み時の文字コードの自動判別. 左側が優先される
+set fileformats=unix,dos,mac " 改行コードの自動判別. 左側が優先される
+set ambiwidth=double " □や○文字が崩れる問題を解決
+
 """ 表示関係
 set t_Co=256
 set background=dark
 set number              " 行番号の表示
 set cursorline          " カーソルラインをハイライト
 set ruler               " カーソル位置が右下に表示される
-set wildmenu            " コマンドライン補完が強力になる
 set showcmd             " コマンドを画面の最下部に表示する
 set helplang& helplang=ja " Language help
+set showbreak=↪ " showbreaks
 
-" 1 tab == 4 spaces
-set shiftwidth=4
-set tabstop=4
-" When starting a new line, indent in automatic
-set autoindent
-" When you create a new line, perform advanced automatic indentation
-set smartindent
-" Blank is inserted only the number of 'shiftwidth'.
-set smarttab
+" タブ・インデント
+set expandtab " タブ入力を複数の空白入力に置き換える
+set tabstop=4 " 画面上でタブ文字が占める幅
+set softtabstop=4 " 連続した空白に対してタブキーやバックスペースキーでカーソルが動く幅
+set autoindent " 改行時に前の行のインデントを継続する
+set smartindent " 改行時に前の行の構文をチェックし次の行のインデントを増減する
+set shiftwidth=4 " smartindentで増減する幅
 
-" Ignore case
-set ignorecase
-" Smart ignore case
-set smartcase
-" Enable the incremental search
-set incsearch
-" Emphasize the search pattern
-set hlsearch
-" Return top when search to end
+" 文字列検索
+set incsearch " インクリメンタルサーチ. １文字入力毎に検索を行う
+set ignorecase " 検索パターンに大文字小文字を区別しない
+set smartcase " 検索パターンに大文字を含んでいたら大文字小文字を区別する
+set hlsearch " 検索結果をハイライト
 set wrapscan
+nnoremap <silent><Esc><Esc> :<C-u>set nohlsearch!<CR> " ESCキー2度押しでハイライトの切り替え
 
 " Swapファイル, Backupファイルを全て無効化する
 set nowritebackup
 set nobackup
 set noswapfile
 
-" showbreaks
-set showbreak=↪
-
-" カーソルを文字が存在しない部分でも動けるようにする
-" set virtualedit=all
-
+" カーソル
 set backspace=indent,eol,start " Backspaceキーの影響範囲に制限を設けない
 set whichwrap=b,s,h,l,<,>,[,]  " 行頭行末の左右移動で行をまたぐ
 
-" クリップボードをデフォルトのレジスタとして指定。後にYankRingを使うので
-" 'unnamedplus'が存在しているかどうかで設定を分ける必要がある
-if has('unnamedplus')
-    set clipboard& clipboard+=unnamedplus,unnamed
-else
-    set clipboard& clipboard+=unnamed
-endif
+" カッコ・タグジャンプ
+set showmatch " 括弧の対応関係を一瞬表示する
+source $VIMRUNTIME/macros/matchit.vim " Vimの「%」を拡張する
+
+" コマンド補完
+set wildmenu " コマンドライン補完が強力になる
+set history=10000
 
 " Define mapleader
 let g:mapleader = ','
@@ -107,7 +102,7 @@ let g:maplocalleader = ','
 
 " ESC to jj
 inoremap <silent> jj <ESC>
-" 日本語入力で”っj”と入力してもEnterキーで確定させればインサートモードを抜ける
+" 日本語入力で”ｊj”と入力してもEnterキーで確定させればインサートモードを抜ける
 inoremap <silent> ｊｊ <ESC>
 
 nnoremap ;  :
@@ -116,9 +111,6 @@ vnoremap ;  :
 vnoremap :  ;
 
 nnoremap <silent> <ESC><ESC> :nohlsearch<CR>
-
-nnoremap <Space>/  *<C-o>
-nnoremap g<Space>/ g*<C-o>
 
 nnoremap gs  :<C-u>%s///g<Left><Left><Left>
 vnoremap gs  :s///g<Left><Left><Left>
@@ -137,10 +129,17 @@ nnoremap <Space>Q  :<C-u>q!<CR>
 nnoremap <Space>h  ^
 nnoremap <Space>l  $
 nnoremap <Space>/  *
+nnoremap g<Space>/ g*<C-o>
+noremap <Space>m  %
 vnoremap <Space>h  ^
 vnoremap <Space>l  $
-vnoremap <Space>/  * 
-noremap <Space>m  %
+vnoremap <Space>/  *
+vnoremap g<Space>/ g*<C-o>
+vnoremap <Space>m  %
+
+" 空行挿入
+nnoremap <Space>o  :<C-u>for i in range(v:count1) \| call append(line('.'), '') \| endfor<CR>
+nnoremap <Space>O  :<C-u>for i in range(v:count1) \| call append(line('.')-1, '') \| endfor<CR>
 
 nnoremap j gj
 nnoremap k gk
@@ -172,6 +171,13 @@ if &term =~ "xterm"
 
     inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
 endif
+" クリップボードをデフォルトのレジスタとして指定。後にYankRingを使うので
+" 'unnamedplus'が存在しているかどうかで設定を分ける必要がある
+if has('unnamedplus')
+    set clipboard& clipboard+=unnamedplus,unnamed
+else
+    set clipboard& clipboard+=unnamed
+endif
 
 if has('vim_starting')
 	if exists('$TMUX')
@@ -190,38 +196,4 @@ if has('vim_starting')
 	    let &t_SR .= "\e[4 q"
 	endif
 endif
-
-" Add spaces after comment delimiters by default
-let g:NERDSpaceDelims = 1
-
-" Use compact syntax for prettified multi-line comments
-let g:NERDCompactSexyComs = 1
-
-" Align line-wise comment delimiters flush left instead of following code indentation
-let g:NERDDefaultAlign = 'left'
-
-" Set a language to use its alternate delimiters by default
-let g:NERDAltDelims_java = 1
-
-" Add your own custom formats or override the defaults
-let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
-
-" Allow commenting and inverting empty lines (useful when commenting a region)
-let g:NERDCommentEmptyLines = 1
-
-" Enable trimming of trailing whitespace when uncommenting
-let g:NERDTrimTrailingWhitespace = 1
-
-" Enable NERDCommenterToggle to check all selected lines is commented or not 
-let g:NERDToggleCheckAllLines = 1
-
-let g:NERDTreeShowBookmarks=1
-let g:NERDTreeShowHidden=1
-let g:NERDTreeQuitOnOpen=1
-let g:NERDTreeIgnore=['\.DS_Store$']
-" autocmd vimenter * NERDTree
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-nnoremap <silent><C-o> :NERDTreeToggle<CR>
 
