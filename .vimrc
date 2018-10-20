@@ -101,26 +101,11 @@ let g:mapleader = ','
 let g:maplocalleader = ','
 
 " ESC to jj
-inoremap <silent> jj <ESC>
-" 日本語入力で”ｊj”と入力してもEnterキーで確定させればインサートモードを抜ける
-inoremap <silent> ｊｊ <ESC>
-
-nnoremap ;  :
-nnoremap :  ;
-vnoremap ;  :
-vnoremap :  ;
-
+inoremap <silent> jj <ESC>:<C-u>w<CR>
 nnoremap <silent> <ESC><ESC> :nohlsearch<CR>
 
 nnoremap gs  :<C-u>%s///g<Left><Left><Left>
 vnoremap gs  :s///g<Left><Left><Left>
-
-" [ と打ったら [] って入力されてしかも括弧の中にいる(以下同様)
-inoremap [ []<left>
-inoremap ( ()<left>
-inoremap { {}<left>
-inoremap " ""<left>
-inoremap ' ''<left>
 
 nnoremap <Space>w  :<C-u>w<CR>
 nnoremap <Space>q  :<C-u>q<CR>
@@ -138,8 +123,7 @@ vnoremap g<Space>/ g*<C-o>
 vnoremap <Space>m  %
 
 " 空行挿入
-nnoremap <Space>o  :<C-u>for i in range(v:count1) \| call append(line('.'), '') \| endfor<CR>
-nnoremap <Space>O  :<C-u>for i in range(v:count1) \| call append(line('.')-1, '') \| endfor<CR>
+nnoremap <CR> o<ESC>
 
 nnoremap j gj
 nnoremap k gk
@@ -181,12 +165,12 @@ endif
 
 if has('vim_starting')
 	if exists('$TMUX')
-		" 挿入モード時に非点滅の縦棒タイプのカーソル
-		let &t_SI .= "\ePtmux;\e\e[6 q\e\\"
-		" ノーマルモード時に非点滅のブロックタイプのカーソル
-		let &t_EI .= "\ePtmux;\e\e[2 q\e\\"
-		" 置換モード時に非点滅の下線タイプのカーソル
-		let &t_SR .= "\ePtmux;\e\e[4 q\e\\"
+        " 挿入モード時に非点滅の縦棒タイプのカーソル
+        let &t_SI .= "\ePtmux;\e\e[6 q\e\\"
+        " ノーマルモード時に非点滅のブロックタイプのカーソル
+        let &t_EI .= "\ePtmux;\e\e[2 q\e\\"
+        " 置換モード時に非点滅の下線タイプのカーソル
+        let &t_SR .= "\ePtmux;\e\e[4 q\e\\"
 	else
 	    " 挿入モード時に非点滅の縦棒タイプのカーソル
 	    let &t_SI .= "\e[6 q"
@@ -197,3 +181,11 @@ if has('vim_starting')
 	endif
 endif
 
+" Disable bell.
+set t_vb=
+set novisualbell
+set belloff=all
+
+map gc <Plug>NERDCommenterToggle
+map ga <Plug>NERDCommenterAppend
+map gb <Plug>NERDCommenterSexy

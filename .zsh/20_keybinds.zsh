@@ -20,7 +20,7 @@ bindkey '^D' _delete-char-or-list-expand
 
 # Ctrl-o
 function tree-fzf() {
-  local SELECTED_FILE=$(tree --noreport -af | fzf --query "$LBUFFER" | sed -e 's/-- //g' | tr -d '\||`' | xargs echo)
+  local SELECTED_FILE=$(tree --noreport -f | fzf --query "$LBUFFER" | tr -d '│|─|├|└' | xargs echo)
 
   if [ "$SELECTED_FILE" != "" ]; then
 	if [ -f "$SELECTED_FILE" ]; then
@@ -46,7 +46,7 @@ function history-fzf() {
     tac="tail -r"
   fi
 
-  BUFFER=$(history -n 1 | eval $tac | fzf --query "$LBUFFER")
+  BUFFER=$(history -n 1 | eval $tac | fzf --query "$LBUFFER" | xargs echo)
   CURSOR=$#BUFFER
 
   zle accept-line
@@ -56,15 +56,7 @@ zle -N history-fzf
 bindkey '^r' history-fzf
 
 # Ctrl-f
-fzf-z-search() {
-    local res=$(z | sort -rn | cut -c 12- | fzf)
-    if [ -n "$res" ]; then
-        BUFFER+="cd $res"
-        zle accept-line
-    else
-        return 1
-    fi
-}
+fzf-z-search() { cd - }
 zle -N fzf-z-search
 bindkey '^f' fzf-z-search
 

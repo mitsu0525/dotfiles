@@ -15,30 +15,18 @@ repo = 'itchyny/lightline.vim'
 hook_add = '''
     set laststatus=2
     set t_Co=256
-    let g:lightline = {
-          \ 'colorscheme': 'solarized',
-          \ 'active': {
-          \   'left': [ [ 'mode', 'paste' ],
-          \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
-          \ },
-          \ 'component': {
-          \   'readonly': '%{&filetype=="help"?"":&readonly?"✖︎":""}',
-          \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}',
-          \   'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
-          \ },
-          \ 'component_visible_condition': {
-          \   'readonly': '(&filetype!="help"&& &readonly)',
-          \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
-          \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
-          \ }
-          \ }
+    set noshowmode
 '''
+
+[[plugins]] # lightline-theme
+repo = 'delphinus/lightline-delphinus'
 
 [[plugins]] # 全角と半角の空白文字を可視化
 repo = 'bronson/vim-trailing-whitespace'
 
 [[plugins]] # インデントの可視化
 repo = 'Yggdroot/indentLine'
+hook_add = '''let g:indentLine_faster = 1'''
 
 [[plugins]] # 日本語ヘルプ
 repo = 'vim-jp/vimdoc-ja'
@@ -55,9 +43,6 @@ hook_add = '''
     let g:NERDCommentEmptyLines = 1 " Allow commenting and inverting empty lines (useful when commenting a region)
     let g:NERDTrimTrailingWhitespace = 1 " Enable trimming of trailing whitespace when uncommenting
     let g:NERDToggleCheckAllLines = 1 " Enable NERDCommenterToggle to check all selected lines is commented or not
-    map <Leader>/<Space> <Plug>NERDCommenterToggle
-    map <Leader>/a <Plug>NERDCommenterAppend
-    map <Leader>/s <Plug>NERDCommenterSexy
 '''
 
 [[plugins]] # ツリー表示
@@ -70,8 +55,29 @@ hook_add = '''
     autocmd StdinReadPre * let s:std_in=1
     autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-    nnoremap <silent><C-o> :NERDTreeToggle<CR>
+    nnoremap <silent><Space>o :NERDTreeToggle<CR>
 '''
+
+[[plugins]] # deoplete用
+repo = 'roxma/vim-hug-neovim-rpc'
+on_if = '!has("nvim")'
+
+[[plugins]] # deoplete用
+repo = 'roxma/nvim-yarp'
+on_if = '!has("nvim")'
+
+################
+# シンタックス #
+################
+[[plugins]] # 構文チェック
+repo = 'scrooloose/syntastic'
+
+[[plugins]] # カーソル位置のコンテキストに合わせてftを切り替える
+repo = 'osyo-manga/vim-precious'
+depends = ['context_filetype.vim']
+
+[[plugins]] # カーソル位置のコンテキストのftを判定するライブラリ
+repo = 'Shougo/context_filetype.vim'
 
 [[plugins]] # TOMLのシンタックス
 repo = 'cespare/vim-toml'
