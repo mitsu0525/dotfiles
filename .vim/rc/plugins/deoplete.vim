@@ -1,7 +1,3 @@
-"---------------------------------------------------------------------------
-" deoplete.nvim
-"
-
 " <TAB>: completion.
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :

@@ -21,12 +21,9 @@ hook_add = '''
 [[plugins]] # lightline-theme
 repo = 'delphinus/lightline-delphinus'
 
-[[plugins]] # 全角と半角の空白文字を可視化
-repo = 'bronson/vim-trailing-whitespace'
-
 [[plugins]] # インデントの可視化
 repo = 'Yggdroot/indentLine'
-hook_add = '''let g:indentLine_faster = 1'''
+hook_add = 'let g:indentLine_faster = 1'
 
 [[plugins]] # 日本語ヘルプ
 repo = 'vim-jp/vimdoc-ja'
@@ -51,11 +48,11 @@ hook_add = '''
     let g:NERDTreeShowBookmarks=1
     let g:NERDTreeShowHidden=1
     let g:NERDTreeQuitOnOpen=1
-    let g:NERDTreeIgnore=['\.DS_Store$']
+    let g:NERDTreeIgnore=['\.DS_Store$','\.git']
     autocmd StdinReadPre * let s:std_in=1
     autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-    nnoremap <silent><Space>o :NERDTreeToggle<CR>
+    nnoremap <silent><C-o> :NERDTreeToggle<CR>
 '''
 
 [[plugins]] # deoplete用

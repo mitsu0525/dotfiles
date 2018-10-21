@@ -60,8 +60,14 @@ set number              " 行番号の表示
 set cursorline          " カーソルラインをハイライト
 set ruler               " カーソル位置が右下に表示される
 set showcmd             " コマンドを画面の最下部に表示する
-set helplang& helplang=ja " Language help
 set showbreak=↪ " showbreaks
+
+" ヘルプ関係
+set helplang& helplang=ja " Language help
+autocmd FileType help nnoremap <buffer> q <C-w>c " qでhelpを閉じる
+" ヘルプを新しいタブで開く
+cabbrev help tab help 
+cabbrev h tab help 
 
 " タブ・インデント
 set expandtab " タブ入力を複数の空白入力に置き換える
@@ -96,10 +102,6 @@ source $VIMRUNTIME/macros/matchit.vim " Vimの「%」を拡張する
 set wildmenu " コマンドライン補完が強力になる
 set history=10000
 
-" Define mapleader
-let g:mapleader = ','
-let g:maplocalleader = ','
-
 " ESC to jj
 inoremap <silent> jj <ESC>:<C-u>w<CR>
 nnoremap <silent> <ESC><ESC> :nohlsearch<CR>
@@ -129,6 +131,8 @@ nnoremap j gj
 nnoremap k gk
 nnoremap gj j
 nnoremap gk k
+nnoremap <C-j> gj
+nnoremap <C-k> gk
 
 " マウス
 if has('mouse')
