@@ -21,7 +21,7 @@ fpath=( \
 autoload -Uz run-help
 autoload -Uz add-zsh-hook
 autoload -Uz colors && colors
-autoload -Uz compinit && compinit -u
+# autoload -Uz compinit && compinit -u
 autoload -Uz is-at-least
 
 # LANGUAGE must be set by en_US
@@ -100,11 +100,11 @@ export QT_PLUGIN_PATH=$HOME/omnetpp-5.2/tools/macosx/plugins
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home
 PATH=$PATH:${JAVA_HOME}/bin:${PLAY_HOME}
 
-# pyenv
-export PYENV_ROOT=$HOME/.pyenv
-export PATH=$PYENV_ROOT/bin:$PATH
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+# # pyenv
+# export PYENV_ROOT=$HOME/.pyenv
+# export PATH=$PYENV_ROOT/bin:$PATH
+# eval "$(pyenv init -)"
+# eval "$(pyenv virtualenv-init -)"
 
 function prompt_steeef_precmd {
   # Check for untracked files or updated submodules since vcs_info does not.

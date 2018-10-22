@@ -66,8 +66,8 @@ set showbreak=↪ " showbreaks
 set helplang& helplang=ja " Language help
 autocmd FileType help nnoremap <buffer> q <C-w>c " qでhelpを閉じる
 " ヘルプを新しいタブで開く
-cabbrev help tab help 
-cabbrev h tab help 
+cabbrev help tab help
+cabbrev h tab help
 
 " タブ・インデント
 set expandtab " タブ入力を複数の空白入力に置き換える
@@ -109,6 +109,7 @@ nnoremap <silent> <ESC><ESC> :nohlsearch<CR>
 nnoremap gs  :<C-u>%s///g<Left><Left><Left>
 vnoremap gs  :s///g<Left><Left><Left>
 
+nnoremap <Space><Space> :
 nnoremap <Space>w  :<C-u>w<CR>
 nnoremap <Space>q  :<C-u>q<CR>
 nnoremap <Space>Q  :<C-u>q!<CR>

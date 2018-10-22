@@ -1,7 +1,4 @@
 [[plugins]]
-repo = 'w0rp/ale'
-
-[[plugins]]
 repo = 'Shougo/neoyank.vim'
 on_event = 'TextYankPost'
 on_source = ['denite.nvim']

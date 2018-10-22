@@ -67,12 +67,16 @@ on_if = '!has("nvim")'
 # シンタックス #
 ################
 [[plugins]] # 構文チェック
-repo = 'scrooloose/syntastic'
+repo = 'w0rp/ale'
 
 [[plugins]] # カーソル位置のコンテキストに合わせてftを切り替える
 repo = 'osyo-manga/vim-precious'
 depends = ['context_filetype.vim']
-
+hook_add = '''
+    let g:precious_enable_switch_CursorMoved = {
+    \   "help" : 0
+    \}
+'''
 [[plugins]] # カーソル位置のコンテキストのftを判定するライブラリ
 repo = 'Shougo/context_filetype.vim'
 
