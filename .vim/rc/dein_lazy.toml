@@ -29,6 +29,17 @@ hook_add = '''
 repo = 'Townk/vim-autoclose'
 
 [[plugins]]
+repo = 'rhysd/vim-operator-surround'
+depends = 'vim-operator-user'
+on_map = {n = '<Plug>'}
+hook_add = '''
+  nmap <silent>sa <Plug>(operator-surround-append)a
+  nmap <silent>sd <Plug>(operator-surround-delete)a
+  nmap <silent>sr <Plug>(operator-surround-replace)a
+  nmap <silent>sc <Plug>(operator-surround-replace)a
+'''
+
+[[plugins]]
 repo = 'Shougo/deoplete.nvim'
 on_if = 'has("python3")'
 depends = ['context_filetype.vim', 'vim-hug-neovim-rpc', 'nvim-yarp']
@@ -48,9 +59,6 @@ on_ft = ['vim']
 [[plugins]]
 repo = 'zchee/deoplete-zsh'
 on_ft = ['zsh', 'sh']
-
-[[plugins]]
-repo = 'tpope/vim-surround'
 
 [[plugins]]
 repo = 'junegunn/vim-easy-align'

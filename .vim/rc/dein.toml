@@ -28,6 +28,12 @@ hook_add = 'let g:indentLine_faster = 1'
 [[plugins]] # 日本語ヘルプ
 repo = 'vim-jp/vimdoc-ja'
 
+[[plugins]]
+repo = 'kana/vim-operator-user'
+
+# [[plugins]]
+# repo = 'tpope/vim-surround'
+
 [[plugins]] # コメントアウト
 repo = 'scrooloose/nerdcommenter'
 hook_add = '''

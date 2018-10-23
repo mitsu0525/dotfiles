@@ -7,8 +7,10 @@ zplug "~/.zsh", from:local, use:"<->_*.zsh"
 
 zplug "b4b4r07/enhancd", use:init.sh
 if zplug check "b4b4r07/enhancd"; then
-	export ENHANCD_FILTER="fzf --height 40% --reverse --ansi"
-	export ENHANCD_DOT_SHOW_FULLPATH=1
+    export ENHANCD_FILTER="fzf --height 40% --reverse --ansi"
+    export ENHANCD_DOT_SHOW_FULLPATH=1
+    export ENHANCD_DISABLE_DOT=1
+    export ENHANCD_DISABLE_HYPHEN=1
 fi
 
 zplug "junegunn/fzf-bin", \
@@ -21,10 +23,10 @@ zplug "junegunn/fzf", \
     as:command, \
     use:bin/fzf-tmux
 
-zplug "peco/peco", \
-    as:command, \
-    from:gh-r, \
-    frozen:1
+# zplug "peco/peco", \
+#     as:command, \
+#     from:gh-r, \
+#     frozen:1
 
 # zplug "jhawthorn/fzy", \
 #     as:command, \
@@ -45,4 +47,4 @@ zplug "zsh-users/zsh-history-substring-search"
 zplug "plugins/git", from:oh-my-zsh
 
 # zplugなどでzをインストールしとく
-zplug "rupa/z", use:z.sh
+# zplug "rupa/z", use:z.sh

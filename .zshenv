@@ -21,7 +21,7 @@ fpath=( \
 autoload -Uz run-help
 autoload -Uz add-zsh-hook
 autoload -Uz colors && colors
-# autoload -Uz compinit && compinit -u
+autoload -Uz compinit && compinit -u
 autoload -Uz is-at-least
 
 # LANGUAGE must be set by en_US
@@ -66,9 +66,6 @@ export CORRECT_IGNORE_FILE='.*'
 export WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 export WORDCHARS='*?.[]~&;!#$%^(){}<>'
 
-# fzf - command-line fuzzy finder (https://github.com/junegunn/fzf)
-export FZF_DEFAULT_OPTS="--height 40% --reverse --border"
-
 # History
 # History file
 export HISTFILE=~/.zsh_history
@@ -86,25 +83,26 @@ fi
 
 # available $INTERACTIVE_FILTER
 export INTERACTIVE_FILTER="fzf"
+export FZF_DEFAULT_OPTS="--height 40% --reverse --border"
 
 export DOTPATH=${0:A:h}
 
-# adb
-export PATH=$PATH:/Users/k-mituys/Library/Android/sdk/platform-tools
-
-# OMNeT-5.2
-export PATH=$PATH:$HOME/omnetpp-5.2/bin:$HOME/omnetpp-5.2/tools/macosx/bin
-export QT_PLUGIN_PATH=$HOME/omnetpp-5.2/tools/macosx/plugins
-
-# java
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home
-PATH=$PATH:${JAVA_HOME}/bin:${PLAY_HOME}
-
+# # adb
+# export PATH=$PATH:/Users/k-mituys/Library/Android/sdk/platform-tools
+#
+# # OMNeT-5.2
+# export PATH=$PATH:$HOME/omnetpp-5.2/bin:$HOME/omnetpp-5.2/tools/macosx/bin
+# export QT_PLUGIN_PATH=$HOME/omnetpp-5.2/tools/macosx/plugins
+#
+# # java
+# export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home
+# PATH=$PATH:${JAVA_HOME}/bin:${PLAY_HOME}
+#
 # # pyenv
 # export PYENV_ROOT=$HOME/.pyenv
 # export PATH=$PYENV_ROOT/bin:$PATH
-# eval "$(pyenv init -)"
-# eval "$(pyenv virtualenv-init -)"
+# eval "$(pyenv init - --no-rehash)"
+# eval "$(pyenv virtualenv-init - --no-rehash)"
 
 function prompt_steeef_precmd {
   # Check for untracked files or updated submodules since vcs_info does not.

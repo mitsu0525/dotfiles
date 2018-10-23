@@ -191,6 +191,9 @@ set t_vb=
 set novisualbell
 set belloff=all
 
-map gc <Plug>NERDCommenterToggle
-map ga <Plug>NERDCommenterAppend
-map gb <Plug>NERDCommenterSexy
+nmap gc <Plug>NERDCommenterToggle
+nmap ga <Plug>NERDCommenterAppend
+nmap gb <Plug>NERDCommenterSexy
+vmap gc <Plug>NERDCommenterToggle
+vmap ga <Plug>NERDCommenterAppend
+vmap gb <Plug>NERDCommenterSexy
