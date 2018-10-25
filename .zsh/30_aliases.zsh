@@ -84,9 +84,7 @@ alias vi='vim'
 # mru
 mru() {
     local -a f1 f2 f2_backup
-    f1=(
-    ~/.cache/neomru/file(N)
-    )
+    f1=(~/.cache/neomru/file(N))
     f2=($DOTPATH/**/*~$DOTPATH/*\.git/**(.N))
     if [[ $#f1 -eq 0 || $#f2 -eq 0 ]]; then
         echo "There is no available MRU Vim plugins" >&2
@@ -195,7 +193,7 @@ HELP
         esac
     done
 }
-alias -g F='$(mru)'
+alias -g FILE='$(mru)'
 
 destination_directories() {
     local -a d
@@ -220,7 +218,7 @@ destination_directories() {
     while : ${make_dir:=0}; cmd="$(
         echo "${(F)d}" \
             | while read line; do echo "${line:F:$make_dir:h}"; done \
-            | tail -r | awk '!a[$0]++' | tail -r \
+            | reverse | awk '!a[$0]++' | reverse \
             | perl -pe 's/^(\/.*)$/\033[34m$1\033[m/' \
             | fzf --ansi --multi --tac --query="$q" \
             --no-sort --exit-0 --prompt="destination-> " \
@@ -250,4 +248,4 @@ destination_directories() {
         esac
     done
 }
-alias -g D='$(destination_directories)'
+alias -g DIR='$(destination_directories)'

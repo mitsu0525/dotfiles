@@ -24,19 +24,33 @@ zle -N _delete-char-or-list-expand
 bindkey '^D' _delete-char-or-list-expand
 
 # Ctrl-o
-function tree-fzf() {
-  # local SELECTED_FILE=$(tree --noreport -af -I '.git'| fzf --query "" | tr -d '│|─|├|└' )
-  local SELECTED_FILE=$(ls -1A | fzf --multi --query "")
+# function tree-fzf() {
+#   # local SELECTED_FILE=$(tree --noreport -af -I '.git'| fzf --query "" | tr -d '│|─|├|└' )
+#   local SELECTED_FILE=$(ls -1A | fzf --multi --query "")
+#
+#   if [ "$SELECTED_FILE" != "" ]; then
+#       BUFFER=$LBUFFER$SELECTED_FILE
+#       CURSOR=$#BUFFER
+#   fi
+#
+#   zle reset-prompt
+# }
+# zle -N tree-fzf
+# bindkey '^o' tree-fzf
+function fzf-find-file() {
+    if git rev-parse 2> /dev/null; then
+        source_files=$(git ls-files)
+    else
+        source_files=$(find . -type f)
+    fi
+    selected_files=$(cat $source_files | fzf --multi --prompt "[find file] ")
 
-  if [ "$SELECTED_FILE" != "" ]; then
-      BUFFER=$LBUFFER$SELECTED_FILE
-      CURSOR=$#BUFFER
-  fi
-
-  zle reset-prompt
+    BUFFER="${BUFFER}${echo $selected_files | tr '\n' ' '}"
+    CURSOR=$#BUFFER
+    zle redisplay
 }
-zle -N tree-fzf
-bindkey '^o' tree-fzf
+zle -N fzf-find-file
+bindkey '^o' fzf-find-file
 
 # Ctrl-r
 function history-fzf() {

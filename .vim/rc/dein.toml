@@ -31,12 +31,22 @@ repo = 'vim-jp/vimdoc-ja'
 [[plugins]]
 repo = 'kana/vim-operator-user'
 
+[[plugins]]
+repo = 'cohama/lexima.vim'
+hook_source = 'source ~/.vim/rc/plugins/lexima.vim'
+
 # [[plugins]]
 # repo = 'tpope/vim-surround'
 
 [[plugins]] # コメントアウト
 repo = 'scrooloose/nerdcommenter'
 hook_add = '''
+    nmap <silent> gc <Plug>NERDCommenterToggle
+    nmap <silent> ga <Plug>NERDCommenterAppend
+    nmap <silent> gb <Plug>NERDCommenterSexy
+    vmap <silent> gc <Plug>NERDCommenterToggle
+    vmap <silent> ga <Plug>NERDCommenterAppend
+    vmap <silent> gb <Plug>NERDCommenterSexy
     let g:NERDCreateDefaultMappings = 0
     let g:NERDSpaceDelims = 1 " Add spaces after comment delimiters by default
     let g:NERDCompactSexyComs = 1 " Use compact syntax for prettified multi-line comments
@@ -58,7 +68,7 @@ hook_add = '''
     autocmd StdinReadPre * let s:std_in=1
     autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-    nnoremap <silent><C-o> :NERDTreeToggle<CR>
+    nnoremap <silent> <Space>o :NERDTreeToggle<CR>
 '''
 
 [[plugins]] # deoplete用

@@ -2,6 +2,11 @@ has() {
     type "${1:?too few arguments}" &>/dev/null
 }
 
+# reverse
+reverse() {
+    perl -e 'print reverse <>' ${@+"$@"}
+}
+
 # reload resets Completion function
 reload() {
     local f

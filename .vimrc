@@ -90,6 +90,11 @@ set nowritebackup
 set nobackup
 set noswapfile
 
+" Disable bell.
+set t_vb=
+set novisualbell
+set belloff=all
+
 " カーソル
 set backspace=indent,eol,start " Backspaceキーの影響範囲に制限を設けない
 set whichwrap=b,s,h,l,<,>,[,]  " 行頭行末の左右移動で行をまたぐ
@@ -102,45 +107,84 @@ source $VIMRUNTIME/macros/matchit.vim " Vimの「%」を拡張する
 set wildmenu " コマンドライン補完が強力になる
 set history=10000
 
+" Define mapleader
+let g:mapleader = ','
+let g:maplocalleader = ','
+
 " ESC to jj
 inoremap <silent> jj <ESC>
-nnoremap <silent> <ESC><ESC> :nohlsearch<CR>
+inoremap j<Space> j
 
-nnoremap gs  :<C-u>%s///g<Left><Left><Left>
-vnoremap gs  :s///g<Left><Left><Left>
+" Smart space mapping
+" Notice: when starting other <Space> mappings in noremap, disappeared [Space]
+nmap <Space> [Space]
+xmap <Space> [Space]
+nnoremap [Space] <Nop>
+xnoremap [Space] <Nop>
+noremap [Space]<Space> :
+noremap [Space]w  :<C-u>w<CR>
+noremap [Space]q  :<C-u>wq<CR>
+noremap [Space]Q  :<C-u>q!<CR>
+" 行選択していない状態から実行
+nnoremap [Space]<CR> V:!sh<CR>
+" 行選択中に実行
+vnoremap [Space]<CR> :!sh<CR>
 
-vnoremap <Space><CR> :!sh<CR>    " 行選択中に実行
-nnoremap <Space><CR> V:!sh<CR>   " 行選択していない状態から実行
-nnoremap <Space><Space> :
-vnoremap <Space><Space> :
-nnoremap <Space>w  :<C-u>w<CR>
-nnoremap <Space>q  :<C-u>wq<CR>
-nnoremap <Space>Q  :<C-u>q!<CR>
+" カーソル移動
+noremap [Space]h  ^
+noremap [Space]l  $
+inoremap <C-a> <Home>
+inoremap <C-e> <End>
+inoremap <C-h> <BS>
+inoremap <C-d> <Del>
+" Smart <C-f>, <C-b>.
+noremap <expr> <C-f> max([winheight(0) - 2, 1])
+      \ . "\<C-d>" . (line('w$') >= line('$') ? "L" : "M")
+noremap <expr> <C-b> max([winheight(0) - 2, 1])
+      \ . "\<C-u>" . (line('w0') <= 1 ? "H" : "M")
 
-nnoremap <Space>h  ^
-nnoremap <Space>l  $
-nnoremap <Space>/  *
-nnoremap g<Space>/ g*<C-o>
-noremap <Space>m  %
-vnoremap <Space>h  ^
-vnoremap <Space>l  $
-vnoremap <Space>/  *
-vnoremap g<Space>/ g*<C-o>
-vnoremap <Space>m  %
+" Command-line mode keymappings:
+cnoremap <C-a> <Home>
+cnoremap <C-b> <Left>
+cnoremap <C-d> <Del>
+cnoremap <C-e> <End>
+cnoremap <C-f> <Right>
+cnoremap <C-n> <Down>
+cnoremap <C-p> <Up>
+cnoremap <C-y> <C-r>*
+cnoremap <C-g> <C-c>
+
+" 検索・置換・インデント
+noremap [Space]/  *
+noremap [Space]m  %
+nnoremap sg  :<C-u>%s//g<Left><Left>
+vnoremap sg  :s//g<Left><Left>
+nnoremap > >>
+nnoremap < <<
+xnoremap > >gv
+xnoremap < <gv
+" Make Y behave like other capitals
+nnoremap Y y$
+
+" 補完
+if dein#check_install('lexima.vim')
+  inoremap [ []<LEFT>
+  inoremap ( ()<LEFT>
+  inoremap " ""<LEFT>
+  inoremap ' ''<LEFT>
+  inoremap ` ``<LEFT>
+endif
 
 " 空行挿入
-nnoremap <CR> o<ESC>
+nnoremap <silent> <CR> <End>:call append(line('.'),'')<CR><Down>
 
-nnoremap j gj
-nnoremap k gk
-nnoremap gj j
-nnoremap gk k
-nnoremap <C-j> gj
-nnoremap <C-k> gk
+" タブ移動
+nnoremap <C-n> :<C-u>tabnext<CR>
+nnoremap <C-p> :<C-u>tabprev<CR>
 
-" タブ関連
-nnoremap <C-n> gt
-nnoremap <C-p> gT
+" Diable
+nnoremap ZZ  <Nop>
+nnoremap Q  q
 
 " マウス
 if has('mouse')
@@ -193,14 +237,3 @@ if has('vim_starting')
 	endif
 endif
 
-" Disable bell.
-set t_vb=
-set novisualbell
-set belloff=all
-
-nmap gc <Plug>NERDCommenterToggle
-nmap ga <Plug>NERDCommenterAppend
-nmap gb <Plug>NERDCommenterSexy
-vmap gc <Plug>NERDCommenterToggle
-vmap ga <Plug>NERDCommenterAppend
-vmap gb <Plug>NERDCommenterSexy
