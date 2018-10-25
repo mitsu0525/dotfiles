@@ -103,15 +103,18 @@ set wildmenu " コマンドライン補完が強力になる
 set history=10000
 
 " ESC to jj
-inoremap <silent> jj <ESC>:<C-u>w<CR>
+inoremap <silent> jj <ESC>
 nnoremap <silent> <ESC><ESC> :nohlsearch<CR>
 
 nnoremap gs  :<C-u>%s///g<Left><Left><Left>
 vnoremap gs  :s///g<Left><Left><Left>
 
+vnoremap <Space><CR> :!sh<CR>    " 行選択中に実行
+nnoremap <Space><CR> V:!sh<CR>   " 行選択していない状態から実行
 nnoremap <Space><Space> :
+vnoremap <Space><Space> :
 nnoremap <Space>w  :<C-u>w<CR>
-nnoremap <Space>q  :<C-u>q<CR>
+nnoremap <Space>q  :<C-u>wq<CR>
 nnoremap <Space>Q  :<C-u>q!<CR>
 
 nnoremap <Space>h  ^
@@ -134,6 +137,10 @@ nnoremap gj j
 nnoremap gk k
 nnoremap <C-j> gj
 nnoremap <C-k> gk
+
+" タブ関連
+nnoremap <C-n> gt
+nnoremap <C-p> gT
 
 " マウス
 if has('mouse')

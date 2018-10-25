@@ -4,7 +4,11 @@ on_event = 'TextYankPost'
 on_source = ['denite.nvim']
 
 [[plugins]]
+repo = 'Shougo/neomru.vim'
+
+[[plugins]]
 repo = 'Shougo/denite.nvim'
+depends = 'neomru.vim'
 on_if = 'has("python3")'
 on_cmd = 'Denite'
 hook_source = 'source ~/.vim/rc/plugins/denite.vim'

@@ -56,6 +56,7 @@ setopt equals
 
 # Do not use Ctrl-s/Ctrl-q as flow control
 setopt no_flow_control
+stty start undef
 
 # Look for a sub-directory in $PATH when the slash is included in the command
 setopt path_dirs

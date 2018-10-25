@@ -9,6 +9,7 @@ bindkey '^u' backward-kill-line
 autoload smart-insert-last-word
 zle -N insert-last-word smart-insert-last-word
 bindkey '^]' insert-last-word
+
 #
 # functions
 #
@@ -25,7 +26,7 @@ bindkey '^D' _delete-char-or-list-expand
 # Ctrl-o
 function tree-fzf() {
   # local SELECTED_FILE=$(tree --noreport -af -I '.git'| fzf --query "" | tr -d '│|─|├|└' )
-  local SELECTED_FILE=$(ls -1A | fzf --query "")
+  local SELECTED_FILE=$(ls -1A | fzf --multi --query "")
 
   if [ "$SELECTED_FILE" != "" ]; then
       BUFFER=$LBUFFER$SELECTED_FILE
@@ -71,4 +72,4 @@ globalias() {
    zle self-insert
 }
 zle -N globalias
-bindkey ' ' globalias
+bindkey " " globalias

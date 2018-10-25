@@ -1,12 +1,6 @@
 " ノーマルモードで起動、jjでノーマルへ
 call denite#custom#map('insert', 'jj', '<denite:enter_mode:normal>')
 
-" ファイル一覧
-call denite#custom#var('file_rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
-call denite#custom#var('file_rec', 'matchers', ['matcher_fuzzy', 'matcher_ignore_globs'])
-call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
-      \ ['.git/', '__pycache__/', '*.o', '*.make', '*.min.*'])
-
 " ディレクトリ一覧
 noremap [denite]d :<C-u>Denite directory_rec<CR>
 noremap [denite]c :<C-u>Denite directory_rec -default-action=cd<CR>
@@ -25,9 +19,18 @@ call denite#custom#map('insert', '<C-p>', '<denite:move_to_previous_line>', 'nor
 call denite#custom#map('normal', '<C-u>', '<denite:move_up_path>', 'noremap')
 call denite#custom#map('insert', '<C-u>', '<denite:move_up_path>', 'noremap')
 
+" ウィンドウを閉じる
+call denite#custom#map('normal', '<C-q>', '<denite:quit>', 'noremap')
+call denite#custom#map('insert', '<C-q>', '<denite:quit>', 'noremap')
+
 " ウィンドウを分割して開く
 call denite#custom#map('normal', '<C-v>', '<denite:do_action:vsplit>', 'noremap')
 call denite#custom#map('insert', '<C-v>', '<denite:do_action:vsplit>', 'noremap')
+
+" 新しいタブで開く
+call denite#custom#map('normal', '<C-t>', '<denite:do_action:tabopen>', 'noremap')
+call denite#custom#map('insert', '<C-t>', '<denite:do_action:tabopen>', 'noremap')
+
 
 " grep
 if executable('rg')
