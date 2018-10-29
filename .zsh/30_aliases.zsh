@@ -101,7 +101,7 @@ mru() {
             | awk '!a[$0]++' \
             | perl -pe 's/^(\/.*\/)(.*)$/\033[34m$1\033[m$2/' \
             | fzf --ansi --multi --query="$@" \
-            --no-sort --prompt="MRU> " \
+            --no-sort --prompt="[MRU] " \
             --print-query --expect=ctrl-v,ctrl-x,ctrl-l,ctrl-q,ctrl-r,"?",ctrl-z,ctrl-y
             )"; do
         q="$(head -1 <<< "$cmd")"
@@ -124,9 +124,7 @@ HELP
                 ;;
             ctrl-y)
                 # Reset ctrl-z
-                f1=(
-                ~/.cache/neomru/file(N)
-                )
+                f1=(~/.cache/neomru/file(N))
                 f2=($f2_backup)
                 ;;
             ctrl-z)
@@ -221,7 +219,7 @@ destination_directories() {
             | reverse | awk '!a[$0]++' | reverse \
             | perl -pe 's/^(\/.*)$/\033[34m$1\033[m/' \
             | fzf --ansi --multi --tac --query="$q" \
-            --no-sort --exit-0 --prompt="destination-> " \
+            --no-sort --exit-0 --prompt="[DIR] " \
             --print-query --expect=ctrl-r,ctrl-y,ctrl-q \
             )"; do
         q="$(head -1 <<< "$cmd")"

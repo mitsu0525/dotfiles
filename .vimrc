@@ -56,11 +56,14 @@ set ambiwidth=double " □や○文字が崩れる問題を解決
 """ 表示関係
 set t_Co=256
 set background=dark
-set number              " 行番号の表示
-set cursorline          " カーソルラインをハイライト
-set ruler               " カーソル位置が右下に表示される
-set showcmd             " コマンドを画面の最下部に表示する
+set number      " 行番号の表示
+set cursorline  " カーソルラインをハイライト
+set ruler       " カーソル位置が右下に表示される
+set showcmd     " コマンドを画面の最下部に表示する
 set showbreak=↪ " showbreaks
+
+" Display another buffer when current buffer isn't saved.
+set hidden
 
 " ヘルプ関係
 set helplang& helplang=ja " Language help
@@ -70,20 +73,28 @@ cabbrev help tab help
 cabbrev h tab help
 
 " タブ・インデント
-set expandtab " タブ入力を複数の空白入力に置き換える
-set tabstop=4 " 画面上でタブ文字が占める幅
+set expandtab     " タブ入力を複数の空白入力に置き換える
+set tabstop=4     " 画面上でタブ文字が占める幅
 set softtabstop=4 " 連続した空白に対してタブキーやバックスペースキーでカーソルが動く幅
-set autoindent " 改行時に前の行のインデントを継続する
-set smartindent " 改行時に前の行の構文をチェックし次の行のインデントを増減する
-set shiftwidth=4 " smartindentで増減する幅
+set autoindent    " 改行時に前の行のインデントを継続する
+set smartindent   " 改行時に前の行の構文をチェックし次の行のインデントを増減する
+set shiftwidth=4  " smartindentで増減する幅
+
+"  コメントアウト補完無効
+augroup auto_comment_off
+	autocmd!
+	autocmd BufEnter * setlocal formatoptions-=r
+	autocmd BufEnter * setlocal formatoptions-=o
+augroup END
 
 " 文字列検索
-set incsearch " インクリメンタルサーチ. １文字入力毎に検索を行う
+set incsearch  " インクリメンタルサーチ. １文字入力毎に検索を行う
 set ignorecase " 検索パターンに大文字小文字を区別しない
-set smartcase " 検索パターンに大文字を含んでいたら大文字小文字を区別する
-set hlsearch " 検索結果をハイライト
+set smartcase  " 検索パターンに大文字を含んでいたら大文字小文字を区別する
+set hlsearch   " 検索結果をハイライト
 set wrapscan
-nnoremap <silent><Esc><Esc> :<C-u>set nohlsearch!<CR> " ESCキー2度押しでハイライトの切り替え
+" ESCキー2度押しでハイライトの切り替え
+nnoremap <silent><Esc><Esc> :<C-u>set nohlsearch!<CR>
 
 " Swapファイル, Backupファイルを全て無効化する
 set nowritebackup
@@ -104,8 +115,8 @@ set showmatch " 括弧の対応関係を一瞬表示する
 source $VIMRUNTIME/macros/matchit.vim " Vimの「%」を拡張する
 
 " コマンド補完
-set wildmenu " コマンドライン補完が強力になる
-set history=10000
+set wildmode=list:longest,full " コマンドライン補完が強力になる
+set history=1000
 
 " Define mapleader
 let g:mapleader = ','
@@ -123,7 +134,7 @@ nnoremap [Space] <Nop>
 xnoremap [Space] <Nop>
 noremap [Space]<Space> :
 noremap [Space]w  :<C-u>w<CR>
-noremap [Space]q  :<C-u>wq<CR>
+noremap [Space]q  :<C-u>q<CR>
 noremap [Space]Q  :<C-u>q!<CR>
 " 行選択していない状態から実行
 nnoremap [Space]<CR> V:!sh<CR>
@@ -131,17 +142,30 @@ nnoremap [Space]<CR> V:!sh<CR>
 vnoremap [Space]<CR> :!sh<CR>
 
 " カーソル移動
-noremap [Space]h  ^
-noremap [Space]l  $
+nnoremap j gj
+nnoremap k gk
+vnoremap j gj
+vnoremap k gk
+nnoremap gj j
+nnoremap gk k
+vnoremap gj j
+vnoremap gk k
+noremap [Space]h ^
+noremap [Space]l $
 inoremap <C-a> <Home>
 inoremap <C-e> <End>
 inoremap <C-h> <BS>
 inoremap <C-d> <Del>
 " Smart <C-f>, <C-b>.
-noremap <expr> <C-f> max([winheight(0) - 2, 1])
-      \ . "\<C-d>" . (line('w$') >= line('$') ? "L" : "M")
-noremap <expr> <C-b> max([winheight(0) - 2, 1])
-      \ . "\<C-u>" . (line('w0') <= 1 ? "H" : "M")
+noremap <expr> <C-f> max([winheight(0) - 2, 1]) . "\<C-d>" . (line('w$') >= line('$') ? "L" : "M")
+noremap <expr> <C-b> max([winheight(0) - 2, 1]) . "\<C-u>" . (line('w0') <= 1 ? "H" : "M")
+
+" Better x
+nnoremap x "_x
+vnoremap <silent> y y`]
+vnoremap <silent> p p`]
+nnoremap <silent> p p`]
+
 
 " Command-line mode keymappings:
 cnoremap <C-a> <Home>
@@ -157,8 +181,8 @@ cnoremap <C-g> <C-c>
 " 検索・置換・インデント
 noremap [Space]/  *
 noremap [Space]m  %
-nnoremap sg  :<C-u>%s//g<Left><Left>
-vnoremap sg  :s//g<Left><Left>
+nnoremap sg :<C-u>%s//g<Left><Left>
+vnoremap sg :s//g<Left><Left>
 nnoremap > >>
 nnoremap < <<
 xnoremap > >gv
@@ -168,22 +192,37 @@ nnoremap Y y$
 
 " 補完
 if dein#check_install('lexima.vim')
-  inoremap [ []<LEFT>
-  inoremap ( ()<LEFT>
-  inoremap " ""<LEFT>
-  inoremap ' ''<LEFT>
-  inoremap ` ``<LEFT>
+    inoremap [ []<LEFT>
+    inoremap ( ()<LEFT>
+    inoremap " ""<LEFT>
+    inoremap ' ''<LEFT>
+    inoremap ` ``<LEFT>
 endif
+
+" a>, i], etc...
+" <angle>
+onoremap aa  a>
+xnoremap aa  a>
+onoremap ia  i>
+xnoremap ia  i>
+
+" [rectangle]
+onoremap ar  a]
+xnoremap ar  a]
+onoremap ir  i]
+xnoremap ir  i]
 
 " 空行挿入
 nnoremap <silent> <CR> <End>:call append(line('.'),'')<CR><Down>
 
 " タブ移動
+nnoremap tt    :<C-u>tabnew<CR>
 nnoremap <C-n> :<C-u>tabnext<CR>
 nnoremap <C-p> :<C-u>tabprev<CR>
 
 " Diable
-nnoremap ZZ  <Nop>
+nnoremap ZZ <Nop>
+nnoremap ZQ <Nop>
 nnoremap Q  q
 
 " マウス
@@ -237,3 +276,13 @@ if has('vim_starting')
 	endif
 endif
 
+" vp doesn't replace paste buffer
+function! RestoreRegister()
+  let @" = s:restore_reg
+  return ''
+endfunction
+function! s:Repl()
+  let s:restore_reg = @"
+  return "p@=RestoreRegister()\<cr>"
+endfunction
+vmap <silent> <expr> p <SID>Repl()

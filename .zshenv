@@ -85,12 +85,10 @@ fi
 export INTERACTIVE_FILTER="fzf"
 export FZF_DEFAULT_OPTS="
 --height 40% --reverse --border --cycle
+--bind 'ctrl-r:toggle-sort'
+--color dark,hl:33,hl+:37,fg:-1,fg+:254,bg:-1,bg+:166
+--color info:254,prompt:37,spinner:108,pointer:235,marker:235
 "
-# --preview='head -$LINES {}' --preview-window=right:50%
-# --bind 'ctrl-p:toggle-preview','ctrl-r:toggle-sort'
-# --color dark,hl:33,hl+:37,fg+:235,bg+:136,fg+:254
-# --color info:254,prompt:37,spinner:108,pointer:235,marker:235
-# "
 
 export DOTPATH=${0:A:h}
 
