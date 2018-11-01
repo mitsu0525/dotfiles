@@ -142,14 +142,6 @@ nnoremap [Space]<CR> V:!sh<CR>
 vnoremap [Space]<CR> :!sh<CR>
 
 " カーソル移動
-nnoremap j gj
-nnoremap k gk
-vnoremap j gj
-vnoremap k gk
-nnoremap gj j
-nnoremap gk k
-vnoremap gj j
-vnoremap gk k
 noremap [Space]h ^
 noremap [Space]l $
 inoremap <C-a> <Home>
@@ -216,9 +208,8 @@ xnoremap ir  i]
 nnoremap <silent> <CR> <End>:call append(line('.'),'')<CR><Down>
 
 " タブ移動
-nnoremap tt    :<C-u>tabnew<CR>
-nnoremap <C-n> :<C-u>tabnext<CR>
-nnoremap <C-p> :<C-u>tabprev<CR>
+nnoremap <silent> <C-n> :<C-u>tabnext<CR>
+nnoremap <silent> <C-p> :<C-u>tabprev<CR>
 
 " Diable
 nnoremap ZZ <Nop>

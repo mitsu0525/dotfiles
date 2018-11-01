@@ -20,13 +20,13 @@ hook_add = '''
 
 [[plugins]] # lightline-theme
 repo = 'delphinus/lightline-delphinus'
-depends = ['lightline.vim', 'vim-devicons', 'tagber']
+depends = ['lightline.vim', 'vim-devicons', 'tagber', 'vim-gitgutter']
 hook_add = '''
     let g:lightline_delphinus_use_powerline_glyphs=1
     let g:lightline_delphinus_use_nerd_fonts_glyphs=1
     let g:lightline_delphinus_colorscheme='solarized_improved'
-    let g:lightline_delphinus_tagbar_enable=0
-    let g:lightline_delphinus_gitgutter_enable=0
+    let g:lightline_delphinus_tagbar_enable=1
+    let g:lightline_delphinus_gitgutter_enable=1
     " nr2char(...) is for describing icons from devicons
     let g:ale_echo_msg_error_str = nr2char(0xf421) . ' '
     let g:ale_echo_msg_warning_str = nr2char(0xf420) . ' '
@@ -113,12 +113,21 @@ hook_add = '''
 '''
 
 [[plugins]]
+repo = 'yuttie/comfortable-motion.vim'
+
+[[plugins]]
 repo = 'jistr/vim-nerdtree-tabs'
 depends = 'nerdtree'
 on_map = {n = '<Plug>'}
 hook_add = '''
     nmap <silent> <Space>o <plug>NERDTreeTabsToggle<CR>
 '''
+
+[[plugins]]
+repo = 'airblade/vim-gitgutter'
+
+[[plugins]]
+repo = 'tpope/vim-fugitive'
 
 [[plugins]] # deoplete用
 repo = 'roxma/vim-hug-neovim-rpc'

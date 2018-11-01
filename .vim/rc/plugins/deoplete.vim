@@ -9,14 +9,14 @@ function! s:check_back_space() abort
 endfunction
 
 " <S-TAB>: completion back.
-inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 " <C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
 
-inoremap <expr><C-g>       deoplete#refresh()
-inoremap <silent><expr><C-l>       deoplete#complete_common_string()
+inoremap <expr><C-g> deoplete#refresh()
+inoremap <silent><expr><C-l> deoplete#complete_common_string()
 
 " <CR>: close popup and save indent.
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
@@ -24,7 +24,7 @@ function! s:my_cr_function() abort
   return deoplete#cancel_popup() . "\<CR>"
 endfunction
 
-inoremap <expr> '  pumvisible() ? deoplete#close_popup() : "'"
+inoremap <expr> ' pumvisible() ? deoplete#close_popup() : "'"
 
 " cpsm test
 " call deoplete#custom#source('_', 'matchers', ['matcher_cpsm'])

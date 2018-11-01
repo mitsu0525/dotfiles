@@ -1,6 +1,4 @@
 [[plugins]]
-
-
 repo = 'Shougo/neoyank.vim'
 on_event = 'TextYankPost'
 on_source = ['denite.nvim']
@@ -28,6 +26,8 @@ hook_add = '''
     nnoremap <silent> [denite]p :<C-u>Denite -buffer-name=register register neoyank<CR>
     nnoremap <silent> <Space>p  :<C-u>Denite -buffer-name=register register neoyank<CR>
     nnoremap <silent> [denite]c :<C-u>DeniteWithBufferDir -buffer-name=files file<CR>
+    nnoremap <silent> [denite]d :<C-u>Denite directory_rec<CR>
+    nnoremap <silent> [denite]c :<C-u>Denite directory_rec -default-action=cd<CR>
     nnoremap <silent> / :<C-u>Denite -buffer-name=search -auto-highlight line<CR>
     nnoremap <silent> * :<C-u>DeniteCursorWord -buffer-name=search -auto-highlight -mode=normal line<CR>
 '''
@@ -43,12 +43,23 @@ hook_source = '''
 '''
 
 [[plugins]]
+repo = 'rhysd/accelerated-jk'
+on_map = {n = '<Plug>'}
+hook_add = '''
+  nmap <silent>j <Plug>(accelerated_jk_gj)
+  nmap <silent>k <Plug>(accelerated_jk_gk)
+'''
+
+[[plugins]]
 repo = 'kana/vim-niceblock'
 on_map = {x = '<Plug>'}
 hook_add = '''
   xmap I  <Plug>(niceblock-I)
   xmap A  <Plug>(niceblock-A)
 '''
+
+[[plugins]]
+repo = 'kana/vim-operator-replace'
 
 [[plugins]]
 repo = 'rhysd/vim-operator-surround'

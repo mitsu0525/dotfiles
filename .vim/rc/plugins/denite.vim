@@ -1,10 +1,6 @@
 " ノーマルモードで起動、jjでノーマルへ
 call denite#custom#map('insert', 'jj', '<denite:enter_mode:normal>')
 
-" ディレクトリ一覧
-noremap [denite]d :<C-u>Denite directory_rec<CR>
-noremap [denite]c :<C-u>Denite directory_rec -default-action=cd<CR>
-
 " 移動
 call denite#custom#map('normal', 'j', '<denite:nop>', 'noremap')
 call denite#custom#map('normal', 'k', '<denite:nop>', 'noremap')
