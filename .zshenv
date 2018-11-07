@@ -103,11 +103,14 @@ export DOTPATH=${0:A:h}
 # export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home
 # PATH=$PATH:${JAVA_HOME}/bin:${PLAY_HOME}
 #
-# # pyenv
-# export PYENV_ROOT=$HOME/.pyenv
-# export PATH=$PYENV_ROOT/bin:$PATH
-# eval "$(pyenv init - --no-rehash)"
-# eval "$(pyenv virtualenv-init - --no-rehash)"
+# pyenv
+export PYENV_ROOT=$HOME/.pyenv
+export PATH=$PYENV_ROOT/bin:$PATH
+eval "$(pyenv init - --no-rehash)"
+eval "$(pyenv virtualenv-init - --no-rehash)"
+
+# rbenv
+eval "$(rbenv init -)"
 
 function prompt_steeef_precmd {
   # Check for untracked files or updated submodules since vcs_info does not.

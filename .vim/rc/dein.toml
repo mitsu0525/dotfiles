@@ -6,7 +6,7 @@ repo = 'altercation/vim-colors-solarized'
 hook_add = '''
     set background=dark
     " colorscheme 設定は source 後に行う必要があるので VimEnter で行う。
-    " 但し Colorscheme イベントの発生が抑制されないよう nented を付ける。
+    " 但し Colorscheme イベントの発生が抑制されないよう nested を付ける。
     au MyAutoCmd VimEnter * nested colorscheme solarized
 '''
 
@@ -62,24 +62,29 @@ repo = 'majutsushi/tagbar'
 
 [[plugins]] # インデントの可視化
 repo = 'Yggdroot/indentLine'
-hook_add = 'let g:indentLine_faster = 1'
+hook_add = '''
+    let g:indentLine_faster = 1
+'''
 
 [[plugins]] # 日本語ヘルプ
 repo = 'vim-jp/vimdoc-ja'
 
 [[plugins]]
 repo = 'kana/vim-textobj-user'
+hook_add = 'source ~/.vim/rc/plugins/vim-textobj-user.vim'
 
 [[plugins]]
 repo = 'kana/vim-operator-user'
 
 [[plugins]]
 repo = 'junegunn/vim-easy-align'
-hook_add = 'vmap <CR> <Plug>(EasyAlign)'
+hook_add = '''
+    vmap <CR> <Plug>(EasyAlign)
+'''
 
 [[plugins]]
 repo = 'cohama/lexima.vim'
-hook_source = 'source ~/.vim/rc/plugins/lexima.vim'
+hook_add = 'source ~/.vim/rc/plugins/lexima.vim'
 
 [[plugins]] # コメントアウト
 repo = 'scrooloose/nerdcommenter'
@@ -102,6 +107,8 @@ hook_add = '''
 [[plugins]] # ツリー表示
 repo = 'scrooloose/nerdtree'
 hook_add = '''
+    nmap <silent> [Space]o :NERDTreeToggle<CR>
+    nmap <silent> <C-q>    :NERDTreeToggle<CR>
     let g:NERDTreeMinimalUI=1
     let g:NERDTreeShowBookmarks=1
     let g:NERDTreeShowHidden=1
@@ -110,17 +117,6 @@ hook_add = '''
     autocmd StdinReadPre * let s:std_in=1
     autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-'''
-
-[[plugins]]
-repo = 'yuttie/comfortable-motion.vim'
-
-[[plugins]]
-repo = 'jistr/vim-nerdtree-tabs'
-depends = 'nerdtree'
-on_map = {n = '<Plug>'}
-hook_add = '''
-    nmap <silent> <Space>o <plug>NERDTreeTabsToggle<CR>
 '''
 
 [[plugins]]
@@ -143,7 +139,9 @@ repo = 'w0rp/ale'
 [[plugins]] # カーソル位置のコンテキストに合わせてftを切り替える
 repo = 'osyo-manga/vim-precious'
 depends = 'context_filetype.vim'
-hook_add = 'let g:precious_enable_switch_CursorMoved = { "help" : 0 }'
+hook_add = '''
+    let g:precious_enable_switch_CursorMoved = { "help" : 0 }
+'''
 
 [[plugins]] # カーソル位置のコンテキストのftを判定するライブラリ
 repo = 'Shougo/context_filetype.vim'

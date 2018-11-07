@@ -53,7 +53,7 @@ set fileencodings=ucs-boms,utf-8,euc-jp,cp932 " 読み込み時の文字コー�
 set fileformats=unix,dos,mac " 改行コードの自動判別. 左側が優先される
 set ambiwidth=double " □や○文字が崩れる問題を解決
 
-""" 表示関係
+" 表示関係
 set t_Co=256
 set background=dark
 set number      " 行番号の表示
@@ -61,11 +61,22 @@ set cursorline  " カーソルラインをハイライト
 set ruler       " カーソル位置が右下に表示される
 set showcmd     " コマンドを画面の最下部に表示する
 set showbreak=↪ " showbreaks
+set list        " 不可視文字を表示
+set listchars=tab:▸-,trail:-,precedes:«,nbsp:%
 
 " Display another buffer when current buffer isn't saved.
 set hidden
+" Have Vim automatically reload changed files on disk. Very useful when using
+" git and switching between branches
+set autoread
+" Automatically write buffers to file when current window switches to another
+" buffer as a result of :next, :make, etc. See :h autowrite.
+set autowrite
+" Behavior when you switch buffers
+set switchbuf=useopen,usetab,newtab
 
 " ヘルプ関係
+set keywordprg=:help " Open Vim internal help by K command
 set helplang& helplang=ja " Language help
 autocmd FileType help nnoremap <buffer> q <C-w>c " qでhelpを閉じる
 " ヘルプを新しいタブで開く
@@ -82,9 +93,9 @@ set shiftwidth=4  " smartindentで増減する幅
 
 "  コメントアウト補完無効
 augroup auto_comment_off
-	autocmd!
-	autocmd BufEnter * setlocal formatoptions-=r
-	autocmd BufEnter * setlocal formatoptions-=o
+    autocmd!
+    autocmd BufEnter * setlocal formatoptions-=r
+    autocmd BufEnter * setlocal formatoptions-=o
 augroup END
 
 " 文字列検索
@@ -109,14 +120,16 @@ set belloff=all
 " カーソル
 set backspace=indent,eol,start " Backspaceキーの影響範囲に制限を設けない
 set whichwrap=b,s,h,l,<,>,[,]  " 行頭行末の左右移動で行をまたぐ
+set nostartofline " Moves the cursor to the same column when cursor move
 
 " カッコ・タグジャンプ
 set showmatch " 括弧の対応関係を一瞬表示する
-source $VIMRUNTIME/macros/matchit.vim " Vimの「%」を拡張する
+set matchpairs& matchpairs+=<:> " Increase the corresponding pairs
 
 " コマンド補完
-set wildmode=list:longest,full " コマンドライン補完が強力になる
-set history=1000
+set wildmenu
+set wildmode=longest,full
+set history=10000
 
 " Define mapleader
 let g:mapleader = ','
@@ -125,6 +138,9 @@ let g:maplocalleader = ','
 " ESC to jj
 inoremap <silent> jj <ESC>
 inoremap j<Space> j
+" IM settings
+set iminsert=0 imsearch=0 " IM off when starting up
+set noimcmdline " Disable IM on cmdline
 
 " Smart space mapping
 " Notice: when starting other <Space> mappings in noremap, disappeared [Space]
@@ -139,10 +155,12 @@ noremap [Space]Q  :<C-u>q!<CR>
 " 行選択していない状態から実行
 nnoremap [Space]<CR> V:!sh<CR>
 " 行選択中に実行
-vnoremap [Space]<CR> :!sh<CR>
+xnoremap [Space]<CR> :!sh<CR>
 
 " カーソル移動
 noremap [Space]h ^
+noremap [Space]j L
+noremap [Space]k H
 noremap [Space]l $
 inoremap <C-a> <Home>
 inoremap <C-e> <End>
@@ -155,9 +173,8 @@ noremap <expr> <C-b> max([winheight(0) - 2, 1]) . "\<C-u>" . (line('w0') <= 1 ? 
 " Better x
 nnoremap x "_x
 vnoremap <silent> y y`]
-vnoremap <silent> p p`]
-nnoremap <silent> p p`]
-
+" vnoremap <silent> p p`]
+" nnoremap <silent> p p`]
 
 " Command-line mode keymappings:
 cnoremap <C-a> <Home>
@@ -168,11 +185,9 @@ cnoremap <C-f> <Right>
 cnoremap <C-n> <Down>
 cnoremap <C-p> <Up>
 cnoremap <C-y> <C-r>*
-cnoremap <C-g> <C-c>
+cnoremap <C-q> <C-c>
 
 " 検索・置換・インデント
-noremap [Space]/  *
-noremap [Space]m  %
 nnoremap sg :<C-u>%s//g<Left><Left>
 vnoremap sg :s//g<Left><Left>
 nnoremap > >>
@@ -191,25 +206,20 @@ if dein#check_install('lexima.vim')
     inoremap ` ``<LEFT>
 endif
 
-" a>, i], etc...
-" <angle>
-onoremap aa  a>
-xnoremap aa  a>
-onoremap ia  i>
-xnoremap ia  i>
-
-" [rectangle]
-onoremap ar  a]
-xnoremap ar  a]
-onoremap ir  i]
-xnoremap ir  i]
-
 " 空行挿入
 nnoremap <silent> <CR> <End>:call append(line('.'),'')<CR><Down>
 
-" タブ移動
-nnoremap <silent> <C-n> :<C-u>tabnext<CR>
-nnoremap <silent> <C-p> :<C-u>tabprev<CR>
+" バッファ・タブ移動
+nnoremap <silent> <C-h> :<C-u>tabprev<CR>
+nnoremap <silent> <C-j> :<C-u>bnext<CR>
+nnoremap <silent> <C-k> :<C-u>bprev<CR>
+nnoremap <silent> <C-l> :<C-u>tabnext<CR>
+
+" ウィンドウ操作
+nnoremap <silent> sp    :<C-u>vsplit<CR>:wincmd w<CR>
+nnoremap <silent> so    :<C-u>only<CR>
+nnoremap <silent> <Tab> :wincmd w<CR>
+nnoremap <silent><expr> q winnr('$') != 1 ? ':<C-u>close<CR>' : ""
 
 " Diable
 nnoremap ZZ <Nop>
@@ -241,39 +251,39 @@ if &term =~ "xterm"
 
     inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
 endif
-" クリップボードをデフォルトのレジスタとして指定。後にYankRingを使うので
-" 'unnamedplus'が存在しているかどうかで設定を分ける必要がある
+
+" Use clipboard register.
 if has('unnamedplus')
-    set clipboard& clipboard+=unnamedplus,unnamed
+    set clipboard& clipboard+=unnamedplus
 else
     set clipboard& clipboard+=unnamed
 endif
 
 if has('vim_starting')
-	if exists('$TMUX')
-        " 挿入モード時に非点滅の縦棒タイプのカーソル
+    if exists('$TMUX')
+        " 挿入モード時に非点滅の縦棒カーソル
         let &t_SI .= "\ePtmux;\e\e[6 q\e\\"
-        " ノーマルモード時に非点滅のブロックタイプのカーソル
+        " ノーマルモード時に非点滅のブロックカーソル
         let &t_EI .= "\ePtmux;\e\e[2 q\e\\"
-        " 置換モード時に非点滅の下線タイプのカーソル
+        " 置換モード時に非点滅の下線カーソル
         let &t_SR .= "\ePtmux;\e\e[4 q\e\\"
-	else
-	    " 挿入モード時に非点滅の縦棒タイプのカーソル
-	    let &t_SI .= "\e[6 q"
-	    " ノーマルモード時に非点滅のブロックタイプのカーソル
-	    let &t_EI .= "\e[2 q"
-	    " 置換モード時に非点滅の下線タイプのカーソル
-	    let &t_SR .= "\e[4 q"
-	endif
+    else
+        " 挿入モード時に非点滅の縦棒カーソル
+        let &t_SI .= "\e[6 q"
+        " ノーマルモード時に非点滅のブロックカーソル
+        let &t_EI .= "\e[2 q"
+        " 置換モード時に非点滅の下線カーソル
+        let &t_SR .= "\e[4 q"
+    endif
 endif
 
-" vp doesn't replace paste buffer
+" v_p doesn't replace register
 function! RestoreRegister()
   let @" = s:restore_reg
   return ''
 endfunction
 function! s:Repl()
   let s:restore_reg = @"
-  return "p@=RestoreRegister()\<cr>"
+  return "p@=RestoreRegister()\<CR>"
 endfunction
 vmap <silent> <expr> p <SID>Repl()
