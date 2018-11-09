@@ -12,7 +12,7 @@ fi
 
 if has 'git'; then
     alias gst='git status'
-	alias gac='git add -A && git_commit_automatically'
+    alias gac='git add -A && git_commit_automatically'
 fi
 
 if has 'richpager'; then
@@ -31,6 +31,7 @@ fi
 
 # Common aliases
 alias ..='cd ..'
+alias -- -='cd -'
 alias ld='ls -ld'          # Show info about the directory
 alias lla='ls -lAF'        # Show hidden all files
 alias ll='ls -lF'          # Show long file information
@@ -44,9 +45,9 @@ alias lr='ls -lR'          # Recursive ls
 
 alias cp="${ZSH_VERSION:+nocorrect} cp -i"
 alias mv="${ZSH_VERSION:+nocorrect} mv -i"
-alias rm="${ZSH_VERSION:+nocorrect} rm -i" 
+alias rm="${ZSH_VERSION:+nocorrect} rm -i"
 alias mkdir="${ZSH_VERSION:+nocorrect} mkdir"
- 
+
 alias grep='grep --color'
 alias sgrep='grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS} '
 
@@ -76,7 +77,7 @@ alias sortnr='sort -n -r'
 alias unexport='unset'
 
 # open current directory in Finder
-alias f='open .' 
+alias f='open .'
 
 # vim
 alias vi='vim'

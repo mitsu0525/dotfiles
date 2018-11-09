@@ -23,18 +23,8 @@ zplug "junegunn/fzf", \
     as:command, \
     use:bin/fzf-tmux
 
-# zplug "peco/peco", \
-#     as:command, \
-#     from:gh-r, \
-#     frozen:1
-
-# zplug "jhawthorn/fzy", \
-#     as:command, \
-#     rename-to:fzy, \
-#     hook-build:"make && sudo make install"
-
-# # Additional completion definitions for Zsh
-# zplug "zsh-users/zsh-completions"
+# Additional completion definitions for Zsh
+zplug "zsh-users/zsh-completions"
 
 # Syntax highlighting bundle. zsh-syntax-highlighting must be loaded after
 # excuting compinit command and sourcing other plugins.
@@ -45,6 +35,3 @@ zplug "zsh-users/zsh-history-substring-search"
 
 # This plugin adds many useful aliases and functions.
 zplug "plugins/git", from:oh-my-zsh
-
-# zplugなどでzをインストールしとく
-# zplug "rupa/z", use:z.sh

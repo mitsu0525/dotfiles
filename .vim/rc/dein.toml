@@ -39,6 +39,9 @@ hook_add = '''
 '''
 
 [[plugins]]
+repo = 'ap/vim-buftabline'
+
+[[plugins]]
 repo = 'ryanoasis/vim-devicons'
 hook_add = '''
     " vim-devicons
@@ -68,6 +71,18 @@ hook_add = '''
 
 [[plugins]] # 日本語ヘルプ
 repo = 'vim-jp/vimdoc-ja'
+
+[[plugins]]
+repo = 'rhysd/clever-f.vim'
+
+[[plugins]]
+repo = 'easymotion/vim-easymotion'
+hook_add = '''
+    let g:EasyMotion_do_mapping = 0
+    " s{char}{char} to move to {char}{char}
+    nmap , <Plug>(easymotion-overwin-f2)
+    vmap , <Plug>(easymotion-bd-f2)
+'''
 
 [[plugins]]
 repo = 'kana/vim-textobj-user'

@@ -49,8 +49,10 @@ endif
 set encoding=utf-8
 scriptencoding utf-8
 set fileencoding=utf-8 " 保存時の文字コード
-set fileencodings=ucs-boms,utf-8,euc-jp,cp932 " 読み込み時の文字コードの自動判別. 左側が優先される
-set fileformats=unix,dos,mac " 改行コードの自動判別. 左側が優先される
+" Default fileformat.
+set fileformat=unix
+" Automatic recognition of a new line cord.
+set fileformats=unix,dos,mac
 set ambiwidth=double " □や○文字が崩れる問題を解決
 
 " 表示関係
@@ -66,22 +68,18 @@ set listchars=tab:▸-,trail:-,precedes:«,nbsp:%
 
 " Display another buffer when current buffer isn't saved.
 set hidden
-" Have Vim automatically reload changed files on disk. Very useful when using
-" git and switching between branches
-set autoread
-" Automatically write buffers to file when current window switches to another
-" buffer as a result of :next, :make, etc. See :h autowrite.
-set autowrite
-" Behavior when you switch buffers
-set switchbuf=useopen,usetab,newtab
+" " Have Vim automatically reload changed files on disk. Very useful when using
+" " git and switching between branches
+" set autoread
+" " Automatically write buffers to file when current window switches to another
+" " buffer as a result of :next, :make, etc. See :h autowrite.
+" set autowrite
+" " Behavior when you switch buffers
+" set switchbuf=useopen,usetab,newtab
 
 " ヘルプ関係
 set keywordprg=:help " Open Vim internal help by K command
-set helplang& helplang=ja " Language help
-autocmd FileType help nnoremap <buffer> q <C-w>c " qでhelpを閉じる
-" ヘルプを新しいタブで開く
-cabbrev help tab help
-cabbrev h tab help
+set helplang& helplang=ja,en " Language help
 
 " タブ・インデント
 set expandtab     " タブ入力を複数の空白入力に置き換える
@@ -92,11 +90,8 @@ set smartindent   " 改行時に前の行の構文をチェックし次の行の
 set shiftwidth=4  " smartindentで増減する幅
 
 "  コメントアウト補完無効
-augroup auto_comment_off
-    autocmd!
-    autocmd BufEnter * setlocal formatoptions-=r
-    autocmd BufEnter * setlocal formatoptions-=o
-augroup END
+autocmd MyAutoCmd BufEnter * setlocal formatoptions-=r
+autocmd MyAutoCmd BufEnter * setlocal formatoptions-=o
 
 " 文字列検索
 set incsearch  " インクリメンタルサーチ. １文字入力毎に検索を行う
@@ -150,7 +145,7 @@ nnoremap [Space] <Nop>
 xnoremap [Space] <Nop>
 noremap [Space]<Space> :
 noremap [Space]w  :<C-u>w<CR>
-noremap [Space]q  :<C-u>q<CR>
+noremap [Space]q  :<C-u>qa<CR>
 noremap [Space]Q  :<C-u>q!<CR>
 " 行選択していない状態から実行
 nnoremap [Space]<CR> V:!sh<CR>
@@ -170,12 +165,6 @@ inoremap <C-d> <Del>
 noremap <expr> <C-f> max([winheight(0) - 2, 1]) . "\<C-d>" . (line('w$') >= line('$') ? "L" : "M")
 noremap <expr> <C-b> max([winheight(0) - 2, 1]) . "\<C-u>" . (line('w0') <= 1 ? "H" : "M")
 
-" Better x
-nnoremap x "_x
-vnoremap <silent> y y`]
-" vnoremap <silent> p p`]
-" nnoremap <silent> p p`]
-
 " Command-line mode keymappings:
 cnoremap <C-a> <Home>
 cnoremap <C-b> <Left>
@@ -184,7 +173,6 @@ cnoremap <C-e> <End>
 cnoremap <C-f> <Right>
 cnoremap <C-n> <Down>
 cnoremap <C-p> <Up>
-cnoremap <C-y> <C-r>*
 cnoremap <C-q> <C-c>
 
 " 検索・置換・インデント
@@ -209,11 +197,9 @@ endif
 " 空行挿入
 nnoremap <silent> <CR> <End>:call append(line('.'),'')<CR><Down>
 
-" バッファ・タブ移動
-nnoremap <silent> <C-h> :<C-u>tabprev<CR>
-nnoremap <silent> <C-j> :<C-u>bnext<CR>
-nnoremap <silent> <C-k> :<C-u>bprev<CR>
-nnoremap <silent> <C-l> :<C-u>tabnext<CR>
+" バッファ移動
+nnoremap <silent> <C-n> :<C-u>bnext<CR>
+nnoremap <silent> <C-p> :<C-u>bprev<CR>
 
 " ウィンドウ操作
 nnoremap <silent> sp    :<C-u>vsplit<CR>:wincmd w<CR>
@@ -252,7 +238,7 @@ if &term =~ "xterm"
     inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
 endif
 
-" Use clipboard register.
+" " Use clipboard register.
 if has('unnamedplus')
     set clipboard& clipboard+=unnamedplus
 else

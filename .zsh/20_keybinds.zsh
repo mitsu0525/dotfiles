@@ -26,17 +26,17 @@ zle -N _delete-char-or-list-expand
 bindkey '^D' _delete-char-or-list-expand
 
 # Ctrl-f
-# function fzf-cdr() {
-#     local SELECTED_DIR=$(__enhancd::history::list | __enhancd::utils::grep -vx "$HOME" | head -n "$ENHANCD_HYPHEN_NUM" | __enhancd::filter::interactive)
-#     if [ -d "$SELECTED_DIR" ]; then
-#         BUFFER="cd $SELECTED_DIR"
-#         zle accept-line
-#     fi
-#
-#     zle reset-prompt
-# }
-# zle -N fzf-cdr
-# bindkey '^F' fzf-cdr
+function fzf-cdr() {
+    local SELECTED_DIR=$(__enhancd::history::list | __enhancd::utils::grep -vx "$HOME" | head -n "$ENHANCD_HYPHEN_NUM" | __enhancd::filter::interactive)
+    if [ -d "$SELECTED_DIR" ]; then
+        BUFFER="cd $SELECTED_DIR"
+        zle accept-line
+    fi
+
+    zle reset-prompt
+}
+zle -N fzf-cdr
+bindkey '^s' fzf-cdr
 
 # Ctrl-o
 function fzf-find-file() {
