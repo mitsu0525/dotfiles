@@ -5,7 +5,7 @@ augroup END
 
 " dein Scripts-----------------------------
 if &compatible
-  set nocompatible               " Be iMproved
+  set nocompatible " Be iMproved
 endif
 
 let s:dein_path = expand('~/.vim/dein')
@@ -26,7 +26,7 @@ if dein#load_state(s:dein_path)
   let s:toml        = g:config_dir . '/dein.toml'
   let s:lazy_toml   = g:config_dir . '/dein_lazy.toml'
 
-  " TOML 読み込み
+  " Load TOML
   call dein#load_toml(s:toml,      {'lazy': 0})
   call dein#load_toml(s:lazy_toml, {'lazy': 1})
 
@@ -38,12 +38,11 @@ endif
 filetype plugin indent on
 syntax enable
 
-" インストールされていないプラグインがあればインストールする
 " If you want to install not installed plugins on startup.
 if dein#check_install()
   call dein#install()
 endif
-"End dein Scripts-------------------------
+" End dein Scripts-------------------------
 
 " 文字コード
 set encoding=utf-8
@@ -58,24 +57,15 @@ set ambiwidth=double " □や○文字が崩れる問題を解決
 " 表示関係
 set t_Co=256
 set background=dark
-set number      " 行番号の表示
 set cursorline  " カーソルラインをハイライト
 set ruler       " カーソル位置が右下に表示される
 set showcmd     " コマンドを画面の最下部に表示する
-set showbreak=↪ " showbreaks
 set list        " 不可視文字を表示
 set listchars=tab:▸-,trail:-,precedes:«,nbsp:%
+set showbreak=↪ " showbreaks
 
 " Display another buffer when current buffer isn't saved.
 set hidden
-" " Have Vim automatically reload changed files on disk. Very useful when using
-" " git and switching between branches
-" set autoread
-" " Automatically write buffers to file when current window switches to another
-" " buffer as a result of :next, :make, etc. See :h autowrite.
-" set autowrite
-" " Behavior when you switch buffers
-" set switchbuf=useopen,usetab,newtab
 
 " ヘルプ関係
 set keywordprg=:help " Open Vim internal help by K command
@@ -112,7 +102,7 @@ set t_vb=
 set novisualbell
 set belloff=all
 
-" カーソル
+" Cursor
 set backspace=indent,eol,start " Backspaceキーの影響範囲に制限を設けない
 set whichwrap=b,s,h,l,<,>,[,]  " 行頭行末の左右移動で行をまたぐ
 set nostartofline " Moves the cursor to the same column when cursor move
@@ -273,3 +263,24 @@ function! s:Repl()
   return "p@=RestoreRegister()\<CR>"
 endfunction
 vmap <silent> <expr> p <SID>Repl()
+
+"---------------------------------------------------------------------------
+" Disable default plugins
+
+let g:loaded_2html_plugin      = 1
+let g:loaded_logiPat           = 1
+let g:loaded_getscriptPlugin   = 1
+let g:loaded_gzip              = 1
+let g:loaded_man               = 1
+let g:loaded_matchit           = 1
+let g:loaded_matchparen        = 1
+let g:loaded_netrwFileHandlers = 1
+let g:loaded_netrwPlugin       = 1
+let g:loaded_netrwSettings     = 1
+let g:loaded_rrhelper          = 1
+let g:loaded_shada_plugin      = 1
+let g:loaded_spellfile_plugin  = 1
+let g:loaded_tarPlugin         = 1
+let g:loaded_tutor_mode_plugin = 1
+let g:loaded_vimballPlugin     = 1
+let g:loaded_zipPlugin         = 1

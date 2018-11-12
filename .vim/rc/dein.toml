@@ -1,16 +1,14 @@
-[[plugins]]
+[[plugins]] # plugin manager
 repo = 'Shougo/dein.vim'
 
-[[plugins]] # カラースキーマ
+[[plugins]] # colorscheme
 repo = 'altercation/vim-colors-solarized'
 hook_add = '''
     set background=dark
-    " colorscheme 設定は source 後に行う必要があるので VimEnter で行う。
-    " 但し Colorscheme イベントの発生が抑制されないよう nested を付ける。
-    au MyAutoCmd VimEnter * nested colorscheme solarized
+    autocmd MyAutoCmd VimEnter * nested colorscheme solarized
 '''
 
-[[plugins]] # ステータスラインの内容強化
+[[plugins]] # enhance statusline
 repo = 'itchyny/lightline.vim'
 hook_add = '''
     set laststatus=2
@@ -22,54 +20,24 @@ hook_add = '''
 repo = 'delphinus/lightline-delphinus'
 depends = ['lightline.vim', 'vim-devicons', 'tagber', 'vim-gitgutter']
 hook_add = '''
-    let g:lightline_delphinus_use_powerline_glyphs=1
-    let g:lightline_delphinus_use_nerd_fonts_glyphs=1
     let g:lightline_delphinus_colorscheme='solarized_improved'
     let g:lightline_delphinus_tagbar_enable=1
     let g:lightline_delphinus_gitgutter_enable=1
-    " nr2char(...) is for describing icons from devicons
-    let g:ale_echo_msg_error_str = nr2char(0xf421) . ' '
-    let g:ale_echo_msg_warning_str = nr2char(0xf420) . ' '
-    let g:ale_echo_msg_info_str = nr2char(0xf05a) . ' '
-    let g:ale_echo_msg_format = '%severity%  %linter% - %s'
-    let g:ale_sign_column_always = 1
-    let g:ale_sign_error = g:ale_echo_msg_error_str
-    let g:ale_sign_warning = g:ale_echo_msg_warning_str
-    let g:ale_statusline_format = [ g:ale_echo_msg_error_str . ' %d', g:ale_echo_msg_warning_str . ' %d', nr2char(0xf4a1) . '  ']
 '''
 
-[[plugins]]
+[[plugins]] # display buffer on tabline
 repo = 'ap/vim-buftabline'
-
-[[plugins]]
-repo = 'ryanoasis/vim-devicons'
-hook_add = '''
-    " vim-devicons
-    let g:webdevicons_conceal_nerdtree_brackets = 1
-    let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
-    " dir-icons
-    let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-    let g:DevIconsEnableFoldersOpenClose = 1
-    let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = ''
-    let g:DevIconsDefaultFolderOpenSymbol = ''
-    " file-icons
-    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
-    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['html'] = ''
-    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['css'] = ''
-    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['md'] = ''
-    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['txt'] = ''
-'''
 
 [[plugins]]
 repo = 'majutsushi/tagbar'
 
-[[plugins]] # インデントの可視化
+[[plugins]] # visible indent
 repo = 'Yggdroot/indentLine'
 hook_add = '''
     let g:indentLine_faster = 1
 '''
 
-[[plugins]] # 日本語ヘルプ
+[[plugins]] # japanese help
 repo = 'vim-jp/vimdoc-ja'
 
 [[plugins]]
@@ -83,6 +51,9 @@ hook_add = '''
     nmap , <Plug>(easymotion-overwin-f2)
     vmap , <Plug>(easymotion-bd-f2)
 '''
+
+[[plugins]]
+repo = 'christoomey/vim-tmux-navigator'
 
 [[plugins]]
 repo = 'kana/vim-textobj-user'
@@ -101,7 +72,7 @@ hook_add = '''
 repo = 'cohama/lexima.vim'
 hook_add = 'source ~/.vim/rc/plugins/lexima.vim'
 
-[[plugins]] # コメントアウト
+[[plugins]] # commentout
 repo = 'scrooloose/nerdcommenter'
 hook_add = '''
     nmap <silent> gc <Plug>NERDCommenterToggle
@@ -119,7 +90,7 @@ hook_add = '''
     let g:NERDToggleCheckAllLines = 1    " Enable NERDCommenterToggle to check all selected lines is commented or not
 '''
 
-[[plugins]] # ツリー表示
+[[plugins]] # filer
 repo = 'scrooloose/nerdtree'
 hook_add = '''
     nmap <silent> [Space]o :NERDTreeToggle<CR>
@@ -131,32 +102,37 @@ hook_add = '''
     let g:NERDTreeIgnore=['\.DS_Store$','\.git']
     autocmd StdinReadPre * let s:std_in=1
     autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+    autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 '''
 
+# ---------- Git plugins ----------
 [[plugins]]
 repo = 'airblade/vim-gitgutter'
+hook_add = '''
+    set signcolumn=yes " Show gitgutter column always
+'''
 
 [[plugins]]
 repo = 'tpope/vim-fugitive'
 
-[[plugins]] # deoplete用
+# ---------- Syntax ----------
+[[plugins]] # for deoplete
 repo = 'roxma/vim-hug-neovim-rpc'
 on_if = '!has("nvim")'
 
-[[plugins]] # deoplete用
+[[plugins]] # for deoplete
 repo = 'roxma/nvim-yarp'
 on_if = '!has("nvim")'
 
-[[plugins]] # 構文チェック
+[[plugins]] # check syntax
 repo = 'w0rp/ale'
 
-[[plugins]] # カーソル位置のコンテキストに合わせてftを切り替える
+[[plugins]]
 repo = 'osyo-manga/vim-precious'
 depends = 'context_filetype.vim'
 hook_add = '''
     let g:precious_enable_switch_CursorMoved = { "help" : 0 }
 '''
 
-[[plugins]] # カーソル位置のコンテキストのftを判定するライブラリ
+[[plugins]]
 repo = 'Shougo/context_filetype.vim'
