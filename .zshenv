@@ -1,6 +1,7 @@
 typeset -gx -U path
 path=( \
     /usr/local/bin(N-/) \
+    /Library/TeX/texbin \
     ~/bin(N-/) \
     ~/.zplug/bin(N-/) \
     ~/.tmux/bin(N-/) \

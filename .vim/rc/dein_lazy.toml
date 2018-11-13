@@ -119,3 +119,11 @@ on_ft = 'toml'
 [[plugins]]
 repo = 'zplug/vim-zplug'
 on_ft = 'zsh'
+
+[[plugins]]
+repo = 'jalvesaq/Nvim-R'
+on_ft = 'r'
+
+[[plugins]]
+repo = 'fatih/vim-go'
+on_ft = 'go'
