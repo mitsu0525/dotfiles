@@ -43,7 +43,26 @@ if dein#check_install()
   call dein#install()
 endif
 " End dein Scripts-------------------------
+let g:python3_host_prog = '/usr/local/bin/python3'
+" PATHの自動更新関数
+" | 指定された path が $PATH に存在せず、ディレクトリとして存在している場合
+" | のみ $PATH に加える
+function! IncludePath(path)
+  " define delimiter depends on platform
+  if has('win16') || has('win32') || has('win64')
+    let delimiter = ";"
+  else
+    let delimiter = ":"
+  endif
+  let pathlist = split($PATH, delimiter)
+  if isdirectory(a:path) && index(pathlist, a:path) == -1
+    let $PATH=a:path.delimiter.$PATH
+  endif
+endfunction
 
+" ~/.pyenv/shims を $PATH に追加する
+" これを行わないとpythonが正しく検索されない
+call IncludePath(expand("~/.pyenv/shims"))
 " 文字コード
 set encoding=utf-8
 scriptencoding utf-8
@@ -185,7 +204,7 @@ if dein#check_install('lexima.vim')
 endif
 
 " 空行挿入
-nnoremap <silent> <CR> <End>:call append(line('.'),'')<CR><Down>
+nnoremap <silent> <CR> :<C-u>call append(line('.'),'')<CR><Down>
 
 " バッファ移動
 nnoremap <silent> <C-n> :<C-u>bnext<CR>
@@ -266,7 +285,6 @@ vmap <silent> <expr> p <SID>Repl()
 
 "---------------------------------------------------------------------------
 " Disable default plugins
-
 let g:loaded_2html_plugin      = 1
 let g:loaded_logiPat           = 1
 let g:loaded_getscriptPlugin   = 1

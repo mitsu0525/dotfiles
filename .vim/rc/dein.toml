@@ -68,7 +68,7 @@ hook_add = '''
     vmap <CR> <Plug>(EasyAlign)
 '''
 
-[[plugins]]
+[[plugins]] # complition
 repo = 'cohama/lexima.vim'
 hook_add = 'source ~/.vim/rc/plugins/lexima.vim'
 

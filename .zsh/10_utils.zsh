@@ -110,12 +110,12 @@ get_os() {
 
 # cd to the path of the front Finder window
 cdf() {
-	target=`osascript -e 'tell application "Finder" to if (count of Finder windows) > 0 then get POSIX path of (target of front Finder window as text)'`
-	if [ "$target" != "" ]; then
-		cd "$target"; pwd
-	else
-		echo 'No Finder window found' >&2
-	fi
+    target=`osascript -e 'tell application "Finder" to if (count of Finder windows) > 0 then get POSIX path of (target of front Finder window as text)'`
+    if [ "$target" != "" ]; then
+        cd "$target"; pwd
+    else
+        echo 'No Finder window found' >&2
+    fi
 }
 
 git_commit_automatically_loop() {

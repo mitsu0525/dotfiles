@@ -1,7 +1,7 @@
 typeset -gx -U path
 path=( \
     /usr/local/bin(N-/) \
-    /Library/TeX/texbin \
+    /Library/TeX/texbin(N-/) \
     ~/bin(N-/) \
     ~/.zplug/bin(N-/) \
     ~/.tmux/bin(N-/) \
@@ -106,12 +106,12 @@ export DOTPATH=${0:A:h}
 #
 # pyenv
 export PYENV_ROOT=$HOME/.pyenv
-export PATH=$PYENV_ROOT/bin:$PATH
+export PATH=$PATH:$PYENV_ROOT/bin
 eval "$(pyenv init - --no-rehash)"
 eval "$(pyenv virtualenv-init - --no-rehash)"
 
 # rbenv
-eval "$(rbenv init -)"
+eval "$(rbenv init - --no-rehash)"
 
 function prompt_steeef_precmd {
   # Check for untracked files or updated submodules since vcs_info does not.
