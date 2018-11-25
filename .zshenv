@@ -93,24 +93,14 @@ export FZF_DEFAULT_OPTS="
 
 export DOTPATH=${0:A:h}
 
-# # adb
-# export PATH=$PATH:/Users/k-mituys/Library/Android/sdk/platform-tools
-#
-# # OMNeT-5.2
-# export PATH=$PATH:$HOME/omnetpp-5.2/bin:$HOME/omnetpp-5.2/tools/macosx/bin
-# export QT_PLUGIN_PATH=$HOME/omnetpp-5.2/tools/macosx/plugins
-#
-# # java
-# export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home
-# PATH=$PATH:${JAVA_HOME}/bin:${PLAY_HOME}
-#
 # pyenv
 export PYENV_ROOT=$HOME/.pyenv
 export PATH=$PATH:$PYENV_ROOT/bin
 eval "$(pyenv init - --no-rehash)"
-eval "$(pyenv virtualenv-init - --no-rehash)"
 
 # rbenv
+export RBENV_ROOT=$HOME/.rbenv
+export PATH=$PATH:$RBENV_ROOT/bin
 eval "$(rbenv init - --no-rehash)"
 
 function prompt_steeef_precmd {

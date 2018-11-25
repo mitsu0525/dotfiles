@@ -44,7 +44,6 @@ if dein#check_install()
 endif
 " End dein Scripts-------------------------
 let g:python3_host_prog = '/usr/local/bin/python3'
-
 " 文字コード
 set encoding=utf-8
 scriptencoding utf-8
@@ -62,7 +61,7 @@ set cursorline  " カーソルラインをハイライト
 set ruler       " カーソル位置が右下に表示される
 set showcmd     " コマンドを画面の最下部に表示する
 set list        " 不可視文字を表示
-set listchars=tab:▸\ ,trail:-,precedes:«,nbsp:%
+set listchars=tab:▸-,trail:-,precedes:«,nbsp:%
 set showbreak=↪ " showbreaks
 
 " Display another buffer when current buffer isn't saved.
@@ -206,13 +205,6 @@ nnoremap Q  q
 " マウス
 if has('mouse')
     set mouse=a
-    if has('mouse_sgr')
-        set ttymouse=sgr
-    elseif v:version > 703 || v:version is 703 && has('patch632')
-        set ttymouse=sgr
-    else
-        set ttymouse=xterm2
-    endif
 endif
 
 " ペースト
@@ -256,17 +248,16 @@ endif
 
 " v_p doesn't replace register
 function! RestoreRegister()
-  let @" = s:restore_reg
-  return ''
+    let @" = s:restore_reg
+    return ''
 endfunction
 function! s:Repl()
-  let s:restore_reg = @"
-  return "p@=RestoreRegister()\<CR>"
+    let s:restore_reg = @"
+    return "p@=RestoreRegister()\<CR>"
 endfunction
 vmap <silent> <expr> p <SID>Repl()
 
-"---------------------------------------------------------------------------
-" Disable default plugins
+" Disable default plugins------------------
 let g:loaded_2html_plugin      = 1
 let g:loaded_logiPat           = 1
 let g:loaded_getscriptPlugin   = 1
