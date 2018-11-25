@@ -1,17 +1,38 @@
 #!/bin/bash
+set -eu
+DOTPATH="$HOME/dotfiles"
+TARBALL="https://github.com/mitsu0525/dotfiles/tarball/master"
+REMOTE_URL="git@github.com:mitsu0525/dotfiles.git"
 
-set -u
-DOT_DIRECTORY="${HOME}/dotfiles"
-DOT_CONFIG_DIRECTORY=".config"
+has() {
+    type "$1" > /dev/null 2>&1
+}
 
-echo "link home directory dotfiles"
-cd ${DOT_DIRECTORY}
-for f in .??*
-do
-    #無視したいファイルやディレクトリ
-    [ "$f" = ".git" ] && continue
-    [ "$f" = ".config" ] && continue
-    [ "$f" = ".DS_STORE" ] && continue
-    ln -snfv ${DOT_DIRECTORY}/${f} ${HOME}/${f}
-done
-echo "linked dotfiles complete!"
+if [ -d "$DOTPATH" ]; then
+    echo "$DOTPATH: already exists"
+    exit 1
+fi
+
+# Download dotfiles
+echo "Downloading dotfiles..."
+
+if has "git"; then
+    git clone --recursive "$REMOTE_URL" "$DOTPATH"
+
+elif has "curl" || has "wget"; then
+    if has "curl"; then
+        curl -L "$TARBALL"
+
+    elif has "wget"; then
+        wget -O - "$TARBALL"
+
+    fi | tar xvz
+
+else
+    echo "curl or wget required"
+    exit 1
+fi
+
+# Deploy dotfiles
+cd "$DOTPATH"
+make deploy
