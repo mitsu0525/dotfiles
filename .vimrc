@@ -1,11 +1,11 @@
 " reset augroup
 augroup MyAutoCmd
-  autocmd!
+    autocmd!
 augroup END
 
 " dein Scripts-----------------------------
 if &compatible
-  set nocompatible " Be iMproved
+    set nocompatible " Be iMproved
 endif
 
 let s:dein_path = expand('~/.vim/dein')
@@ -13,25 +13,25 @@ let s:dein_repo_path = s:dein_path . '/repos/github.com/Shougo/dein.vim'
 
 " dein.vim がなければ github からclone
 if &runtimepath !~# '/dein.vim'
-  if !isdirectory(s:dein_repo_path)
-    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_path
-  endif
-  execute 'set runtimepath^=' . fnamemodify(s:dein_repo_path, ':p')
+    if !isdirectory(s:dein_repo_path)
+        execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_path
+    endif
+    execute 'set runtimepath^=' . fnamemodify(s:dein_repo_path, ':p')
 endif
 
 if dein#load_state(s:dein_path)
-  call dein#begin(s:dein_path)
+    call dein#begin(s:dein_path)
 
-  let g:config_dir  = expand('~/.vim/rc')
-  let s:toml        = g:config_dir . '/dein.toml'
-  let s:lazy_toml   = g:config_dir . '/dein_lazy.toml'
+    let g:config_dir  = expand('~/.vim/rc')
+    let s:toml        = g:config_dir . '/dein.toml'
+    let s:lazy_toml   = g:config_dir . '/dein_lazy.toml'
 
-  " Load TOML
-  call dein#load_toml(s:toml,      {'lazy': 0})
-  call dein#load_toml(s:lazy_toml, {'lazy': 1})
+    " Load TOML
+    call dein#load_toml(s:toml,      {'lazy': 0})
+    call dein#load_toml(s:lazy_toml, {'lazy': 1})
 
-  call dein#end()
-  call dein#save_state()
+    call dein#end()
+    call dein#save_state()
 endif
 
 " Required:
@@ -40,7 +40,7 @@ syntax enable
 
 " If you want to install not installed plugins on startup.
 if dein#check_install()
-  call dein#install()
+    call dein#install()
 endif
 " End dein Scripts-------------------------
 let g:python3_host_prog = '/usr/local/bin/python3'
@@ -130,10 +130,10 @@ set noimcmdline " Disable IM on cmdline
 
 " Smart space mapping
 " Notice: when starting other <Space> mappings in noremap, disappeared [Space]
-nmap <Space> [Space]
-xmap <Space> [Space]
 nnoremap [Space] <Nop>
 xnoremap [Space] <Nop>
+nmap <Space> [Space]
+xmap <Space> [Space]
 noremap [Space]<Space> :
 noremap [Space]w  :<C-u>w<CR>
 noremap [Space]q  :<C-u>qa<CR>
@@ -256,14 +256,42 @@ endif
 
 " v_p doesn't replace register
 function! RestoreRegister()
-  let @" = s:restore_reg
-  return ''
+    let @" = s:restore_reg
+    return ''
 endfunction
 function! s:Repl()
-  let s:restore_reg = @"
-  return "p@=RestoreRegister()\<CR>"
+    let s:restore_reg = @"
+    return "p@=RestoreRegister()\<CR>"
 endfunction
 vmap <silent> <expr> p <SID>Repl()
+
+" Enable folding.
+set foldenable
+set foldmethod=indent
+
+" FastFold
+autocmd MyAutoCmd TextChangedI,TextChanged *
+      \ if &l:foldenable && &l:foldmethod !=# 'manual' |
+      \   let b:foldmethod_save = &l:foldmethod |
+      \   let &l:foldmethod = 'manual' |
+      \ endif
+autocmd MyAutoCmd BufWritePost *
+      \ if &l:foldmethod ==# 'manual' && exists('b:foldmethod_save') |
+      \   let &l:foldmethod = b:foldmethod_save |
+      \   execute 'normal! zx' |
+      \ endif
+
+set foldtext=foldCCtext()
+
+function! s:foldCCtext() abort
+    let l:lines = v:foldend - v:foldstart + 1
+    let l:first = substitute(getline(v:foldstart), '\v\c *', '', '')
+
+    return printf(' ▢ %s %s', l:lines, l:first)
+endfunction
+
+" For conceal.
+set conceallevel=2 concealcursor=niv
 
 "---------------------------------------------------------------------------
 " Disable default plugins

@@ -44,6 +44,7 @@ if dein#check_install()
 endif
 " End dein Scripts-------------------------
 let g:python3_host_prog = '/usr/local/bin/python3'
+
 " 文字コード
 set encoding=utf-8
 scriptencoding utf-8

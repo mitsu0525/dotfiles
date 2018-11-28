@@ -18,11 +18,9 @@ hook_add = '''
 
 [[plugins]] # lightline-theme
 repo = 'delphinus/lightline-delphinus'
-depends = ['lightline.vim', 'vim-devicons', 'tagber', 'vim-gitgutter']
+depends = ['lightline.vim']
 hook_add = '''
     let g:lightline_delphinus_colorscheme='solarized_improved'
-    let g:lightline_delphinus_tagbar_enable=1
-    let g:lightline_delphinus_gitgutter_enable=1
 '''
 
 [[plugins]] # display buffer on tabline
@@ -35,6 +33,8 @@ repo = 'majutsushi/tagbar'
 repo = 'Yggdroot/indentLine'
 hook_add = '''
     let g:indentLine_faster = 1
+    let g:indentLine_concealcursor = ''
+    let g:indentLine_fileTypeExclude = ['help', 'denite']
 '''
 
 [[plugins]] # japanese help
@@ -65,10 +65,10 @@ repo = 'kana/vim-operator-user'
 [[plugins]]
 repo = 'junegunn/vim-easy-align'
 hook_add = '''
-    vmap <CR> <Plug>(EasyAlign)
+    vmap <CR> <Plug>(LiveEasyAlign)
 '''
 
-[[plugins]] # complition
+[[plugins]] # completion
 repo = 'cohama/lexima.vim'
 hook_add = 'source ~/.vim/rc/plugins/lexima.vim'
 
@@ -90,21 +90,6 @@ hook_add = '''
     let g:NERDToggleCheckAllLines = 1    " Enable NERDCommenterToggle to check all selected lines is commented or not
 '''
 
-[[plugins]] # filer
-repo = 'scrooloose/nerdtree'
-hook_add = '''
-    nmap <silent> [Space]o :NERDTreeToggle<CR>
-    nmap <silent> <C-q>    :NERDTreeToggle<CR>
-    let g:NERDTreeMinimalUI=1
-    let g:NERDTreeShowBookmarks=1
-    let g:NERDTreeShowHidden=1
-    let g:NERDTreeQuitOnOpen=1
-    let g:NERDTreeIgnore=['\.DS_Store$','\.git']
-    autocmd StdinReadPre * let s:std_in=1
-    autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-    autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-'''
-
 # ---------- Git plugins ----------
 [[plugins]]
 repo = 'airblade/vim-gitgutter'
@@ -114,6 +99,14 @@ hook_add = '''
 
 [[plugins]]
 repo = 'tpope/vim-fugitive'
+hook_add = '''
+    nmap [fugitive] <Nop>
+    map  [Space]g [fugitive]
+    nmap <silent> [fugitive]s :<C-u>Gstatus<CR>
+    nmap <silent> [fugitive]d :<C-u>Gdiff<CR>
+    nmap <silent> [fugitive]b :<C-u>Gblame<CR>
+    nmap <silent> [fugitive]l :<C-u>Glog<CR>
+'''
 
 # ---------- Syntax ----------
 [[plugins]] # for deoplete
@@ -124,8 +117,46 @@ on_if = '!has("nvim")'
 repo = 'roxma/nvim-yarp'
 on_if = '!has("nvim")'
 
-[[plugins]] # check syntax
+[[plugins]] # linter
 repo = 'w0rp/ale'
+hook_add = '''
+    let g:ale_set_highlights = 0
+    " エラー行に表示するマーク
+    let g:ale_sign_error = '✗'
+    let g:ale_sign_warning = '!'
+    highlight link ALEErrorSign ErrorMsg
+    highlight link ALEWarningSign Search
+    " エラー行にカーソルをあわせた際に表示されるメッセージフォーマット
+    let g:ale_echo_msg_format = '[%linter%] %code: %%s [%severity%]'
+    " エラー表示の列を常時表示
+    let g:ale_sign_column_always = 1
+    " ステータスラインに情報を表示
+    let g:ale_statusline_format = [
+      \ g:ale_sign_error . ' %d',
+      \ g:ale_sign_warning . ' %d',
+      \ '✓']
+
+    " ファイルを開いたときにlint実行
+    let g:ale_lint_on_enter = 1
+    " ファイルを保存したときにlint実行
+    let g:ale_lint_on_save = 1
+    " 編集中のlintはしない
+    let g:ale_lint_on_text_changed = 0
+    " 有効にするlinter
+    let g:ale_linters = {
+    \   'sh': ['language_server'],
+    \   'python': ['flake8'],
+    \   'R': ['lintr'],
+    \}
+
+    " ファイルを保存したときにfix実行
+    let g:ale_fix_on_save = 1
+    " 有効にするfixer
+    let g:ale_fixers = {
+    \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+    \   'python': ['black'],
+    \}
+'''
 
 [[plugins]]
 repo = 'osyo-manga/vim-precious'
