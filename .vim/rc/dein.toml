@@ -56,7 +56,7 @@ repo = 'kana/vim-operator-user'
 [[plugins]]
 repo = 'junegunn/vim-easy-align'
 hook_add = '''
-    vmap <CR> <Plug>(LiveEasyAlign)
+    xmap <CR> <Plug>(LiveEasyAlign)
 '''
 
 [[plugins]] # completion

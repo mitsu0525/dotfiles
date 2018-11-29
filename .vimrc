@@ -153,10 +153,6 @@ noremap <expr> <C-f> max([winheight(0) - 2, 1]) . "\<C-d>" . (line('w$') >= line
 noremap <expr> <C-b> max([winheight(0) - 2, 1]) . "\<C-u>" . (line('w0') <= 1 ? "H" : "M")
 
 " Insert mode keymappings:
-inoremap <C-p> <C-g>U<Up>
-inoremap <C-f> <C-g>U<Right>
-inoremap <C-b> <C-g>U<Left>
-inoremap <C-n> <C-g>U<Down>
 inoremap <C-a> <Home>
 inoremap <C-e> <End>
 inoremap <C-h> <BS>
@@ -164,8 +160,8 @@ inoremap <C-d> <Del>
 
 " Command-line mode keymappings:
 cnoremap <C-p> <Up>
-cnoremap <C-f> <Right>
 cnoremap <C-b> <Left>
+cnoremap <C-f> <Right>
 cnoremap <C-n> <Down>
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
@@ -175,7 +171,7 @@ cnoremap <C-q> <C-c>
 
 " 検索・置換・インデント
 nnoremap sg :<C-u>%s//g<Left><Left>
-vnoremap sg :s//g<Left><Left>
+xnoremap sg :s//g<Left><Left>
 nnoremap > >>
 nnoremap < <<
 xnoremap > >gv
@@ -270,7 +266,7 @@ function! s:Repl()
     let s:restore_reg = @"
     return "p@=RestoreRegister()\<CR>"
 endfunction
-vmap <silent> <expr> p <SID>Repl()
+xmap <silent> <expr> p <SID>Repl()
 
 " For conceal.
 set conceallevel=2 concealcursor=niv

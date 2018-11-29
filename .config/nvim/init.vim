@@ -168,7 +168,7 @@ cnoremap <C-q> <C-c>
 
 " 検索・置換・インデント
 nnoremap sg :<C-u>%s//g<Left><Left>
-vnoremap sg :s//g<Left><Left>
+xnoremap sg :s//g<Left><Left>
 nnoremap > >>
 nnoremap < <<
 xnoremap > >gv
@@ -256,7 +256,7 @@ function! s:Repl()
     let s:restore_reg = @"
     return "p@=RestoreRegister()\<CR>"
 endfunction
-vmap <silent> <expr> p <SID>Repl()
+xmap <silent> <expr> p <SID>Repl()
 
 " Disable default plugins------------------
 let g:loaded_2html_plugin      = 1
