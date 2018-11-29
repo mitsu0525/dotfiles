@@ -95,13 +95,17 @@ export DOTPATH=${0:A:h}
 
 # pyenv
 export PYENV_ROOT=$HOME/.pyenv
-export PATH=$PATH:$PYENV_ROOT/bin
-eval "$(pyenv init - --no-rehash)"
+if [ -d "${PYENV_ROOT}" ]; then
+    export PATH=$PATH:$PYENV_ROOT/bin
+    eval "$(pyenv init - --no-rehash)"
+fi
 
 # rbenv
 export RBENV_ROOT=$HOME/.rbenv
-export PATH=$PATH:$RBENV_ROOT/bin
-eval "$(rbenv init - --no-rehash)"
+if [ -d "${RBENV_ROOT}" ]; then
+    export PATH=$PATH:$RBENV_ROOT/bin
+    eval "$(rbenv init - --no-rehash)"
+fi
 
 function prompt_steeef_precmd {
   # Check for untracked files or updated submodules since vcs_info does not.
