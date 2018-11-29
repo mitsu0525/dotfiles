@@ -20,7 +20,7 @@ hook_add = '''
 repo = 'delphinus/lightline-delphinus'
 depends = ['lightline.vim']
 hook_add = '''
-    let g:lightline_delphinus_colorscheme='solarized_improved'
+    let g:lightline_delphinus_colorscheme = 'solarized_improved'
 '''
 
 [[plugins]] # display buffer on tabline
@@ -44,15 +44,6 @@ repo = 'vim-jp/vimdoc-ja'
 repo = 'rhysd/clever-f.vim'
 
 [[plugins]]
-repo = 'easymotion/vim-easymotion'
-hook_add = '''
-    let g:EasyMotion_do_mapping = 0
-    " s{char}{char} to move to {char}{char}
-    nmap , <Plug>(easymotion-overwin-f2)
-    vmap , <Plug>(easymotion-bd-f2)
-'''
-
-[[plugins]]
 repo = 'christoomey/vim-tmux-navigator'
 
 [[plugins]]
@@ -70,7 +61,10 @@ hook_add = '''
 
 [[plugins]] # completion
 repo = 'cohama/lexima.vim'
-hook_add = 'source ~/.vim/rc/plugins/lexima.vim'
+hook_add = '''
+    let g:lexima_map_escape = 'jj'
+    inoremap <C-f> <C-r>=lexima#insmode#leave(1, '<LT>C-G>U<LT>RIGHT>')<CR>
+'''
 
 [[plugins]] # commentout
 repo = 'scrooloose/nerdcommenter'
@@ -132,9 +126,9 @@ hook_add = '''
     let g:ale_sign_column_always = 1
     " ステータスラインに情報を表示
     let g:ale_statusline_format = [
-      \ g:ale_sign_error . ' %d',
-      \ g:ale_sign_warning . ' %d',
-      \ '✓']
+    \   g:ale_sign_error . ' %d',
+    \   g:ale_sign_warning . ' %d',
+    \   '✓']
 
     " ファイルを開いたときにlint実行
     let g:ale_lint_on_enter = 1
@@ -162,7 +156,21 @@ hook_add = '''
 repo = 'osyo-manga/vim-precious'
 depends = 'context_filetype.vim'
 hook_add = '''
-    let g:precious_enable_switch_CursorMoved = { "help" : 0 }
+    let g:precious_enable_switchers = {
+    \   "*" : {
+    \       "setfiletype" : 0
+    \   },
+    \   "vim" : {
+    \       "setfiletype" : 1
+    \   },
+    \   "toml" : {
+    \       "setfiletype" : 1
+    \   },
+    \}
+    let g:precious_enable_switch_CursorMoved = {
+    \   "*" : 1,
+    \   "help" : 0,
+    \}
 '''
 
 [[plugins]]
