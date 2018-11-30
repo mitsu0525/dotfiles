@@ -148,27 +148,30 @@ noremap [Space]h ^
 noremap [Space]j L
 noremap [Space]k H
 noremap [Space]l $
-inoremap <C-a> <Home>
-inoremap <C-e> <End>
-inoremap <C-h> <BS>
-inoremap <C-d> <Del>
 " Smart <C-f>, <C-b>.
 noremap <expr> <C-f> max([winheight(0) - 2, 1]) . "\<C-d>" . (line('w$') >= line('$') ? "L" : "M")
 noremap <expr> <C-b> max([winheight(0) - 2, 1]) . "\<C-u>" . (line('w0') <= 1 ? "H" : "M")
 
+" Insert mode keymappings:
+inoremap <C-a> <Home>
+inoremap <C-e> <End>
+inoremap <C-h> <BS>
+inoremap <C-d> <Del>
+
 " Command-line mode keymappings:
-cnoremap <C-a> <Home>
+cnoremap <C-p> <Up>
 cnoremap <C-b> <Left>
-cnoremap <C-d> <Del>
-cnoremap <C-e> <End>
 cnoremap <C-f> <Right>
 cnoremap <C-n> <Down>
-cnoremap <C-p> <Up>
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+cnoremap <C-h> <BS>
+cnoremap <C-d> <Del>
 cnoremap <C-q> <C-c>
 
 " 検索・置換・インデント
 nnoremap sg :<C-u>%s//g<Left><Left>
-vnoremap sg :s//g<Left><Left>
+xnoremap sg :s//g<Left><Left>
 nnoremap > >>
 nnoremap < <<
 xnoremap > >gv
@@ -263,32 +266,7 @@ function! s:Repl()
     let s:restore_reg = @"
     return "p@=RestoreRegister()\<CR>"
 endfunction
-vmap <silent> <expr> p <SID>Repl()
-
-" Enable folding.
-set foldenable
-set foldmethod=indent
-
-" FastFold
-autocmd MyAutoCmd TextChangedI,TextChanged *
-      \ if &l:foldenable && &l:foldmethod !=# 'manual' |
-      \   let b:foldmethod_save = &l:foldmethod |
-      \   let &l:foldmethod = 'manual' |
-      \ endif
-autocmd MyAutoCmd BufWritePost *
-      \ if &l:foldmethod ==# 'manual' && exists('b:foldmethod_save') |
-      \   let &l:foldmethod = b:foldmethod_save |
-      \   execute 'normal! zx' |
-      \ endif
-
-set foldtext=foldCCtext()
-
-function! s:foldCCtext() abort
-    let l:lines = v:foldend - v:foldstart + 1
-    let l:first = substitute(getline(v:foldstart), '\v\c *', '', '')
-
-    return printf(' ▢ %s %s', l:lines, l:first)
-endfunction
+xmap <silent> <expr> p <SID>Repl()
 
 " For conceal.
 set conceallevel=2 concealcursor=niv

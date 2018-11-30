@@ -20,7 +20,7 @@ hook_add = '''
 repo = 'delphinus/lightline-delphinus'
 depends = ['lightline.vim']
 hook_add = '''
-    let g:lightline_delphinus_colorscheme='solarized_improved'
+    let g:lightline_delphinus_colorscheme = 'solarized_improved'
 '''
 
 [[plugins]] # display buffer on tabline
@@ -44,15 +44,6 @@ repo = 'vim-jp/vimdoc-ja'
 repo = 'rhysd/clever-f.vim'
 
 [[plugins]]
-repo = 'easymotion/vim-easymotion'
-hook_add = '''
-    let g:EasyMotion_do_mapping = 0
-    " s{char}{char} to move to {char}{char}
-    nmap , <Plug>(easymotion-overwin-f2)
-    vmap , <Plug>(easymotion-bd-f2)
-'''
-
-[[plugins]]
 repo = 'christoomey/vim-tmux-navigator'
 
 [[plugins]]
@@ -65,29 +56,14 @@ repo = 'kana/vim-operator-user'
 [[plugins]]
 repo = 'junegunn/vim-easy-align'
 hook_add = '''
-    vmap <CR> <Plug>(LiveEasyAlign)
+    xmap <CR> <Plug>(LiveEasyAlign)
 '''
 
 [[plugins]] # completion
 repo = 'cohama/lexima.vim'
-hook_add = 'source ~/.vim/rc/plugins/lexima.vim'
-
-[[plugins]] # commentout
-repo = 'scrooloose/nerdcommenter'
 hook_add = '''
-    nmap <silent> gc <Plug>NERDCommenterToggle
-    nmap <silent> ga <Plug>NERDCommenterAppend
-    nmap <silent> gs <Plug>NERDCommenterSexy
-    vmap <silent> gc <Plug>NERDCommenterToggle
-    vmap <silent> ga <Plug>NERDCommenterAppend
-    vmap <silent> gs <Plug>NERDCommenterSexy
-    let g:NERDCreateDefaultMappings = 0
-    let g:NERDSpaceDelims = 1            " Add spaces after comment delimiters by default
-    let g:NERDCompactSexyComs = 1        " Use compact syntax for prettified multi-line comments
-    let g:NERDDefaultAlign = 'left'      " Align line-wise comment delimiters flush left instead of following code indentation
-    let g:NERDCommentEmptyLines = 1      " Allow commenting and inverting empty lines (useful when commenting a region)
-    let g:NERDTrimTrailingWhitespace = 1 " Enable trimming of trailing whitespace when uncommenting
-    let g:NERDToggleCheckAllLines = 1    " Enable NERDCommenterToggle to check all selected lines is commented or not
+    let g:lexima_map_escape = 'jj'
+    inoremap <C-f> <C-r>=lexima#insmode#leave(1, '<LT>C-G>U<LT>RIGHT>')<CR>
 '''
 
 # ---------- Git plugins ----------
@@ -132,9 +108,9 @@ hook_add = '''
     let g:ale_sign_column_always = 1
     " ステータスラインに情報を表示
     let g:ale_statusline_format = [
-      \ g:ale_sign_error . ' %d',
-      \ g:ale_sign_warning . ' %d',
-      \ '✓']
+    \   g:ale_sign_error . ' %d',
+    \   g:ale_sign_warning . ' %d',
+    \   '✓']
 
     " ファイルを開いたときにlint実行
     let g:ale_lint_on_enter = 1
@@ -162,7 +138,21 @@ hook_add = '''
 repo = 'osyo-manga/vim-precious'
 depends = 'context_filetype.vim'
 hook_add = '''
-    let g:precious_enable_switch_CursorMoved = { "help" : 0 }
+    let g:precious_enable_switchers = {
+    \   "*" : {
+    \       "setfiletype" : 0
+    \   },
+    \   "vim" : {
+    \       "setfiletype" : 1
+    \   },
+    \   "toml" : {
+    \       "setfiletype" : 1
+    \   },
+    \}
+    let g:precious_enable_switch_CursorMoved = {
+    \   "*" : 1,
+    \   "help" : 0,
+    \}
 '''
 
 [[plugins]]
