@@ -106,23 +106,6 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'kana/vim-niceblock'
-on_map = {x = '<Plug>'}
-hook_add = '''
-    xmap A  <Plug>(niceblock-A)
-    xmap I  <Plug>(niceblock-I)
-'''
-
-[[plugins]]
-repo = 'osyo-manga/vim-textobj-blockwise'
-depends = 'vim-textobj-user'
-on_map = {o = '<Plug>'}
-hook_add = '''
-    omap A <Plug>(textobj-multiblock-a)
-    omap I <Plug>(textobj-multiblock-i)
-'''
-
-[[plugins]]
 repo = 'kana/vim-operator-replace'
 depends = 'vim-operator-user'
 on_map = {n = '<Plug>'}
@@ -148,7 +131,20 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'tyru/open-browser.vim'
+repo = 'tyru/caw.vim'
+on_map = {nx = '<Plug>'}
+hook_add = '''
+    let g:caw_no_default_keymappings = 1
+    let g:caw_dollarpos_sp_left = ' '
+    nmap <silent> gc <Plug>(caw:hatpos:toggle)
+    nmap <silent> ga <Plug>(caw:dollarpos:comment)
+    nmap <silent> go <Plug>(caw:jump:comment-next)
+    nmap <silent> gO <Plug>(caw:jump:comment-prev)
+    xmap <silent> gc <Plug>(caw:hatpos:toggle)
+    xmap <silent> ga <Plug>(caw:dollarpos:comment)
+    xmap <silent> go <Plug>(caw:jump:comment-next)
+    xmap <silent> gO <Plug>(caw:jump:comment-prev)
+'''
 
 [[plugins]]
 repo = 'Shougo/neco-syntax'
@@ -165,10 +161,6 @@ hook_add = '''
     let g:deoplete#sources#jedi#enable_typeinfo = v:false
     let g:deoplete#sources#jedi#ignore_errors = v:true
 '''
-
-[[plugins]]
-repo = 'hynek/vim-python-pep8-indent'
-on_ft = 'python'
 
 [[plugins]]
 repo = 'zchee/deoplete-zsh'
