@@ -1,6 +1,13 @@
 [[plugins]] # plugin manager
 repo = 'Shougo/dein.vim'
 
+[[plugins]] # most recent use
+repo = 'Shougo/neomru.vim'
+
+[[plugins]] # detect filetype
+repo = 'Shougo/context_filetype.vim'
+
+# ---------- Appearance -----------
 [[plugins]] # colorscheme
 repo = 'altercation/vim-colors-solarized'
 hook_add = '''
@@ -26,19 +33,21 @@ hook_add = '''
 [[plugins]] # display buffer on tabline
 repo = 'ap/vim-buftabline'
 
-[[plugins]]
-repo = 'majutsushi/tagbar'
-
 [[plugins]] # visible indent
 repo = 'Yggdroot/indentLine'
 hook_add = '''
     let g:indentLine_faster = 1
     let g:indentLine_concealcursor = ''
+    let g:indentLine_bufNameExclude = ['help', 'denite']
     let g:indentLine_fileTypeExclude = ['help', 'denite']
 '''
 
 [[plugins]] # japanese help
 repo = 'vim-jp/vimdoc-ja'
+
+# ---------- Useful plugins ----------
+[[plugins]]
+repo = 'majutsushi/tagbar'
 
 [[plugins]]
 repo = 'rhysd/clever-f.vim'
@@ -46,11 +55,11 @@ repo = 'rhysd/clever-f.vim'
 [[plugins]]
 repo = 'christoomey/vim-tmux-navigator'
 
-[[plugins]]
+[[plugins]] # add text object
 repo = 'kana/vim-textobj-user'
 hook_add = 'source ~/.vim/rc/plugins/vim-textobj-user.vim'
 
-[[plugins]]
+[[plugins]] # add vim operator
 repo = 'kana/vim-operator-user'
 
 [[plugins]]
@@ -59,36 +68,17 @@ hook_add = '''
     xmap <CR> <Plug>(LiveEasyAlign)
 '''
 
-[[plugins]] # completion
+[[plugins]] # bracket completion
 repo = 'cohama/lexima.vim'
 hook_add = '''
     let g:lexima_map_escape = 'jj'
     inoremap <C-f> <C-r>=lexima#insmode#leave(1, '<LT>C-G>U<LT>RIGHT>')<CR>
 '''
 
-[[plugins]]
+[[plugins]] # for deoplete
 repo = 'tbodt/deoplete-tabnine'
 build = './install.sh'
 
-# ---------- Git plugins ----------
-[[plugins]]
-repo = 'airblade/vim-gitgutter'
-hook_add = '''
-    set signcolumn=yes " Show gitgutter column always
-'''
-
-[[plugins]]
-repo = 'tpope/vim-fugitive'
-hook_add = '''
-    nmap [fugitive] <Nop>
-    map  [Space]g [fugitive]
-    nmap <silent> [fugitive]s :<C-u>Gstatus<CR>
-    nmap <silent> [fugitive]d :<C-u>Gdiff<CR>
-    nmap <silent> [fugitive]b :<C-u>Gblame<CR>
-    nmap <silent> [fugitive]l :<C-u>Glog<CR>
-'''
-
-# ---------- Syntax ----------
 [[plugins]] # for deoplete
 repo = 'roxma/vim-hug-neovim-rpc'
 on_if = '!has("nvim")'
@@ -159,5 +149,20 @@ hook_add = '''
     \}
 '''
 
+# ---------- Git plugins ----------
 [[plugins]]
-repo = 'Shougo/context_filetype.vim'
+repo = 'airblade/vim-gitgutter'
+hook_add = '''
+    set signcolumn=yes " Show gitgutter column always
+'''
+
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+hook_add = '''
+    nmap [fugitive] <Nop>
+    map  [Space]g [fugitive]
+    nmap <silent> [fugitive]s :<C-u>Gstatus<CR>
+    nmap <silent> [fugitive]d :<C-u>Gdiff<CR>
+    nmap <silent> [fugitive]b :<C-u>Gblame<CR>
+    nmap <silent> [fugitive]l :<C-u>Glog<CR>
+'''

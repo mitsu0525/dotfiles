@@ -114,8 +114,8 @@ set matchpairs& matchpairs+=<:> " Increase the corresponding pairs
 
 " コマンド補完
 set wildmenu
-set wildmode=longest,full
-set history=10000
+set wildmode=list:longest,full
+set history=1000
 
 " Define mapleader
 let g:mapleader = ','
@@ -124,9 +124,6 @@ let g:maplocalleader = ','
 " ESC to jj
 inoremap <silent> jj <ESC>
 inoremap j<Space> j
-" IM settings
-set iminsert=0 imsearch=0 " IM off when starting up
-set noimcmdline " Disable IM on cmdline
 
 " Smart space mapping
 " Notice: when starting other <Space> mappings in noremap, disappeared [Space]
