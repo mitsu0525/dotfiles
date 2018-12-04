@@ -1,39 +1,39 @@
-[[plugins]]
-repo = 'Shougo/defx.nvim'
-on_if = 'has("python3")'
-depends = ['vim-hug-neovim-rpc', 'nvim-yarp']
-hook_add = '''
-    nnoremap <silent> [Space]o :<C-u>Defx -resume<CR>
-'''
-[plugins.ftplugin]
-defx = '''
-    nnoremap <silent><buffer><expr> o     defx#async_action('drop')
-    nnoremap <silent><buffer><expr> <C-o> defx#do_action('cd', ['..'])
-
-    nnoremap <silent><buffer><expr> h     defx#do_action('cd', ['..'])
-    nnoremap <silent><buffer><expr> j     line('.') == line('$') ? 'gg' : 'j'
-    nnoremap <silent><buffer><expr> k     line('.') == 1 ? 'G' : 'k'
-    nnoremap <silent><buffer><expr> l     defx#async_action('open')
-
-    nnoremap <silent><buffer><expr> <Tab> defx#do_action('toggle_select') . 'j'
-    nnoremap <silent><buffer><expr> *     defx#do_action('toggle_select_all')
-
-    nnoremap <silent><buffer><expr> q     defx#do_action('quit')
-
-    nnoremap <silent><buffer><expr> c     defx#do_action('copy')
-    nnoremap <silent><buffer><expr> d     defx#do_action('remove_trash')
-    nnoremap <silent><buffer><expr> m     defx#do_action('move')
-    nnoremap <silent><buffer><expr> p     defx#do_action('paste')
-    nnoremap <silent><buffer><expr> r     defx#do_action('rename')
-    nnoremap <silent><buffer><expr> n     defx#do_action('new_file')
-    nnoremap <silent><buffer><expr> N     defx#do_action('new_directory')
-    nnoremap <silent><buffer><expr> .     defx#do_action('toggle_ignored_files')
-    nnoremap <silent><buffer><expr> y     defx#do_action('yank_path')
-    nnoremap <silent><buffer><expr> ~     defx#do_action('cd')
-    nnoremap <silent><buffer><expr> /     defx#do_action('cd', getcwd())
-    nnoremap <silent><buffer><expr> <C-l> defx#do_action('redraw')
-    nnoremap <silent><buffer><expr> <C-g> defx#do_action('print')
-'''
+# [[plugins]]
+# repo = 'Shougo/defx.nvim'
+# on_if = 'has("python3")'
+# depends = ['vim-hug-neovim-rpc', 'nvim-yarp']
+# hook_add = '''
+#     nnoremap <silent> [Space]o :<C-u>Defx -resume<CR>
+# '''
+# [plugins.ftplugin]
+# defx = '''
+#     nnoremap <silent><buffer><expr> o     defx#async_action('drop')
+#     nnoremap <silent><buffer><expr> <C-o> defx#do_action('cd', ['..'])
+#
+#     nnoremap <silent><buffer><expr> h     defx#do_action('cd', ['..'])
+#     nnoremap <silent><buffer><expr> j     line('.') == line('$') ? 'gg' : 'j'
+#     nnoremap <silent><buffer><expr> k     line('.') == 1 ? 'G' : 'k'
+#     nnoremap <silent><buffer><expr> l     defx#async_action('open')
+#
+#     nnoremap <silent><buffer><expr> <Tab> defx#do_action('toggle_select') . 'j'
+#     nnoremap <silent><buffer><expr> *     defx#do_action('toggle_select_all')
+#
+#     nnoremap <silent><buffer><expr> q     defx#do_action('quit')
+#
+#     nnoremap <silent><buffer><expr> c     defx#do_action('copy')
+#     nnoremap <silent><buffer><expr> d     defx#do_action('remove_trash')
+#     nnoremap <silent><buffer><expr> m     defx#do_action('move')
+#     nnoremap <silent><buffer><expr> p     defx#do_action('paste')
+#     nnoremap <silent><buffer><expr> r     defx#do_action('rename')
+#     nnoremap <silent><buffer><expr> n     defx#do_action('new_file')
+#     nnoremap <silent><buffer><expr> N     defx#do_action('new_directory')
+#     nnoremap <silent><buffer><expr> .     defx#do_action('toggle_ignored_files')
+#     nnoremap <silent><buffer><expr> y     defx#do_action('yank_path')
+#     nnoremap <silent><buffer><expr> ~     defx#do_action('cd')
+#     nnoremap <silent><buffer><expr> /     defx#do_action('cd', getcwd())
+#     nnoremap <silent><buffer><expr> <C-l> defx#do_action('redraw')
+#     nnoremap <silent><buffer><expr> <C-g> defx#do_action('print')
+# '''
 
 [[plugins]]
 repo = 'Shougo/denite.nvim'
@@ -76,9 +76,12 @@ hook_source = '''
 '''
 
 [[plugins]]
-repo = 'Shougo/neoyank.vim'
+repo = 'mitsu0525/neoyank.vim'
 on_event = 'TextYankPost'
 on_source = ['denite.nvim']
+hook_add = '''
+    let g:neoyank#length = 100000
+'''
 
 [[plugins]]
 repo = 'Shougo/neomru.vim'
@@ -177,7 +180,3 @@ on_ft = 'zsh'
 [[plugins]]
 repo = 'uplus/deoplete-solargraph'
 on_ft = 'ruby'
-
-[[plugins]]
-repo = 'fatih/vim-go'
-on_ft = 'go'
