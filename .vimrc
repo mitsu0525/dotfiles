@@ -79,6 +79,7 @@ set softtabstop=4 " 連続した空白に対してタブキーやバックスペ
 set autoindent    " 改行時に前の行のインデントを継続する
 set smartindent   " 改行時に前の行の構文をチェックし次の行のインデントを増減する
 set shiftwidth=4  " smartindentで増減する幅
+set shiftround    " shiftwidthの倍数に丸める
 
 "  コメントアウト補完無効
 autocmd MyAutoCmd BufEnter * setlocal formatoptions-=r

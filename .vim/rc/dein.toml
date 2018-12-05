@@ -1,3 +1,4 @@
+# ---------- Essential -----------
 [[plugins]] # plugin manager
 repo = 'Shougo/dein.vim'
 
@@ -30,7 +31,7 @@ hook_add = '''
     let g:lightline_delphinus_colorscheme = 'solarized_improved'
 '''
 
-[[plugins]] # display buffer on tabline
+[[plugins]] # display buffer in tabline
 repo = 'ap/vim-buftabline'
 
 [[plugins]] # visible indent
@@ -46,13 +47,10 @@ hook_add = '''
 repo = 'vim-jp/vimdoc-ja'
 
 # ---------- Useful plugins ----------
-[[plugins]]
-repo = 'majutsushi/tagbar'
-
-[[plugins]]
+[[plugins]] # smart f
 repo = 'rhysd/clever-f.vim'
 
-[[plugins]]
+[[plugins]] # window move
 repo = 'christoomey/vim-tmux-navigator'
 
 [[plugins]] # add text object
