@@ -18,8 +18,8 @@ hook_add = '''
     nnoremap <silent> [denite]; :<C-u>Denite -buffer-name=search -resume<CR>
     nnoremap <silent> /         :<C-u>Denite -buffer-name=search -auto-highlight line<CR>
     nnoremap <silent> [denite]/ :<C-u>DeniteCursorWord -buffer-name=search -auto-highlight -mode=normal line<CR>
-    nnoremap <silent> [denite]p :<C-u>Denite -buffer-name=register neoyank<CR>`]
-    xnoremap <silent> [denite]p :<C-u>Denite -buffer-name=register neoyank<CR>`]
+    nnoremap <silent> [denite]p :<C-u>Denite -buffer-name=register neoyank<CR>
+    xnoremap <silent> [denite]p :<C-u>Denite -buffer-name=register neoyank<CR>
     nnoremap <silent> [denite]c :<C-u>Denite command command_history<CR>
     " Paste like YankRing
     nnoremap <silent> p      :<C-u>Denite -buffer-name=register neoyank -immediately<CR>`]

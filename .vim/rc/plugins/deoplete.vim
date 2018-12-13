@@ -52,7 +52,8 @@ call deoplete#custom#option('keyword_patterns', {
       \ 'tex': '[^\w|\s][a-zA-Z_]\w*',
       \ })
 
+call deoplete#custom#option('async_timeout', 0)
+call deoplete#custom#option('auto_complete_delay', 0)
+call deoplete#custom#option('auto_refresh_delay', 10)
 call deoplete#custom#option('camel_case', v:true)
 call deoplete#custom#option('refresh_always', v:true)
-call deoplete#custom#option('auto_complete_delay', 0)
-call deoplete#custom#option('async_timeout', 100)

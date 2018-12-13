@@ -33,7 +33,7 @@ if executable('rg')
   call denite#custom#var('grep', 'final_opts', [])
   call denite#custom#var('grep', 'separator', ['--'])
   call denite#custom#var('grep', 'default_opts',
-        \ ['--vimgrep', '--no-heading', '--hidden'])
+        \ ['-i', '--vimgrep', '--no-heading', '--hidden'])
 else
   call denite#custom#var('file/rec', 'command',
         \ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])

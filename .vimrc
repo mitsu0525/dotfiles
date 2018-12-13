@@ -269,8 +269,7 @@ xmap <silent> <expr> p <SID>Repl()
 " For conceal.
 set conceallevel=2 concealcursor=niv
 
-"---------------------------------------------------------------------------
-" Disable default plugins
+" Disable default plugins------------------
 let g:loaded_2html_plugin      = 1
 let g:loaded_logiPat           = 1
 let g:loaded_getscriptPlugin   = 1
