@@ -26,8 +26,6 @@ zplug "junegunn/fzf", \
 # Additional completion definitions for Zsh
 zplug "zsh-users/zsh-completions"
 
-zplug 'zsh-users/zsh-autosuggestions'
-
 # Syntax highlighting bundle. zsh-syntax-highlighting must be loaded after
 # excuting compinit command and sourcing other plugins.
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
