@@ -22,38 +22,46 @@ inoremap <silent><expr><C-l> deoplete#complete_common_string()
 " <CR>: close popup and save indent.
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 function! s:my_cr_function() abort
-    return deoplete#cancel_popup() . "\<CR>"
+    return pumvisible() ? deoplete#close_popup()."\<CR>" : "\<CR>"
 endfunction
 
-inoremap <expr><C-g> deoplete#refresh()
-inoremap <expr><C-e> deoplete#cancel_popup()
-inoremap <expr> ' pumvisible() ? deoplete#close_popup() : "'"
-
 call deoplete#custom#source('_', 'matchers', ['matcher_fuzzy', 'matcher_length'])
+call deoplete#custom#source('tabnine', 'matchers', [])
 
 call deoplete#custom#source('look', 'filetypes', ['help', 'gitcommit'])
-call deoplete#custom#option('ignore_sources', {'_': ['around', 'buffer']})
+call deoplete#custom#option('ignore_sources', {'_': ['around', 'buffer', 'tag']})
 
-call deoplete#custom#source('tabnine', 'rank', 500)
+call deoplete#custom#source('tabnine', 'rank', 300)
 
 call deoplete#custom#source('zsh', 'filetypes', ['zsh', 'sh'])
 
 call deoplete#custom#source('_', 'converters', [
-      \ 'converter_remove_paren',
-      \ 'converter_remove_overlap',
-      \ 'matcher_length',
-      \ 'converter_truncate_abbr',
-      \ 'converter_truncate_menu',
-      \ 'converter_auto_delimiter',
-      \ ])
+    \ 'converter_remove_paren',
+    \ 'converter_remove_overlap',
+    \ 'matcher_length',
+    \ 'converter_truncate_abbr',
+    \ 'converter_truncate_menu',
+    \ 'converter_auto_delimiter',
+    \ ])
+call deoplete#custom#source('tabnine', 'converters', [
+    \ 'converter_remove_overlap',
+    \ ])
 
 call deoplete#custom#option('keyword_patterns', {
-      \ '_': '[a-zA-Z_]\k*\(?',
-      \ 'tex': '[^\w|\s][a-zA-Z_]\w*',
-      \ })
+    \ '_': '[a-zA-Z_]\k*\(?',
+    \ 'tex': '[^\w|\s][a-zA-Z_]\w*',
+    \ })
 
 call deoplete#custom#option('async_timeout', 0)
 call deoplete#custom#option('auto_complete_delay', 0)
 call deoplete#custom#option('auto_refresh_delay', 10)
 call deoplete#custom#option('camel_case', v:true)
 call deoplete#custom#option('refresh_always', v:true)
+call deoplete#custom#option('skip_multibyte', v:true)
+
+call deoplete#custom#option('candidate_marks', ['A', 'S', 'D', 'F', 'G'])
+inoremap <expr>A deoplete#insert_candidate(0)
+inoremap <expr>S deoplete#insert_candidate(1)
+inoremap <expr>D deoplete#insert_candidate(2)
+inoremap <expr>F deoplete#insert_candidate(3)
+inoremap <expr>G deoplete#insert_candidate(4)
