@@ -129,6 +129,9 @@ hook_add = '''
 repo = 'kannokanno/previm'
 depends = 'open-browser.vim'
 on_cmd = 'PrevimOpen'
+hook_add = '''
+    nnoremap <silent> [Space]p :<C-u>PrevimOpen<CR>
+'''
 
 [[plugins]]
 repo = 'osyo-manga/vim-jplus'
