@@ -65,8 +65,6 @@ defx = '''
     nnoremap <silent><buffer><expr> /     defx#do_action('cd', getcwd())
     nnoremap <silent><buffer><expr> <C-l> defx#do_action('redraw')
     nnoremap <silent><buffer><expr> <C-g> defx#do_action('print')
-    nnoremap <silent><buffer><expr> C     defx#do_action('toggle_columns', 'mark:filename:type:size:time')
-    nnoremap <silent><buffer><expr> S     defx#do_action('toggle_sort', 'Time')
 '''
 
 [[plugins]] # completion
@@ -128,6 +126,11 @@ hook_add = '''
 '''
 
 [[plugins]]
+repo = 'kannokanno/previm'
+depends = 'open-browser.vim'
+on_cmd = 'PrevimOpen'
+
+[[plugins]]
 repo = 'osyo-manga/vim-jplus'
 on_map = {n = '<Plug>'}
 hook_add = '''
@@ -149,6 +152,9 @@ hook_add = '''
     xmap <silent> go <Plug>(caw:jump:comment-next)
     xmap <silent> gO <Plug>(caw:jump:comment-prev)
 '''
+
+[[plugins]]
+repo = 'tyru/open-browser.vim'
 
 [[plugins]]
 repo = 'Shougo/neco-syntax'
@@ -177,3 +183,7 @@ on_ft = 'zsh'
 [[plugins]] # TOML syntax
 repo = 'cespare/vim-toml'
 on_ft = 'toml'
+
+[[plugins]] # GitHub flavored markdown syntax
+repo = 'rhysd/vim-gfm-syntax'
+on_ft = 'markdown'

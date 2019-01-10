@@ -147,6 +147,15 @@ hook_add = '''
     \}
 '''
 
+[[plugins]] # language pack
+repo = 'sheerun/vim-polyglot'
+hook_add = '''
+    let g:polyglot_disabled = ['markdown']
+'''
+
+[[plugins]] # for Markdown
+repo = 'plasticboy/vim-markdown'
+
 # ---------- Git plugins ----------
 [[plugins]]
 repo = 'airblade/vim-gitgutter'
