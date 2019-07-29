@@ -114,9 +114,22 @@ set showmatch " 括弧の対応関係を一瞬表示する
 set matchpairs& matchpairs+=<:> " Increase the corresponding pairs
 
 " コマンド補完
-set wildmenu
-set wildmode=list:longest,full
+if has('nvim')
+  " Display candidates by popup menu.
+  set wildmenu
+  set wildmode=full
+  set wildoptions+=pum
+else
+  " Display candidates by list.
+  set nowildmenu
+  set wildmode=list:longest,full
+endif
+" Increase history amount.
 set history=1000
+" Display all the information of the tag by the supplement of the Insert mode.
+set showfulltag
+" Can supplement a tag in a command-line.
+set wildoptions+=tagfile
 
 " Define mapleader
 let g:mapleader = ','

@@ -12,19 +12,28 @@ hook_add = '''
     xmap ; [denite]
     " denite.vim keymap
     nnoremap <silent> [denite]b :<C-u>Denite buffer<CR>
-    nnoremap <silent> [denite]f :<C-u>Denite file_rec<CR>
+    nnoremap <silent> [denite]f :<C-u>Denite file/rec<CR>
     nnoremap <silent> [denite]m :<C-u>Denite file_mru<CR>
     nnoremap <silent> [denite]g :<C-u>Denite -buffer-name=search grep<CR>
     nnoremap <silent> [denite]; :<C-u>Denite -buffer-name=search -resume<CR>
-    nnoremap <silent> /         :<C-u>Denite -buffer-name=search -auto-highlight line<CR>
-    nnoremap <silent> [denite]/ :<C-u>DeniteCursorWord -buffer-name=search -auto-highlight -mode=normal line<CR>
+    nnoremap <silent> /         :<C-u>Denite -buffer-name=search line<CR>
+    nnoremap <silent> [denite]/ :<C-u>DeniteCursorWord -buffer-name=search -mode=normal line<CR>
     nnoremap <silent> [denite]p :<C-u>Denite -buffer-name=register neoyank<CR>
     xnoremap <silent> [denite]p :<C-u>Denite -buffer-name=register neoyank<CR>
     nnoremap <silent> [denite]c :<C-u>Denite command command_history<CR>
-    " Paste like YankRing
-    nnoremap <silent> p      :<C-u>Denite -buffer-name=register neoyank -immediately<CR>`]
-    " nnoremap <silent> <C-p> u:<C-u>Denite -buffer-name=register -resume -cursor-pos=+1 -immediately<CR>`]
-    " nnoremap <silent> <C-n> u:<C-u>Denite -buffer-name=register -resume -cursor-pos=-1 -immediately<CR>`]
+'''
+[plugins.ftplugin]
+denite = '''
+    nnoremap <silent><buffer><expr> <CR>    denite#do_map('do_action')
+    nnoremap <silent><buffer><expr> <TAB>   denite#do_map('toggle_select').'j'
+    nnoremap <silent><buffer><expr> <C-c>   denite#do_map('quit')
+    nnoremap <silent><buffer><expr> q       denite#do_map('quit')
+    nnoremap <silent><buffer><expr> p       denite#do_map('do_action', 'preview')
+    nnoremap <silent><buffer><expr> i       denite#do_map('open_filter_buffer')
+'''
+denite-filter = '''
+    inoremap <silent><buffer><expr> <C-c> denite#do_map('quit')
+    nnoremap <silent><buffer><expr> <C-c> denite#do_map('quit')
 '''
 
 [[plugins]] # filer
@@ -36,16 +45,20 @@ hook_add = '''
 '''
 hook_source = '''
 call defx#custom#column('mark', {
-    \ 'directory_icon': '▸',
     \ 'readonly_icon': '✗',
     \ 'selected_icon': '✓',
+    \ })
+call defx#custom#column('icon', {
+    \ 'directory_icon': '▸',
+    \ 'opened_icon': '▾',
+    \ 'root_icon': ' ',
     \ })
 '''
 [plugins.ftplugin]
 defx = '''
-    nnoremap <silent><buffer><expr> o     defx#async_action('drop')
-    nnoremap <silent><buffer><expr> <C-o> defx#do_action('cd', ['..'])
-    nnoremap <silent><buffer><expr> h     defx#do_action('cd', ['..'])
+    nnoremap <silent><buffer><expr> o     defx#async_action('open_or_close_tree')
+    nnoremap <silent><buffer><expr> <C-o> defx#async_action('cd', ['..'])
+    nnoremap <silent><buffer><expr> h     defx#async_action('cd', ['..'])
     nnoremap <silent><buffer><expr> j     line('.') == line('$') ? 'gg' : 'j'
     nnoremap <silent><buffer><expr> k     line('.') == 1 ? 'G' : 'k'
     nnoremap <silent><buffer><expr> l     defx#async_action('open')
@@ -61,10 +74,11 @@ defx = '''
     nnoremap <silent><buffer><expr> N     defx#do_action('new_directory')
     nnoremap <silent><buffer><expr> .     defx#do_action('toggle_ignored_files')
     nnoremap <silent><buffer><expr> y     defx#do_action('yank_path')
-    nnoremap <silent><buffer><expr> ~     defx#do_action('cd')
+    nnoremap <silent><buffer><expr> ~     defx#async_action('cd')
     nnoremap <silent><buffer><expr> /     defx#do_action('cd', getcwd())
     nnoremap <silent><buffer><expr> <C-l> defx#do_action('redraw')
     nnoremap <silent><buffer><expr> <C-g> defx#do_action('print')
+    xnoremap <silent><buffer><expr> <CR>  defx#do_action('toggle_select_visual')
 '''
 
 [[plugins]] # completion
@@ -75,6 +89,14 @@ on_event = 'InsertEnter'
 hook_source = '''
     source ~/.vim/rc/plugins/deoplete.vim
     call deoplete#enable()
+'''
+
+[[plugins]]
+repo = 'Shougo/echodoc.vim'
+on_event = 'CompleteDone'
+hook_source = '''
+    let g:echodoc#type = 'virtual'
+    call echodoc#enable()
 '''
 
 [[plugins]] # extend register
@@ -175,9 +197,21 @@ hook_add = '''
     let g:deoplete#sources#jedi#ignore_errors = v:true
 '''
 
+[[plugins]] # R plugin
+repo = 'jalvesaq/Nvim-R'
+on_ft = ['r', 'rmd']
+hook_add = '''
+    let R_in_buffer = 0
+    let R_tmux_split = 1
+'''
+
 [[plugins]] # zsh completion
 repo = 'zchee/deoplete-zsh'
 on_ft = ['zsh', 'sh']
+
+[[plugins]] # csv syntax
+repo = 'chrisbra/csv.vim'
+on_ft = 'csv'
 
 [[plugins]] # zplug syntax
 repo = 'zplug/vim-zplug'

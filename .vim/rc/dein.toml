@@ -29,6 +29,7 @@ repo = 'delphinus/lightline-delphinus'
 depends = ['lightline.vim']
 hook_add = '''
     let g:lightline_delphinus_colorscheme = 'solarized_improved'
+    autocmd MyAutoCmd User ALELint call lightline#update()
 '''
 
 [[plugins]] # display buffer in tabline
@@ -114,7 +115,6 @@ hook_add = '''
     let g:ale_linters = {
     \   'sh': ['language_server'],
     \   'python': ['flake8'],
-    \   'R': ['lintr'],
     \}
 
     " ファイルを保存したときにfix実行
@@ -160,6 +160,18 @@ hook_add = '''
     let g:vim_markdown_auto_insert_bullets = 0
     let g:vim_markdown_new_list_item_indent = 0
 '''
+
+# [[plugins]]
+# repo = 'mitsu0525/vim-yoink'
+# hook_add = '''
+#     let g:yoinkMoveCursorToEndOfPaste = 1
+#     nnoremap <silent><SID>(bnext) :<C-u>bnext<CR>
+#     nmap <expr><C-n> yoink#isActive() ? '<Plug>(YoinkPostPasteSwapForward)' : '<SID>(bnext)'
+#     nnoremap <silent><SID>(bprev) :<C-u>bprev<CR>
+#     nmap <expr><C-p> yoink#isActive() ? '<Plug>(YoinkPostPasteSwapBack)' : '<SID>(bprev)'
+#     nmap p <Plug>(YoinkPaste_p)
+#     nmap P <Plug>(YoinkPaste_P)
+# '''
 
 # ---------- Git plugins ----------
 [[plugins]]

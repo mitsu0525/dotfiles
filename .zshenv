@@ -95,10 +95,10 @@ export DOTPATH=${0:A:h}
 
 # pyenv
 export PYENV_ROOT=$HOME/.pyenv
-if [ -d "${PYENV_ROOT}" ]; then
+# if [ -d "${PYENV_ROOT}" ]; then
     export PATH=$PATH:$PYENV_ROOT/bin
     eval "$(pyenv init - --no-rehash)"
-fi
+# fi
 
 # rbenv
 export RBENV_ROOT=$HOME/.rbenv
@@ -106,6 +106,9 @@ if [ -d "${RBENV_ROOT}" ]; then
     export PATH=$PATH:$RBENV_ROOT/bin
     eval "$(rbenv init - --no-rehash)"
 fi
+
+# nodebrew
+export PATH=$HOME/.nodebrew/current/bin:$PATH
 
 function prompt_steeef_precmd {
   # Check for untracked files or updated submodules since vcs_info does not.

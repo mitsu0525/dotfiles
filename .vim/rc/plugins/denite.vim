@@ -1,28 +1,28 @@
-" ノーマルモードで起動、jjでノーマルへ
-call denite#custom#map('insert', 'jj', '<denite:enter_mode:normal>')
-
-" 移動
-call denite#custom#map('normal', '<C-n>', '<denite:move_to_next_line>', 'noremap')
-call denite#custom#map('insert', '<C-n>', '<denite:move_to_next_line>', 'noremap')
-call denite#custom#map('normal', '<C-p>', '<denite:move_to_previous_line>', 'noremap')
-call denite#custom#map('insert', '<C-p>', '<denite:move_to_previous_line>', 'noremap')
-
-call denite#custom#map('insert', '<C-a>', '<Home>')
-call denite#custom#map('insert', '<C-e>', '<End>')
-call denite#custom#map('insert', '<C-f>', '<Right>')
-call denite#custom#map('insert', '<C-b>', '<Left>')
-
-" ウィンドウを閉じる
-call denite#custom#map('normal', '<C-q>', '<denite:quit>', 'noremap')
-call denite#custom#map('insert', '<C-q>', '<denite:quit>', 'noremap')
-
-" ウィンドウを分割して開く
-call denite#custom#map('normal', '<C-v>', '<denite:do_action:vsplit>', 'noremap')
-call denite#custom#map('insert', '<C-v>', '<denite:do_action:vsplit>', 'noremap')
-
-" 新しいタブで開く
-call denite#custom#map('normal', '<C-t>', '<denite:do_action:tabopen>', 'noremap')
-call denite#custom#map('insert', '<C-t>', '<denite:do_action:tabopen>', 'noremap')
+" " ノーマルモードで起動、jjでノーマルへ
+" call denite#custom#map('insert', 'jj', '<denite:enter_mode:normal>')
+"
+" " 移動
+" call denite#custom#map('normal', '<C-n>', '<denite:move_to_next_line>', 'noremap')
+" call denite#custom#map('insert', '<C-n>', '<denite:move_to_next_line>', 'noremap')
+" call denite#custom#map('normal', '<C-p>', '<denite:move_to_previous_line>', 'noremap')
+" call denite#custom#map('insert', '<C-p>', '<denite:move_to_previous_line>', 'noremap')
+"
+" call denite#custom#map('insert', '<C-a>', '<Home>')
+" call denite#custom#map('insert', '<C-e>', '<End>')
+" call denite#custom#map('insert', '<C-f>', '<Right>')
+" call denite#custom#map('insert', '<C-b>', '<Left>')
+"
+" " ウィンドウを閉じる
+" call denite#custom#map('normal', '<C-q>', '<denite:quit>', 'noremap')
+" call denite#custom#map('insert', '<C-q>', '<denite:quit>', 'noremap')
+"
+" " ウィンドウを分割して開く
+" call denite#custom#map('normal', '<C-v>', '<denite:do_action:vsplit>', 'noremap')
+" call denite#custom#map('insert', '<C-v>', '<denite:do_action:vsplit>', 'noremap')
+"
+" " 新しいタブで開く
+" call denite#custom#map('normal', '<C-t>', '<denite:do_action:tabopen>', 'noremap')
+" call denite#custom#map('insert', '<C-t>', '<denite:do_action:tabopen>', 'noremap')
 
 " grep
 if executable('rg')

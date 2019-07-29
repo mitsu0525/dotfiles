@@ -27,21 +27,48 @@ if [[ ! -n $TMUX && $- == *l* ]]; then
   fi
 fi
 
+
+# anyenv がコマンドとして実行可能であれば anyenv を初期化します。
+(( ${+commands[anyenv]} )) && eval "$(anyenv init - zsh)"
+
 # zplug
-if [[ -f ~/.zplug/init.zsh ]]; then
-    export ZPLUG_LOADFILE=~/.zsh/zplug.zsh
-    source ~/.zplug/init.zsh
+source $HOME/.zplugin/bin/zplugin.zsh
+autoload -Uz _zplugin
+(( ${+_comps} )) && _comps[zplugin]=_zplugin
+### End of Zplugin's installer chunk
+zplugin light zsh-users/zsh-completions
+zplugin light zsh-users/zsh-autosuggestions
+zplugin light zsh-users/zsh-history-substring-search
+zplugin light zsh-users/zsh-syntax-highlighting
+# zplugin light zdharma/fast-syntax-highlighting
+zplugin ice svn pick"init.sh"; zplugin light b4b4r07/enhancd
+# if zplug check "b4b4r07/enhancd"; then
+    export ENHANCD_FILTER="fzf --height 40% --reverse --ansi"
+    export ENHANCD_DOT_SHOW_FULLPATH=1
+    export ENHANCD_DISABLE_DOT=1
+    export ENHANCD_DISABLE_HYPHEN=1
+# fi
+zplugin ice from"gh-r" as"command" mv"fzf_* -> fzf"; zplugin light junegunn/fzf-bin
+zplugin snippet "$HOME/.zsh/10_utils.zsh"
+zplugin snippet "$HOME/.zsh/20_keybinds.zsh"
+zplugin snippet "$HOME/.zsh/30_aliases.zsh"
+zplugin snippet "$HOME/.zsh/50_setopt.zsh"
+zplugin snippet "$HOME/.zsh/70_misc.zsh"
 
-    # if ! zplug check --verbose; then
-    #     printf "Install? [y/N]: "
-    #     if read -q; then
-    #         echo; zplug install
-    #     fi
-    #     echo
-    # fi
-    zplug load # --verbose
-fi
-
-if [[ -f ~/.zshrc.local ]]; then
-    source ~/.zshrc.local
-fi
+# if [[ -f ~/.zplug/init.zsh ]]; then
+#     export ZPLUG_LOADFILE=~/.zsh/zplug.zsh
+#     source ~/.zplug/init.zsh
+#
+#     # if ! zplug check --verbose; then
+#     #     printf "Install? [y/N]: "
+#     #     if read -q; then
+#     #         echo; zplug install
+#     #     fi
+#     #     echo
+#     # fi
+#     zplug load # --verbose
+# fi
+#
+# if [[ -f ~/.zshrc.local ]]; then
+#     source ~/.zshrc.local
+# fi
