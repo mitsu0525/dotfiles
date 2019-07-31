@@ -52,6 +52,7 @@ zplugin ice svn pick"init.sh"; zplugin light b4b4r07/enhancd
 # fi
 zplugin ice from"gh-r" as"command" mv"fzf_* -> fzf"; zplugin light junegunn/fzf-bin
 zplugin snippet "OMZ::plugins/git/git.plugin.zsh"
+zplugin snippet 'OMZ::plugins/github/github.plugin.zsh'
 zplugin snippet "$HOME/.zsh/10_utils.zsh"
 zplugin snippet "$HOME/.zsh/20_keybinds.zsh"
 zplugin snippet "$HOME/.zsh/30_aliases.zsh"
