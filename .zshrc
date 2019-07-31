@@ -27,7 +27,6 @@ if [[ ! -n $TMUX && $- == *l* ]]; then
   fi
 fi
 
-
 # anyenv がコマンドとして実行可能であれば anyenv を初期化します。
 (( ${+commands[anyenv]} )) && eval "$(anyenv init - zsh)"
 
@@ -39,8 +38,11 @@ autoload -Uz _zplugin
 zplugin light zsh-users/zsh-completions
 zplugin light zsh-users/zsh-autosuggestions
 zplugin light zsh-users/zsh-history-substring-search
-# zplugin light zsh-users/zsh-syntax-highlighting
 zplugin light zdharma/fast-syntax-highlighting
+# コマンドをサジェストするプラグインを遅延ロードします。
+zplugin ice wait'1' atload'_zsh_highlight'
+zplugin ice wait'1' atload'_zsh_autosuggest_start'
+zplugin light zsh-users/zsh-autosuggestions
 zplugin ice svn pick"init.sh"; zplugin light b4b4r07/enhancd
 # if zplug check "b4b4r07/enhancd"; then
     export ENHANCD_FILTER="fzf --height 40% --reverse --ansi"
@@ -49,34 +51,9 @@ zplugin ice svn pick"init.sh"; zplugin light b4b4r07/enhancd
     export ENHANCD_DISABLE_HYPHEN=1
 # fi
 zplugin ice from"gh-r" as"command" mv"fzf_* -> fzf"; zplugin light junegunn/fzf-bin
-# zsh の補完を使いやすく設定する oh-my-zsh のスニペットをロードします。
-zplugin snippet 'OMZ::lib/completion.zsh'
-zplugin snippet 'OMZ::lib/compfix.zsh'
-# Gitの補完と大量のエイリアスを定義するプラグインです。
-# エイリアスは重宝するものが多く、Gitを使うユーザーには必ずオススメしたいプラグインです。
-zplugin snippet 'OMZ::plugins/git/git.plugin.zsh'
-# GitHub のレポジトリを管理するためのコマンドを定義するプラグインです。
-zplugin snippet 'OMZ::plugins/github/github.plugin.zsh'
+zplugin snippet "OMZ::plugins/git/git.plugin.zsh"
 zplugin snippet "$HOME/.zsh/10_utils.zsh"
 zplugin snippet "$HOME/.zsh/20_keybinds.zsh"
 zplugin snippet "$HOME/.zsh/30_aliases.zsh"
 zplugin snippet "$HOME/.zsh/50_setopt.zsh"
 zplugin snippet "$HOME/.zsh/70_misc.zsh"
-
-# if [[ -f ~/.zplug/init.zsh ]]; then
-#     export ZPLUG_LOADFILE=~/.zsh/zplug.zsh
-#     source ~/.zplug/init.zsh
-#
-#     # if ! zplug check --verbose; then
-#     #     printf "Install? [y/N]: "
-#     #     if read -q; then
-#     #         echo; zplug install
-#     #     fi
-#     #     echo
-#     # fi
-#     zplug load # --verbose
-# fi
-#
-# if [[ -f ~/.zshrc.local ]]; then
-#     source ~/.zshrc.local
-# fi
