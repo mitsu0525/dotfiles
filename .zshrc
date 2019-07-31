@@ -38,11 +38,12 @@ autoload -Uz _zplugin
 zplugin light zsh-users/zsh-completions
 zplugin light zsh-users/zsh-autosuggestions
 zplugin light zsh-users/zsh-history-substring-search
-zplugin light zdharma/fast-syntax-highlighting
 # コマンドをサジェストするプラグインを遅延ロードします。
-zplugin ice wait'1' atload'_zsh_highlight'
-zplugin ice wait'1' atload'_zsh_autosuggest_start'
+zplugin ice wait"1" atload"_zsh_highlight"
+zplugin light zdharma/fast-syntax-highlighting
+zplugin ice wait"1" atload"_zsh_autosuggest_start"
 zplugin light zsh-users/zsh-autosuggestions
+
 zplugin ice svn pick"init.sh"; zplugin light b4b4r07/enhancd
 # if zplug check "b4b4r07/enhancd"; then
     export ENHANCD_FILTER="fzf --height 40% --reverse --ansi"
@@ -51,10 +52,10 @@ zplugin ice svn pick"init.sh"; zplugin light b4b4r07/enhancd
     export ENHANCD_DISABLE_HYPHEN=1
 # fi
 zplugin ice from"gh-r" as"command" mv"fzf_* -> fzf"; zplugin light junegunn/fzf-bin
-zplugin snippet "OMZ::plugins/git/git.plugin.zsh"
-zplugin snippet 'OMZ::plugins/github/github.plugin.zsh'
-zplugin snippet "$HOME/.zsh/10_utils.zsh"
-zplugin snippet "$HOME/.zsh/20_keybinds.zsh"
-zplugin snippet "$HOME/.zsh/30_aliases.zsh"
-zplugin snippet "$HOME/.zsh/50_setopt.zsh"
-zplugin snippet "$HOME/.zsh/70_misc.zsh"
+# zplugin snippet OMZ::lib/git.zsh
+zplugin snippet OMZ::plugins/git/git.plugin.zsh
+zplugin snippet $HOME/.zsh/10_utils.zsh
+zplugin snippet $HOME/.zsh/20_keybinds.zsh
+zplugin snippet $HOME/.zsh/30_aliases.zsh
+zplugin snippet $HOME/.zsh/50_setopt.zsh
+zplugin snippet $HOME/.zsh/70_misc.zsh
