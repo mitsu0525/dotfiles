@@ -43,7 +43,7 @@ if dein#check_install()
     call dein#install()
 endif
 " End dein Scripts-------------------------
-let g:python3_host_prog = '/usr/local/bin/python3'
+let g:python3_host_prog = '/usr/bin/python3'
 
 " 文字コード
 set encoding=utf-8
@@ -160,8 +160,8 @@ noremap [Space]j L
 noremap [Space]k H
 noremap [Space]l $
 " Smart <C-f>, <C-b>.
-noremap <expr> <C-f> max([winheight(0) - 2, 1]) . "\<C-d>" . (line('w$') >= line('$') ? "L" : "M")
-noremap <expr> <C-b> max([winheight(0) - 2, 1]) . "\<C-u>" . (line('w0') <= 1 ? "H" : "M")
+noremap <expr> <C-j> max([winheight(0) - 2, 1]) . "\<C-d>" . (line('w$') >= line('$') ? "L" : "M")
+noremap <expr> <C-k> max([winheight(0) - 2, 1]) . "\<C-u>" . (line('w0') <= 1 ? "H" : "M")
 
 " Insert mode keymappings:
 inoremap <C-a> <Home>
@@ -203,8 +203,9 @@ endif
 nnoremap <silent> <CR> :<C-u>call append(line('.'),'')<CR><Down>
 
 " バッファ移動
-nnoremap <silent> <C-n> :<C-u>bnext<CR>
-nnoremap <silent> <C-p> :<C-u>bprev<CR>
+nnoremap <silent> <C-l> :<C-u>bnext<CR>
+nnoremap <silent> <C-h> :<C-u>bprev<CR>
+nnoremap <silent> <C-q> :<C-u>bdelete<CR>
 
 " ウィンドウ操作
 nnoremap <silent> sp    :<C-u>vsplit<CR>:wincmd w<CR>

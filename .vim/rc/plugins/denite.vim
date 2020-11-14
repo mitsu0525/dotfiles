@@ -1,28 +1,15 @@
-" " ノーマルモードで起動、jjでノーマルへ
-" call denite#custom#map('insert', 'jj', '<denite:enter_mode:normal>')
-"
-" " 移動
-" call denite#custom#map('normal', '<C-n>', '<denite:move_to_next_line>', 'noremap')
-" call denite#custom#map('insert', '<C-n>', '<denite:move_to_next_line>', 'noremap')
-" call denite#custom#map('normal', '<C-p>', '<denite:move_to_previous_line>', 'noremap')
-" call denite#custom#map('insert', '<C-p>', '<denite:move_to_previous_line>', 'noremap')
-"
-" call denite#custom#map('insert', '<C-a>', '<Home>')
-" call denite#custom#map('insert', '<C-e>', '<End>')
-" call denite#custom#map('insert', '<C-f>', '<Right>')
-" call denite#custom#map('insert', '<C-b>', '<Left>')
-"
-" " ウィンドウを閉じる
-" call denite#custom#map('normal', '<C-q>', '<denite:quit>', 'noremap')
-" call denite#custom#map('insert', '<C-q>', '<denite:quit>', 'noremap')
-"
-" " ウィンドウを分割して開く
-" call denite#custom#map('normal', '<C-v>', '<denite:do_action:vsplit>', 'noremap')
-" call denite#custom#map('insert', '<C-v>', '<denite:do_action:vsplit>', 'noremap')
-"
-" " 新しいタブで開く
-" call denite#custom#map('normal', '<C-t>', '<denite:do_action:tabopen>', 'noremap')
-" call denite#custom#map('insert', '<C-t>', '<denite:do_action:tabopen>', 'noremap')
+" use floating
+let s:denite_win_width_percent = 0.85
+let s:denite_win_height_percent = 0.7
+let s:denite_default_options = {
+  \ 'split': 'floating',
+  \ 'winwidth': float2nr(&columns * s:denite_win_width_percent),
+  \ 'wincol': float2nr((&columns - (&columns * s:denite_win_width_percent)) / 2),
+  \ 'winheight': float2nr(&lines * s:denite_win_height_percent),
+  \ 'winrow': float2nr((&lines - (&lines * s:denite_win_height_percent)) / 2),
+  \ 'highlight_filter_background': 'DeniteFilter',
+  \ 'prompt': '> ',
+  \ }
 
 " grep
 if executable('rg')
@@ -46,6 +33,15 @@ call denite#custom#map('insert', '<C-h>',
 
 " option
 call denite#custom#option('_', 'prompt', '>' )
+call denite#custom#option('default', {
+      \ 'split': 'floating',
+      \ 'winwidth': float2nr(&columns * s:denite_win_width_percent),
+      \ 'wincol': float2nr((&columns - (&columns * s:denite_win_width_percent)) / 2),
+      \ 'winheight': float2nr(&lines * s:denite_win_height_percent),
+      \ 'winrow': float2nr((&lines - (&lines * s:denite_win_height_percent)) / 2),
+      \ 'highlight_filter_background': 'DeniteFilter',
+      \ })
+
 call denite#custom#source('default', 'matchers', ['matcher/fruzzy'])
 
 " Add custom menus

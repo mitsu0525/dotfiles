@@ -1,0 +1,20 @@
+{
+  "suggest.enablePreview": true,
+  "suggest.timeout": 5000,
+  "diagnostic.checkCurrentLine": true,
+  "diagnostic.signOffset": 100,
+  "diagnostic.errorSign": "✗",
+  "diagnostic.warningSign": "⚠",
+  "diagnostic.refreshOnInsertMode": true,
+  "languageserver": {
+    "clangd": {
+      "command": "clangd",
+      "filetypes": ["c", "cpp", "objc", "objcpp"]
+    }
+  },
+  "python.jediEnabled": false,
+  "python.linting.pylintEnabled": false,
+  "python.linting.flake8Enabled": true,
+  "python.linting.enabled": true,
+  "python.formatting.provider": "black"
+}

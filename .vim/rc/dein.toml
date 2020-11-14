@@ -10,7 +10,16 @@ repo = 'Shougo/context_filetype.vim'
 
 # ---------- Appearance -----------
 [[plugins]] # colorscheme
+repo = 'matsen/nvim-colors-solarized'
+on_if = 'has("nvim")'
+hook_add = '''
+    set background=dark
+    autocmd MyAutoCmd VimEnter * nested colorscheme solarized
+'''
+
+[[plugins]] # colorscheme
 repo = 'altercation/vim-colors-solarized'
+on_if = '!has("nvim")'
 hook_add = '''
     set background=dark
     autocmd MyAutoCmd VimEnter * nested colorscheme solarized
@@ -51,12 +60,12 @@ repo = 'vim-jp/vimdoc-ja'
 [[plugins]] # smart f
 repo = 'rhysd/clever-f.vim'
 
-[[plugins]] # window move
-repo = 'christoomey/vim-tmux-navigator'
+# [[plugins]] # window move
+# repo = 'christoomey/vim-tmux-navigator'
 
-[[plugins]] # add text object
-repo = 'kana/vim-textobj-user'
-hook_add = 'source ~/.vim/rc/plugins/vim-textobj-user.vim'
+# [[plugins]] # add text object
+# repo = 'kana/vim-textobj-user'
+# hook_add = 'source ~/.vim/rc/plugins/vim-textobj-user.vim'
 
 [[plugins]] # add vim operator
 repo = 'kana/vim-operator-user'
@@ -73,6 +82,12 @@ hook_add = '''
     let g:lexima_map_escape = 'jj'
     inoremap <C-f> <C-r>=lexima#insmode#leave(1, '<LT>C-G>U<LT>RIGHT>')<CR>
 '''
+
+# [[plugins]]
+# repo = 'neoclide/coc.nvim'
+# rev = 'release'
+# merged = '0'
+# hook_add = 'source ~/.vim/rc/plugins/coc.rc.vim'
 
 [[plugins]] # for deoplete
 repo = 'tbodt/deoplete-tabnine'
@@ -114,6 +129,7 @@ hook_add = '''
     " 有効にするlinter
     let g:ale_linters = {
     \   'sh': ['language_server'],
+    \   'cpp': ['cpplint'],
     \   'python': ['flake8'],
     \}
 
@@ -122,8 +138,15 @@ hook_add = '''
     " 有効にするfixer
     let g:ale_fixers = {
     \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-    \   'python': ['black'],
+    \   'cpp': ['clangd'],
+    \   'python': ['nayvy#ale_fixer','black'],
     \}
+
+    " 各ツールの実行オプションを変更してPythonパスを固定
+    let g:ale_python_flake8_executable = g:python3_host_prog
+    let g:ale_python_flake8_options = '-m flake8'
+    let g:ale_python_black_executable = g:python3_host_prog
+    let g:ale_python_black_options = '-m black'
 '''
 
 [[plugins]]
@@ -159,6 +182,19 @@ hook_add = '''
     let g:vim_markdown_folding_disabled = 1
     let g:vim_markdown_auto_insert_bullets = 0
     let g:vim_markdown_new_list_item_indent = 0
+'''
+
+[[plugins]]
+repo = 'matze/vim-move'
+hook_add = '''
+   nmap <Left>  <Plug>MoveCharLeft
+   nmap <Down>  <Plug>MoveLineDown
+   nmap <Up>    <Plug>MoveLineUp
+   nmap <Right> <Plug>MoveCharRight
+   xmap <Left>  <Plug>MoveBlockLeft
+   xmap <Down>  <Plug>MoveBlockDown
+   xmap <Up>    <Plug>MoveBlockUp
+   xmap <Right> <Plug>MoveBlockRight
 '''
 
 # [[plugins]]

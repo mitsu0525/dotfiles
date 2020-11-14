@@ -5,6 +5,8 @@ path=( \
     ~/bin(N-/) \
     ~/.zplug/bin(N-/) \
     ~/.tmux/bin(N-/) \
+    ~/.local/bin(N-/) \
+    ~/.poetry/bin(N-/) \
     "$path[@]" \
     )
 
@@ -95,17 +97,17 @@ export DOTPATH=${0:A:h}
 
 # pyenv
 export PYENV_ROOT=$HOME/.pyenv
-# if [ -d "${PYENV_ROOT}" ]; then
-    export PATH=$PATH:$PYENV_ROOT/bin
-    eval "$(pyenv init - --no-rehash)"
-# fi
+if [ -d "${PYENV_ROOT}" ]; then
+   export PATH=$PATH:$PYENV_ROOT/bin
+   eval "$(pyenv init - --no-rehash)"
+fi
 
 # rbenv
-export RBENV_ROOT=$HOME/.rbenv
-if [ -d "${RBENV_ROOT}" ]; then
-    export PATH=$PATH:$RBENV_ROOT/bin
-    eval "$(rbenv init - --no-rehash)"
-fi
+#export RBENV_ROOT=$HOME/.rbenv
+#if [ -d "${RBENV_ROOT}" ]; then
+#    export PATH=$PATH:$RBENV_ROOT/bin
+#    eval "$(rbenv init - --no-rehash)"
+#fi
 
 # nodebrew
 export PATH=$HOME/.nodebrew/current/bin:$PATH

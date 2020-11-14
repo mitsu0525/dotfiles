@@ -32,7 +32,7 @@ call deoplete#custom#source('look', 'filetypes', ['help', 'gitcommit'])
 call deoplete#custom#option('ignore_sources', {'_': ['around', 'buffer']})
 
 call deoplete#custom#source('tabnine', 'rank', 300)
-call deoplete#custom#source('tabnine', 'min_pattern_length', 2)
+call deoplete#custom#source('tabnine', 'min_pattern_length', 1)
 call deoplete#custom#var('tabnine', {
       \ 'line_limit': 500,
       \ 'max_num_results': 20,

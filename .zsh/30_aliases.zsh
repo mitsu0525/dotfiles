@@ -1,3 +1,4 @@
+# alias nvim='/mnt/c/Users/k-mituys/Downloads/squashfs-root/usr/bin/nvim'
 # common aliases
 alias sudo='sudo '
 if is_macos; then

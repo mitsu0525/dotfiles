@@ -3,6 +3,8 @@ bindkey -e
 
 bindkey -M emacs '^P' history-substring-search-up
 bindkey -M emacs '^N' history-substring-search-down
+bindkey -M emacs '^[[A' history-substring-search-up
+bindkey -M emacs '^[[B' history-substring-search-down
 bindkey '^U' backward-kill-line
 
 # smart insert

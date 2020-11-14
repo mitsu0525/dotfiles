@@ -8,6 +8,8 @@ if &compatible
   set nocompatible " Be iMproved
 endif
 
+let g:python3_host_prog = $PYENV_ROOT . '/shims/python3'
+
 let s:dein_path = expand('~/.vim/dein')
 let s:dein_repo_path = s:dein_path . '/repos/github.com/Shougo/dein.vim'
 
@@ -43,7 +45,9 @@ if dein#check_install()
   call dein#install()
 endif
 " End dein Scripts-------------------------
-let g:python3_host_prog = '/usr/local/bin/python3'
+
+" Auto change directory
+set autochdir
 
 " 文字コード
 set encoding=utf-8
@@ -142,6 +146,9 @@ noremap [Space]Q  :<C-u>q!<CR>
 nnoremap [Space]<CR> V:!sh<CR>
 " 行選択中に実行
 xnoremap [Space]<CR> :!sh<CR>
+" atcoder-tools
+nnoremap [Space]t :<C-u>!atcoder-tools test<CR>
+nnoremap [Space]s :<C-u>!atcoder-tools submit -u
 
 " カーソル移動
 noremap [Space]h ^
@@ -153,8 +160,8 @@ inoremap <C-e> <End>
 inoremap <C-h> <BS>
 inoremap <C-d> <Del>
 " Smart <C-f>, <C-b>.
-noremap <expr> <C-f> max([winheight(0) - 2, 1]) . "\<C-d>" . (line('w$') >= line('$') ? "L" : "M")
-noremap <expr> <C-b> max([winheight(0) - 2, 1]) . "\<C-u>" . (line('w0') <= 1 ? "H" : "M")
+noremap <expr> <C-j> max([winheight(0) - 2, 1]) . "\<C-d>" . (line('w$') >= line('$') ? "L" : "M")
+noremap <expr> <C-k> max([winheight(0) - 2, 1]) . "\<C-u>" . (line('w0') <= 1 ? "H" : "M")
 
 " Command-line mode keymappings:
 cnoremap <C-a> <Home>
@@ -189,14 +196,18 @@ endif
 nnoremap <silent> <CR> :<C-u>call append(line('.'),'')<CR><Down>
 
 " バッファ移動
-nnoremap <silent> <C-n> :<C-u>bnext<CR>
-nnoremap <silent> <C-p> :<C-u>bprev<CR>
+nnoremap <silent> <C-l> :<C-u>bnext<CR>
+nnoremap <silent> <C-h> :<C-u>bprev<CR>
+nnoremap <silent> <C-q> :<C-u>bdelete<CR>
 
 " ウィンドウ操作
 nnoremap <silent> sp    :<C-u>vsplit<CR>:wincmd w<CR>
 nnoremap <silent> so    :<C-u>only<CR>
 nnoremap <silent> <Tab> :wincmd w<CR>
 nnoremap <silent><expr> q winnr('$') != 1 ? ':<C-u>close<CR>' : ""
+
+" Better x
+nnoremap x "_x
 
 " Diable
 nnoremap ZZ <Nop>
@@ -228,6 +239,7 @@ if has('unnamedplus')
 else
     set clipboard& clipboard+=unnamed
 endif
+
 
 if has('vim_starting')
     if exists('$TMUX')
