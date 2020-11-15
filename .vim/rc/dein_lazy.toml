@@ -92,18 +92,18 @@ hook_source = '''
     call deoplete#enable()
 '''
 
-[[plugins]] # snippet
-repo = 'SirVer/ultisnips'
-hook_add = '''
-  " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-  let g:UltiSnipsExpandTrigger="<c-s>"
-  let g:UltiSnipsJumpForwardTrigger="<c-b>"
-  let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-  " If you want :UltiSnipsEdit to split your window.
-  let g:UltiSnipsEditSplit="vertical"
-  let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/my-snippets']
-'''
+# [[plugins]] # snippet
+# repo = 'SirVer/ultisnips'
+# hook_add = '''
+#   " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+#   let g:UltiSnipsExpandTrigger="<c-s>"
+#   let g:UltiSnipsJumpForwardTrigger="<c-b>"
+#   let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+#
+#   " If you want :UltiSnipsEdit to split your window.
+#   let g:UltiSnipsEditSplit="vertical"
+#   let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/my-snippets']
+# '''
 
 [[plugins]]
 repo = 'Shougo/deol.nvim'
@@ -163,6 +163,18 @@ hook_add = '''
 '''
 
 [[plugins]]
+repo = 'tyru/columnskip.vim'
+on_map = {n = '<Plug>'}
+hook_add = '''
+  nmap sj <Plug>(columnskip-j)
+  nmap sk <Plug>(columnskip-k)
+  omap sj <Plug>(columnskip-j)
+  xmap sk <Plug>(columnskip-k)
+  xmap sj <Plug>(columnskip-j)
+  omap sk <Plug>(columnskip-k)
+'''
+
+[[plugins]]
 repo = 'kana/vim-niceblock'
 on_map = {x = '<Plug>'}
 hook_add = '''
@@ -188,13 +200,13 @@ hook_add = '''
     nmap <silent>sr <Plug>(operator-surround-replace)a
 '''
 
-[[plugins]]
-repo = 'kannokanno/previm'
-depends = 'open-browser.vim'
-on_cmd = 'PrevimOpen'
-hook_add = '''
-    nnoremap <silent> [Space]p :<C-u>PrevimOpen<CR>
-'''
+# [[plugins]]
+# repo = 'kannokanno/previm'
+# depends = 'open-browser.vim'
+# on_cmd = 'PrevimOpen'
+# hook_add = '''
+#     nnoremap <silent> [Space]p :<C-u>PrevimOpen<CR>
+# '''
 
 [[plugins]]
 repo = 'osyo-manga/vim-jplus'
@@ -222,12 +234,12 @@ hook_add = '''
 [[plugins]]
 repo = 'tyru/open-browser.vim'
 
-[[plugins]]
-repo = 'Shougo/neco-syntax'
+# [[plugins]]
+# repo = 'Shougo/neco-syntax'
 
-[[plugins]]
-repo = 'Shougo/neco-vim'
-on_ft = 'vim'
+# [[plugins]]
+# repo = 'Shougo/neco-vim'
+# on_ft = 'vim'
 
 [[plugins]] # python completion
 repo = 'zchee/deoplete-jedi'
@@ -242,30 +254,30 @@ hook_add = '''
 repo = 'relastle/vim-nayvy'
 on_ft = 'python'
 
-[[plugins]] # R plugin
-repo = 'jalvesaq/Nvim-R'
-on_ft = ['r', 'rmd']
-hook_add = '''
-    let R_in_buffer = 0
-    let R_tmux_split = 1
-'''
+# [[plugins]] # R plugin
+# repo = 'jalvesaq/Nvim-R'
+# on_ft = ['r', 'rmd']
+# hook_add = '''
+#     let R_in_buffer = 0
+#     let R_tmux_split = 1
+# '''
 
 # [[plugins]] # zsh completion
 # repo = 'zchee/deoplete-zsh'
 # on_ft = ['zsh', 'sh']
 
-[[plugins]] # csv syntax
-repo = 'chrisbra/csv.vim'
-on_ft = 'csv'
+# [[plugins]] # csv syntax
+# repo = 'chrisbra/csv.vim'
+# on_ft = 'csv'
 
-[[plugins]] # zplug syntax
-repo = 'zplug/vim-zplug'
-on_ft = 'zsh'
+# [[plugins]] # zplug syntax
+# repo = 'zplug/vim-zplug'
+# on_ft = 'zsh'
 
 [[plugins]] # TOML syntax
 repo = 'cespare/vim-toml'
 on_ft = 'toml'
 
-[[plugins]] # GitHub flavored markdown syntax
-repo = 'rhysd/vim-gfm-syntax'
-on_ft = 'markdown'
+# [[plugins]] # GitHub flavored markdown syntax
+# repo = 'rhysd/vim-gfm-syntax'
+# on_ft = 'markdown'

@@ -6,9 +6,6 @@ has() {
     type "$1" > /dev/null 2>&1
 }
 
-# Install zplug
-[ ! -d $HOME/.zplug ] && curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
-
 case $OS in
     Darwin) # MacOS
         if !(has "brew"); then
@@ -18,10 +15,14 @@ case $OS in
         brew install python
         brew install vim
         ;;
-    linux-gnu) # Ubuntu
+    Linux) # Ubuntu
+        sudo apt install -y zsh git tmux python3-pip
         ;;
     *)
         echo "Working only OSX / Ubuntu"
         exit 1
         ;;
 esac
+
+# Install zinit
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)"

@@ -157,7 +157,7 @@ noremap [Space]k H
 noremap [Space]l $
 inoremap <C-a> <Home>
 inoremap <C-e> <End>
-inoremap <C-h> <BS>
+inoremap <C-h> <C-o>u
 inoremap <C-d> <Del>
 " Smart <C-f>, <C-b>.
 noremap <expr> <C-j> max([winheight(0) - 2, 1]) . "\<C-d>" . (line('w$') >= line('$') ? "L" : "M")
@@ -184,7 +184,7 @@ xnoremap < <gv
 nnoremap Y y$
 
 " 補完
-if dein#check_install('lexima.vim')
+if dein#check_install('auto-pairs')
     inoremap [ []<LEFT>
     inoremap ( ()<LEFT>
     inoremap " ""<LEFT>
@@ -269,6 +269,12 @@ function! s:Repl()
     return "p@=RestoreRegister()\<CR>"
 endfunction
 xmap <silent> <expr> p <SID>Repl()
+
+runtime ./colors/solarized_true.vim
+set termguicolors
+set winblend=0
+set wildoptions=pum
+set pumblend=5
 
 " Disable default plugins------------------
 let g:loaded_2html_plugin      = 1
