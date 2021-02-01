@@ -266,9 +266,9 @@ on_ft = 'python'
 # repo = 'zchee/deoplete-zsh'
 # on_ft = ['zsh', 'sh']
 
-# [[plugins]] # csv syntax
-# repo = 'chrisbra/csv.vim'
-# on_ft = 'csv'
+[[plugins]] # csv syntax
+repo = 'chrisbra/csv.vim'
+on_ft = 'csv'
 
 # [[plugins]] # zplug syntax
 # repo = 'zplug/vim-zplug'
