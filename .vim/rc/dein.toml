@@ -167,8 +167,10 @@ hook_add = '''
     let g:ale_fixers = {
    \   '*': ['remove_trailing_lines', 'trim_whitespace'],
    \   'cpp': ['clangd'],
-   \   'python': ['nayvy#ale_fixer','black'],
+   \   'python': ['black'],
    \}
+
+    " 'python': ['nayvy#ale_fixer','black'],
 
     " 各ツールの実行オプションを変更してPythonパスを固定
     let g:ale_python_flake8_executable = g:python3_host_prog
@@ -210,19 +212,6 @@ hook_add = '''
     let g:vim_markdown_folding_disabled = 1
     let g:vim_markdown_auto_insert_bullets = 0
     let g:vim_markdown_new_list_item_indent = 0
-'''
-
-[[plugins]]
-repo = 'matze/vim-move'
-hook_add = '''
-   nmap <Left>  <Plug>MoveCharLeft
-   nmap <Down>  <Plug>MoveLineDown
-   nmap <Up>    <Plug>MoveLineUp
-   nmap <Right> <Plug>MoveCharRight
-   xmap <Left>  <Plug>MoveBlockLeft
-   xmap <Down>  <Plug>MoveBlockDown
-   xmap <Up>    <Plug>MoveBlockUp
-   xmap <Right> <Plug>MoveBlockRight
 '''
 
 # [[plugins]]

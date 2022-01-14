@@ -6,8 +6,8 @@
   "creation_time": "2020-02-23T06:53:15.428993700Z",
   "guuid": "9932747ea90b62dd1f89a8c9ca467d9dc98bc256551ec3dd2f2d2f3a43542af7",
   "semantic_status": {
-    "vim script": "Enabled",
-    "python": "Enabled"
+    "python": "Enabled",
+    "vim script": "Enabled"
   },
   "enable_telemetry": false,
   "user_understands_that_enabling_tabnine_cloud_sends_code_to_tabnine_servers": false,
@@ -18,6 +18,7 @@
   "cloud_whitelist": [],
   "num_of_suggestions": null,
   "multiline_suggestions": null,
+  "omit_prefix_suggestions": null,
   "api_key": null,
   "api_base_url": null,
   "binary_update_interval_seconds": null,
@@ -31,5 +32,13 @@
   "local_model_size": null,
   "model_hash_override": null,
   "local_indexing": null,
-  "heartbeat_interval_seconds": null
+  "heartbeat_interval_seconds": null,
+  "last_service_level": null,
+  "override_beams": null,
+  "override_context_length": null,
+  "onboarding": null,
+  "has_git_repos": null,
+  "gusr": {
+    "dgc": "9932747ea90b62dd1f89a8c9ca467d9dc98bc256551ec3dd2f2d2f3a43542af7"
+  }
 }
