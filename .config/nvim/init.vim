@@ -3,48 +3,10 @@ augroup MyAutoCmd
   autocmd!
 augroup END
 
-" dein Scripts-----------------------------
-if &compatible
-  set nocompatible " Be iMproved
-endif
+let g:python3_host_prog = '/usr/bin/python3'
 
-let g:python3_host_prog = $PYENV_ROOT . '/shims/python3'
-
-let s:dein_path = expand('~/.vim/dein')
-let s:dein_repo_path = s:dein_path . '/repos/github.com/Shougo/dein.vim'
-
-" dein.vim がなければ github からclone
-if &runtimepath !~# '/dein.vim'
-  if !isdirectory(s:dein_repo_path)
-    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_path
-  endif
-  execute 'set runtimepath^=' . fnamemodify(s:dein_repo_path, ':p')
-endif
-
-if dein#load_state(s:dein_path)
-  call dein#begin(s:dein_path)
-
-  let g:config_dir  = expand('~/.vim/rc')
-  let s:toml        = g:config_dir . '/dein.toml'
-  let s:lazy_toml   = g:config_dir . '/dein_lazy.toml'
-
-  " Load TOML
-  call dein#load_toml(s:toml,      {'lazy': 0})
-  call dein#load_toml(s:lazy_toml, {'lazy': 1})
-
-  call dein#end()
-  call dein#save_state()
-endif
-
-" Required:
-filetype plugin indent on
-syntax enable
-
-" If you want to install not installed plugins on startup.
-if dein#check_install()
-  call dein#install()
-endif
-" End dein Scripts-------------------------
+lua require('plugins')
+set cmdheight=0
 
 " Auto change directory
 set autochdir
@@ -57,7 +19,6 @@ set fileencoding=utf-8 " 保存時の文字コード
 set fileformat=unix
 " Automatic recognition of a new line cord.
 set fileformats=unix,dos,mac
-set ambiwidth=double " □や○文字が崩れる問題を解決
 
 " 表示関係
 set t_Co=256
@@ -68,6 +29,7 @@ set showcmd     " コマンドを画面の最下部に表示する
 set list        " 不可視文字を表示
 set listchars=tab:▸-,trail:-,precedes:«,nbsp:%
 set showbreak=↪ " showbreaks
+set laststatus=3
 
 " Display another buffer when current buffer isn't saved.
 set hidden
@@ -78,11 +40,11 @@ set helplang& helplang=ja,en " Language help
 
 " タブ・インデント
 set expandtab     " タブ入力を複数の空白入力に置き換える
-set tabstop=4     " 画面上でタブ文字が占める幅
-set softtabstop=4 " 連続した空白に対してタブキーやバックスペースキーでカーソルが動く幅
+set tabstop=2     " 画面上でタブ文字が占める幅
+set softtabstop=2 " 連続した空白に対してタブキーやバックスペースキーでカーソルが動く幅
 set autoindent    " 改行時に前の行のインデントを継続する
 set smartindent   " 改行時に前の行の構文をチェックし次の行のインデントを増減する
-set shiftwidth=4  " smartindentで増減する幅
+set shiftwidth=2  " smartindentで増減する幅
 
 "  コメントアウト補完無効
 autocmd MyAutoCmd BufEnter * setlocal formatoptions-=r
@@ -152,16 +114,16 @@ nnoremap [Space]s :<C-u>!atcoder-tools submit -u
 
 " カーソル移動
 noremap [Space]h ^
-noremap [Space]j L
-noremap [Space]k H
 noremap [Space]l $
+noremap H ^
+noremap L $
 inoremap <C-a> <Home>
 inoremap <C-e> <End>
 inoremap <C-h> <C-o>u
 inoremap <C-d> <Del>
 " Smart <C-f>, <C-b>.
-noremap <expr> <C-j> max([winheight(0) - 2, 1]) . "\<C-d>" . (line('w$') >= line('$') ? "L" : "M")
-noremap <expr> <C-k> max([winheight(0) - 2, 1]) . "\<C-u>" . (line('w0') <= 1 ? "H" : "M")
+noremap <silent> <expr> <C-j> max([winheight(0) - 2, 1]) . "\<C-d>" . (line('w$') >= line('$') ? "L" : "M")
+noremap <silent> <expr> <C-k> max([winheight(0) - 2, 1]) . "\<C-u>" . (line('w0') <= 1 ? "H" : "M")
 
 " Command-line mode keymappings:
 cnoremap <C-a> <Home>
@@ -184,13 +146,13 @@ xnoremap < <gv
 nnoremap Y y$
 
 " 補完
-if dein#check_install('auto-pairs')
-    inoremap [ []<LEFT>
-    inoremap ( ()<LEFT>
-    inoremap " ""<LEFT>
-    inoremap ' ''<LEFT>
-    inoremap ` ``<LEFT>
-endif
+" if dein#check_install('auto-pairs')
+"     inoremap [ []<LEFT>
+"     inoremap ( ()<LEFT>
+"     inoremap " ""<LEFT>
+"     inoremap ' ''<LEFT>
+"     inoremap ` ``<LEFT>
+" endif
 
 " 空行挿入
 nnoremap <silent> <CR> :<C-u>call append(line('.'),'')<CR><Down>
@@ -240,6 +202,20 @@ else
     set clipboard& clipboard+=unnamed
 endif
 
+if system('uname -a | grep microsoft') != ""
+    let g:clipboard = {
+   \   'name': 'wslClipboard',
+   \   'copy': {
+   \       '+': 'win32yank.exe -i',
+   \       '*': 'win32yank.exe -i',
+   \   },
+   \   'paste': {
+   \       '+': 'win32yank.exe -o',
+   \       '*': 'win32yank.exe -o',
+   \   },
+   \   'cache_enabled': 1,
+   \}
+endif
 
 if has('vim_starting')
     if exists('$TMUX')
@@ -270,11 +246,11 @@ function! s:Repl()
 endfunction
 xmap <silent> <expr> p <SID>Repl()
 
-runtime ./colors/solarized_true.vim
+" runtime ./colors/solarized_true.vim
 set termguicolors
-set winblend=0
-set wildoptions=pum
-set pumblend=5
+" set winblend=0
+" set wildoptions=pum
+" set pumblend=5
 
 " Disable default plugins------------------
 let g:loaded_2html_plugin      = 1

@@ -5,84 +5,12 @@ repo = 'Shougo/dein.vim'
 [[plugins]] # most recent use
 repo = 'Shougo/neomru.vim'
 
-[[plugins]] # detect filetype
-repo = 'Shougo/context_filetype.vim'
-
-# ---------- Appearance -----------
-# [[plugins]] # colorscheme
-# repo = 'matsen/nvim-colors-solarized'
-# on_if = 'has("nvim")'
-# hook_add = '''
-#     set background=dark
-#     autocmd MyAutoCmd VimEnter * nested colorscheme solarized
-# '''
-
-# [[plugins]] # colorscheme
-# repo = 'altercation/vim-colors-solarized'
-# on_if = '!has("nvim")'
-# hook_add = '''
-#     set background=dark
-#     autocmd MyAutoCmd VimEnter * nested colorscheme solarized
-# '''
-
-[[plugins]] # enhance statusline
-repo = 'itchyny/lightline.vim'
-hook_add = '''
-    set laststatus=2
-    set t_Co=256
-    set noshowmode
-'''
-
-[[plugins]] # lightline-theme
-repo = 'delphinus/lightline-delphinus'
-depends = ['lightline.vim']
-hook_add = '''
-  function! s:lightline_start() abort
-    let g:lightline_delphinus_colorscheme = g:use_solarized || g:colors_name =~# '^solarized' ? 'solarized_improved' : 'nord_improved'
-    " execute codes below only after loading lightline because this function
-    " will be called BEFORE it. Strange.
-    if !get(g:, 'loaded_lightline', 0)
-      return
-    endif
-    let path = dein#get('lightline-delphinus').path
-    " source this always to detect 'background'
-    execute 'source' path . '/autoload/lightline/colorscheme/' . g:lightline.colorscheme . '.vim'
-    let g:lightline.colorscheme = g:lightline_delphinus_colorscheme
-    " https://github.com/itchyny/lightline.vim/issues/241#issuecomment-322033789
-    call lightline#init()
-    call lightline#colorscheme()
-    call lightline#update()
-  endfunction
-  " s:lightline_start will be called in changing colorscheme or 'background'
-  augroup LightlineStart
-    autocmd!
-    autocmd ColorScheme * call <SID>lightline_start()
-  augroup END
-    " let g:lightline_delphinus_colorscheme = 'solarized_improved'
-  autocmd MyAutoCmd User ALELint call lightline#update()
-'''
-
-[[plugins]] # display buffer in tabline
-repo = 'ap/vim-buftabline'
-
-[[plugins]] # visible indent
-repo = 'Yggdroot/indentLine'
-hook_add = '''
-    let g:indentLine_faster = 1
-    let g:indentLine_concealcursor = ''
-    let g:indentLine_bufNameExclude = ['help', 'denite']
-    let g:indentLine_fileTypeExclude = ['help', 'denite']
-'''
-
-[[plugins]] # japanese help
-repo = 'vim-jp/vimdoc-ja'
-
 # ---------- Useful plugins ----------
 [[plugins]] # smart f
 repo = 'rhysd/clever-f.vim'
 
-# [[plugins]] # window move
-# repo = 'christoomey/vim-tmux-navigator'
+[[plugins]] # smart f
+repo = 'tpope/vim-repeat'
 
 # [[plugins]] # add text object
 # repo = 'kana/vim-textobj-user'
@@ -97,12 +25,11 @@ hook_add = '''
     xmap <CR> <Plug>(LiveEasyAlign)
 '''
 
-# [[plugins]] # bracket completion
-# repo = 'cohama/lexima.vim'
-# hook_add = '''
-#     let g:lexima_map_escape = 'jj'
-#     inoremap <C-f> <C-r>=lexima#insmode#leave(1, '<LT>C-G>U<LT>RIGHT>')<CR>
-# '''
+[[plugins]] # bracket completion
+repo = 'cohama/lexima.vim'
+hook_add = '''
+    let g:lexima_map_escape = 'jj'
+'''
 
 [[plugins]] # bracket completion
 repo = 'jiangmiao/auto-pairs'
@@ -111,146 +38,64 @@ hook_add = '''
   let g:AutoPairsMapCh = 0
 '''
 
-# [[plugins]]
-# repo = 'neoclide/coc.nvim'
-# rev = 'release'
-# merged = '0'
-# hook_add = 'source ~/.vim/rc/plugins/coc.rc.vim'
-
-[[plugins]] # for deoplete
-repo = 'tbodt/deoplete-tabnine'
-build = './install.sh'
-
-[[plugins]] # for deoplete
-repo = 'roxma/vim-hug-neovim-rpc'
-on_if = '!has("nvim")'
-
-[[plugins]] # for deoplete
-repo = 'roxma/nvim-yarp'
-on_if = '!has("nvim")'
-
-[[plugins]] # linter
-repo = 'w0rp/ale'
+[[plugins]] # faster jk
+repo = 'rhysd/accelerated-jk'
 hook_add = '''
-    let g:ale_set_highlights = 0
-    " エラー行に表示するマーク
-    let g:ale_sign_error = '✗'
-    let g:ale_sign_warning = '⚠'
-    highlight link ALEErrorSign ErrorMsg
-    highlight link ALEWarningSign Search
-    " エラー行にカーソルをあわせた際に表示されるメッセージフォーマット
-    let g:ale_echo_msg_format = '[%linter%] %code: %%s [%severity%]'
-    " エラー表示の列を常時表示
-    let g:ale_sign_column_always = 1
-    " ステータスラインに情報を表示
-    let g:ale_statusline_format = [
-   \   g:ale_sign_error . ' %d',
-   \   g:ale_sign_warning . ' %d',
-   \   '✓']
-
-    " ファイルを開いたときにlint実行
-    let g:ale_lint_on_enter = 1
-    " ファイルを保存したときにlint実行
-    let g:ale_lint_on_save = 1
-    " 編集中のlintはしない
-    let g:ale_lint_on_text_changed = 0
-    " 有効にするlinter
-    let g:ale_linters = {
-   \   'sh': ['language_server'],
-   \   'cpp': ['cpplint'],
-   \   'python': ['flake8'],
-   \}
-
-    " ファイルを保存したときにfix実行
-    let g:ale_fix_on_save = 1
-    " 有効にするfixer
-    let g:ale_fixers = {
-   \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-   \   'cpp': ['clangd'],
-   \   'python': ['nayvy#ale_fixer','black'],
-   \}
-
-    " 各ツールの実行オプションを変更してPythonパスを固定
-    let g:ale_python_flake8_executable = g:python3_host_prog
-    let g:ale_python_flake8_options = '-m flake8'
-    let g:ale_python_black_executable = g:python3_host_prog
-    let g:ale_python_black_options = '-m black'
+    nmap <silent>j <Plug>(accelerated_jk_gj)
+    nmap <silent>k <Plug>(accelerated_jk_gk)
 '''
 
 [[plugins]]
-repo = 'osyo-manga/vim-precious'
-depends = 'context_filetype.vim'
+repo = 'tyru/columnskip.vim'
 hook_add = '''
-    let g:precious_enable_switchers = {
-    \   "*" : {
-    \       "setfiletype" : 0
-    \   },
-    \   "vim" : {
-    \       "setfiletype" : 1
-    \   },
-    \   "toml" : {
-    \       "setfiletype" : 1
-    \   },
-    \}
-    let g:precious_enable_switch_CursorMoved = {
-    \   "*" : 1,
-    \   "help" : 0,
-    \}
-'''
-
-[[plugins]] # language pack
-repo = 'sheerun/vim-polyglot'
-hook_add = '''
-    let g:polyglot_disabled = ['markdown']
-'''
-
-[[plugins]] # for Markdown
-repo = 'plasticboy/vim-markdown'
-hook_add = '''
-    let g:vim_markdown_folding_disabled = 1
-    let g:vim_markdown_auto_insert_bullets = 0
-    let g:vim_markdown_new_list_item_indent = 0
+  nmap sj <Plug>(columnskip-j)
+  nmap sk <Plug>(columnskip-k)
+  omap sj <Plug>(columnskip-j)
+  xmap sk <Plug>(columnskip-k)
+  xmap sj <Plug>(columnskip-j)
+  omap sk <Plug>(columnskip-k)
 '''
 
 [[plugins]]
-repo = 'matze/vim-move'
+repo = 'kana/vim-niceblock'
 hook_add = '''
-   nmap <Left>  <Plug>MoveCharLeft
-   nmap <Down>  <Plug>MoveLineDown
-   nmap <Up>    <Plug>MoveLineUp
-   nmap <Right> <Plug>MoveCharRight
-   xmap <Left>  <Plug>MoveBlockLeft
-   xmap <Down>  <Plug>MoveBlockDown
-   xmap <Up>    <Plug>MoveBlockUp
-   xmap <Right> <Plug>MoveBlockRight
-'''
-
-# [[plugins]]
-# repo = 'mitsu0525/vim-yoink'
-# hook_add = '''
-#     let g:yoinkMoveCursorToEndOfPaste = 1
-#     nnoremap <silent><SID>(bnext) :<C-u>bnext<CR>
-#     nmap <expr><C-n> yoink#isActive() ? '<Plug>(YoinkPostPasteSwapForward)' : '<SID>(bnext)'
-#     nnoremap <silent><SID>(bprev) :<C-u>bprev<CR>
-#     nmap <expr><C-p> yoink#isActive() ? '<Plug>(YoinkPostPasteSwapBack)' : '<SID>(bprev)'
-#     nmap p <Plug>(YoinkPaste_p)
-#     nmap P <Plug>(YoinkPaste_P)
-# '''
-
-# ---------- Git plugins ----------
-[[plugins]]
-repo = 'airblade/vim-gitgutter'
-hook_add = '''
-    set signcolumn=yes " Show gitgutter column always
+    xmap I  <Plug>(niceblock-I)
+    xmap A  <Plug>(niceblock-A)
 '''
 
 [[plugins]]
-repo = 'tpope/vim-fugitive'
+repo = 'kana/vim-operator-replace'
+depends = 'vim-operator-user'
 hook_add = '''
-    nmap [fugitive] <Nop>
-    map  [Space]g [fugitive]
-    nmap <silent> [fugitive]s :<C-u>Gstatus<CR>
-    nmap <silent> [fugitive]d :<C-u>Gdiff<CR>
-    nmap <silent> [fugitive]b :<C-u>Gblame<CR>
-    nmap <silent> [fugitive]l :<C-u>Glog<CR>
+    nmap R <Plug>(operator-replace)
+'''
+
+[[plugins]]
+repo = 'rhysd/vim-operator-surround'
+depends = 'vim-operator-user'
+hook_add = '''
+    nmap <silent>sa <Plug>(operator-surround-append)a
+    nmap <silent>sd <Plug>(operator-surround-delete)a
+    nmap <silent>sr <Plug>(operator-surround-replace)a
+'''
+
+[[plugins]]
+repo = 'osyo-manga/vim-jplus'
+hook_add = '''
+    nmap J <Plug>(jplus)
+'''
+
+[[plugins]] # commentout
+repo = 'tyru/caw.vim'
+hook_add = '''
+    let g:caw_no_default_keymappings = 1
+    let g:caw_dollarpos_sp_left = ' '
+    nmap <silent> gc <Plug>(caw:hatpos:toggle)
+    nmap <silent> ga <Plug>(caw:dollarpos:comment)
+    nmap <silent> go <Plug>(caw:jump:comment-next)
+    nmap <silent> gO <Plug>(caw:jump:comment-prev)
+    xmap <silent> gc <Plug>(caw:hatpos:toggle)
+    xmap <silent> ga <Plug>(caw:dollarpos:comment)
+    xmap <silent> go <Plug>(caw:jump:comment-next)
+    xmap <silent> gO <Plug>(caw:jump:comment-prev)
 '''

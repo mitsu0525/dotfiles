@@ -1,12 +1,14 @@
 typeset -gx -U path
 path=( \
     /usr/local/bin(N-/) \
+    /usr/local/cuda/bin(N-/) \
     /Library/TeX/texbin(N-/) \
     ~/bin(N-/) \
     ~/.zplug/bin(N-/) \
     ~/.tmux/bin(N-/) \
     ~/.local/bin(N-/) \
     ~/.poetry/bin(N-/) \
+    ~/.deno/bin(N-/) \
     "$path[@]" \
     )
 
@@ -19,6 +21,12 @@ fpath=( \
     /usr/local/share/zsh/site-functions(N-/) \
     $fpath \
     )
+
+### XDG ###
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/state"
+export XDG_CACHE_HOME="$HOME/.cache"
 
 # autoload
 autoload -Uz run-help
@@ -101,6 +109,9 @@ if [ -d "${PYENV_ROOT}" ]; then
    export PATH=$PATH:$PYENV_ROOT/bin
    eval "$(pyenv init - --no-rehash)"
 fi
+
+# cuda
+export LD_LIBRARY_PATH="/usr/local/cuda/lib64:$LD_LIBRARY_PATH"
 
 # rbenv
 #export RBENV_ROOT=$HOME/.rbenv

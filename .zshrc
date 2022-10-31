@@ -59,3 +59,19 @@ zinit snippet $HOME/.zsh/20_keybinds.zsh
 zinit snippet $HOME/.zsh/30_aliases.zsh
 zinit snippet $HOME/.zsh/50_setopt.zsh
 zinit snippet $HOME/.zsh/70_misc.zsh
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/k-mitsuys/.pyenv/versions/anaconda3-2022.05/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/k-mitsuys/.pyenv/versions/anaconda3-2022.05/etc/profile.d/conda.sh" ]; then
+        . "/home/k-mitsuys/.pyenv/versions/anaconda3-2022.05/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/k-mitsuys/.pyenv/versions/anaconda3-2022.05/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+

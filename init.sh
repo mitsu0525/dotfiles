@@ -16,7 +16,8 @@ case $OS in
         brew install vim
         ;;
     Linux) # Ubuntu
-        sudo apt install -y zsh git tmux python3-pip
+	sudo add-apt-repository ppa:neovim-ppa/stable        
+        sudo apt install -y zsh git tmux neovim python3-pip
         ;;
     *)
         echo "Working only OSX / Ubuntu"
