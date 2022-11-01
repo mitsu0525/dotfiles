@@ -9,6 +9,7 @@ path=( \
     ~/.local/bin(N-/) \
     ~/.poetry/bin(N-/) \
     ~/.deno/bin(N-/) \
+    ~/.cargo/bin(N-/) \
     "$path[@]" \
     )
 
@@ -199,3 +200,4 @@ ${_prompt_steeef_colors[2]}%n%f : ${_prompt_steeef_colors[1]}%~%f "'${vcs_info_m
 }
 
 prompt_steeef_setup "$@"
+. "$HOME/.cargo/env"
