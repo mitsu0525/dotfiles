@@ -1,0 +1,111 @@
+# A minimal left prompt
+format = """
+$username : $directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+$fill \
+
+$hostname\
+$localip\
+$shlvl\
+$singularity\
+$kubernetes\
+$vcsh\
+$hg_branch\
+$docker_context\
+$package\
+$c\
+$cmake\
+$cobol\
+$daml\
+$dart\
+$deno\
+$dotnet\
+$elixir\
+$elm\
+$erlang\
+$golang\
+$haskell\
+$helm\
+$java\
+$julia\
+$kotlin\
+$lua\
+$nim\
+$nodejs\
+$ocaml\
+$perl\
+$php\
+$pulumi\
+$purescript\
+$python\
+$raku\
+$rlang\
+$red\
+$ruby\
+$rust\
+$scala\
+$swift\
+$terraform\
+$vlang\
+$vagrant\
+$zig\
+$buf\
+$nix_shell\
+$conda\
+$meson\
+$spack\
+$memory_usage\
+$aws\
+$gcloud\
+$openstack\
+$azure\
+$env_var\
+$crystal\
+$custom\
+$sudo\
+$line_break\
+$jobs\
+$battery\
+$status\
+$container\
+$shell\
+$character"""
+
+# move the rest of the prompt to the right
+right_format = """$cmd_duration$time"""
+
+
+[username]
+disabled = false
+format = "[$user]($style)"
+style_user = "bold red"
+style_root = "bold yellow"
+show_always = true
+
+[directory]
+style = "bold blue"
+truncation_length = 8
+truncate_to_repo = false
+
+[git_branch]
+style = "bold cyan"
+
+[fill]
+disabled = false
+symbol = "─"
+style = "white"
+
+[time]
+disabled = false
+format = '\[[$time]($style)\]'
+style = "bold red"
+time_format = "%T"
+utc_time_offset = "9"
+
+[cmd_duration]
+format = "the last command took [$duration](bold red) "
+
