@@ -78,6 +78,48 @@ $character"""
 # move the rest of the prompt to the right
 right_format = """$cmd_duration$time"""
 
+# Set "tokyonight-moon" as custom color palette
+palette = "tokyonight-moon"
+
+# Define custom colors
+[palettes.tokyonight-moon]
+bg_dark = "#1e2030"
+bg = "#222436"
+bg_highlight = "#2f334d"
+terminal_black = "#444a73"
+fg = "#c8d3f5"
+fg_dark = "#828bb8"
+fg_gutter = "#3b4261"
+dark3 = "#545c7e"
+comment = "#7a88cf"
+dark5 = "#737aa2"
+blue0 = "#3e68d7"
+blue = "#82aaff"
+cyan = "#86e1fc"
+blue1 = "#65bcff"
+blue2 = "#0db9d7"
+blue5 = "#89ddff"
+blue6 = "#b4f9f8"
+blue7 = "#394b70"
+purple = "#fca7ea"
+magenta2 = "#ff007c"
+magenta = "#c099ff"
+orange = "#ff966c"
+yellow = "#ffc777"
+green = "#c3e88d"
+green1 = "#4fd6be"
+green2 = "#41a6b5"
+teal = "#4fd6be"
+red = "#ff757f"
+red1 = "#c53b53"
+
+git_change = "#7ca1f2"
+git_add = "#b8db87"
+git_delete = "#e26a75"
+
+gitSigns_change = "#485a86"
+gitSigns_add = "#627259"
+gitSigns_delete = "#b55a67"
 
 [username]
 disabled = false
@@ -87,12 +129,12 @@ style_root = "bold yellow"
 show_always = true
 
 [directory]
-style = "bold blue"
+style = "bold cyan"
 truncation_length = 8
 truncate_to_repo = false
 
 [git_branch]
-style = "bold cyan"
+style = "bold purple"
 
 [fill]
 disabled = false
@@ -107,5 +149,6 @@ time_format = "%T"
 utc_time_offset = "9"
 
 [cmd_duration]
-format = "the last command took [$duration](bold red) "
+min_time = 60000
+format = "[The last command took](italic) [$duration](bold italic cyan) "
 
