@@ -62,4 +62,10 @@ require('jetpack').startup(function(use)
   -- use 'ggandor/leap.nvim'
   use 'tpope/vim-repeat'
   use 'rcarriga/nvim-notify'
+
+  use {'TimUntersberger/neogit', commit = '4cc4476acbbc772f29fd6c1ccee43f58a29a1b13'}
+  use 'sindrets/diffview.nvim'
+  use 'lewis6991/gitsigns.nvim'
+
+  -- use 'lukas-reineke/indent-blankline.nvim'
 end)

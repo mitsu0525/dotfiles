@@ -1,13 +1,12 @@
 # A minimal left prompt
 format = """
-$username : $directory\
+$username: $directory\
 $git_branch\
 $git_commit\
 $git_state\
 $git_metrics\
 $git_status\
 $fill \
-
 $hostname\
 $localip\
 $shlvl\
@@ -76,7 +75,7 @@ $shell\
 $character"""
 
 # move the rest of the prompt to the right
-right_format = """$cmd_duration$time"""
+right_format = """$cmd_duration $time"""
 
 # Set "tokyonight-moon" as custom color palette
 palette = "tokyonight-moon"
@@ -122,33 +121,60 @@ gitSigns_add = "#627259"
 gitSigns_delete = "#b55a67"
 
 [username]
-disabled = false
 format = "[$user]($style)"
-style_user = "bold red"
-style_root = "bold yellow"
+style_user = "red"
+style_root = "yellow"
 show_always = true
 
 [directory]
-style = "bold cyan"
+read_only = " "
+style = "cyan"
 truncation_length = 8
 truncate_to_repo = false
 
 [git_branch]
-style = "bold purple"
+symbol = " "
+style = "purple"
+
+[git_status]
+format = '[\($all_status$ahead_behind\)]($style) '
+style = "yellow"
+conflicted = "🏳"
+up_to_date = " "
+untracked = " "
+ahead = "⇡${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+behind = "⇣${count}"
+stashed = " "
+modified = " "
+staged = '[++\($count\)](green)'
+renamed = "襁 "
+deleted = " "
 
 [fill]
-disabled = false
 symbol = "─"
-style = "white"
+style = "dark3"
 
 [time]
 disabled = false
 format = '\[[$time]($style)\]'
-style = "bold red"
+style = "red"
 time_format = "%T"
-utc_time_offset = "9"
+utc_time_offset = "local"
 
 [cmd_duration]
 min_time = 60000
-format = "[The last command took](italic) [$duration](bold italic cyan) "
+format = "[The last command took](italic comment) [$duration](bold italic comment)"
 
+[python]
+symbol = " "
+style = "bold blue"
+format = '\[[${symbol}${pyenv_prefix}(${version})(\($virtualenv\))]($style)\] '
+
+[lua]
+symbol = " "
+format = '\[[$symbol($version)]($style)\] '
+
+[nodejs]
+symbol = " "
+format = '\[[$symbol($version)]($style)\] '
