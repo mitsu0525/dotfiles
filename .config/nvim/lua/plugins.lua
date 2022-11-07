@@ -3,7 +3,7 @@ local executable = function(x)
 end
 
 vim.cmd('packadd vim-jetpack')
-require('jetpack').startup(function(use)
+require('jetpack.packer').startup(function(use)
   use { 'tani/vim-jetpack', opt = 1 }-- bootstrap
 
   use 'folke/tokyonight.nvim'
@@ -58,7 +58,11 @@ require('jetpack').startup(function(use)
   -- use 'nvim-neo-tree/neo-tree.nvim'
 
   use 'folke/noice.nvim'
-  use 'rainbowhxch/accelerated-jk.nvim'
+  use {'rainbowhxch/accelerated-jk.nvim', config = function()
+    vim.keymap.set('n', 'j', '<Plug>(accelerated_jk_gj)')
+    vim.keymap.set('n', 'k', '<Plug>(accelerated_jk_gk)')
+  end }
+
   -- use 'ggandor/leap.nvim'
   use 'tpope/vim-repeat'
   use 'rcarriga/nvim-notify'
@@ -67,5 +71,16 @@ require('jetpack').startup(function(use)
   use 'sindrets/diffview.nvim'
   use 'lewis6991/gitsigns.nvim'
 
-  -- use 'lukas-reineke/indent-blankline.nvim'
+  -- Operator
+  use 'kana/vim-operator-user'
+  use {'kana/vim-operator-replace', config = function()
+    vim.keymap.set('n', 'R', '<Plug>(operator-replace)')
+    vim.keymap.set('x', 'A', '<Plug>(niceblock-A)')
+  end }
+
+  use {'kana/vim-niceblock', config = function()
+    vim.keymap.set('x', 'I', '<Plug>(niceblock-I)')
+    vim.keymap.set('x', 'A', '<Plug>(niceblock-A)')
+  end }
+
 end)
