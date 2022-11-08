@@ -71,7 +71,9 @@ require('jetpack.packer').startup(function(use)
   use 'sindrets/diffview.nvim'
   use 'lewis6991/gitsigns.nvim'
 
-  -- Operator
+  -- operator & textobj
+  use 'machakann/vim-sandwich'
+
   use 'kana/vim-operator-user'
   use {'kana/vim-operator-replace', config = function()
     vim.keymap.set('n', 'R', '<Plug>(operator-replace)')
@@ -83,4 +85,5 @@ require('jetpack.packer').startup(function(use)
     vim.keymap.set('x', 'A', '<Plug>(niceblock-A)')
   end }
 
+  use 'akinsho/toggleterm.nvim'
 end)
