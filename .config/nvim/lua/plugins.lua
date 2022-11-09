@@ -86,4 +86,6 @@ require('jetpack.packer').startup(function(use)
   end }
 
   use 'akinsho/toggleterm.nvim'
+  use 'gbprod/yanky.nvim'
+  use 'gbprod/substitute.nvim'
 end)
