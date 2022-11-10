@@ -29,10 +29,11 @@ local mapping = require('yanky.telescope.mapping')
 yanky.setup({
    ring = {
     history_length = 1000,
+    storage = "sqlite",
     sync_with_numbered_registers = false,
   },
   highlight = {
-    on_yank = false,
+    on_yank = true,
     timer = 300,
   },
   picker = {
