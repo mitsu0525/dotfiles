@@ -45,13 +45,13 @@ require('jetpack.packer').startup(function(use)
 
   -- use 'tpope/vim-fugitive'
   -- ddc.vim
-  if executable 'deno' then
-    use 'vim-denops/denops.vim'
-    use 'lambdalisue/gin.vim'
-    -- use 'lambdalisue/guise.vim'
-  end
+  -- if executable 'deno' then
+  --   use 'vim-denops/denops.vim'
+  --   use 'lambdalisue/gin.vim'
+  --   -- use 'lambdalisue/guise.vim'
+  -- end
 
-  use 'Shougo/ddc.vim'
+  -- use 'Shougo/ddc.vim'
   -- use 'Shougo/ddc-nvim-lsp'
 
   use 'MunifTanjim/nui.nvim'
@@ -67,9 +67,9 @@ require('jetpack.packer').startup(function(use)
   use 'tpope/vim-repeat'
   use 'rcarriga/nvim-notify'
 
-  use {'TimUntersberger/neogit', commit = '4cc4476acbbc772f29fd6c1ccee43f58a29a1b13'}
-  use 'sindrets/diffview.nvim'
-  use 'lewis6991/gitsigns.nvim'
+  -- use {'TimUntersberger/neogit', commit = '4cc4476acbbc772f29fd6c1ccee43f58a29a1b13'}
+  -- use 'sindrets/diffview.nvim'
+  -- use 'lewis6991/gitsigns.nvim'
 
   -- operator & textobj
   use 'machakann/vim-sandwich'
