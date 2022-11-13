@@ -14,7 +14,7 @@ require('jetpack.packer').startup(function(use)
   use 'akinsho/nvim-bufferline.lua'
 
   use {'kkharji/sqlite.lua', config = function()
-    vim.g.sqlite_clib_path = "~/bin/sqlite3.dll"
+    vim.g.sqlite_clib_path = '~/bin/sqlite3.dll'
   end }
   use 'nvim-lua/plenary.nvim' -- Common utilities
   use 'nvim-telescope/telescope.nvim'

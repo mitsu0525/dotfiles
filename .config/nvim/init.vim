@@ -3,57 +3,6 @@ augroup MyAutoCmd
   autocmd!
 augroup END
 
-" dein.vim 関連 {{{
-" インストールディレクトリの指定 {{{
-let s:dein_dir = expand($XDG_DATA_HOME . '/dein')
-let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
-" }}}
-
-" deinがインストールされているか確認 {{{
-if &runtimepath !~# '/dein.vim'
-  if !isdirectory(s:dein_repo_dir)
-    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
-  endif
-  execute 'set runtimepath^=' . s:dein_repo_dir
-endif
-" }}}
-
-" deinの読み込み開始 {{{
-if dein#load_state(s:dein_dir)
-  call dein#begin(s:dein_dir)
-
-  " .tomlファイルの場所
-  let s:rc_dir = expand($XDG_CONFIG_HOME . '/nvim/rc/')
-  if !isdirectory(s:rc_dir)
-    call mkdir(s:rc_dir, 'p')
-  endif
-  let s:toml = s:rc_dir . '/dein.toml'
-  let s:lazy_toml = s:rc_dir . '/dein_lazy.toml'
-
-  " .tomlファイルを読み込む
-  call dein#load_toml(s:toml, {'lazy': 0})
-  call dein#load_toml(s:lazy_toml, {'lazy': 1})
-
- " 終了
-  call dein#end()
-  call dein#save_state()
-endif
-" }}}
-
-" プラグインが不足していればインストールする {{{
-if dein#check_install()
-  call dein#install()
-endif
-" }}}
-
-" .tomlファイルに記述されていないプラグインを削除する {{{
-let s:removed_plugins = dein#check_clean()
-  if len(s:removed_plugins) > 0
-  call map(s:removed_plugins, "delete(v:val, 'rf')")
-  call dein#recache_runtimepath()
-endif
-" }}}
-
 let g:python3_host_prog = '/usr/bin/python3'
 
 lua require('plugins')
