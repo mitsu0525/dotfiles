@@ -13,7 +13,9 @@ require('jetpack.packer').startup(function(use)
   use 'nvim-lualine/lualine.nvim' -- Statusline
   use 'akinsho/nvim-bufferline.lua'
 
-  use 'kkharji/sqlite.lua'
+  use {'kkharji/sqlite.lua', config = function()
+    vim.g.sqlite_clib_path = "~/bin/sqlite3.dll"
+  end }
   use 'nvim-lua/plenary.nvim' -- Common utilities
   use 'nvim-telescope/telescope.nvim'
   use 'nvim-telescope/telescope-file-browser.nvim'
@@ -69,16 +71,10 @@ require('jetpack.packer').startup(function(use)
 
   -- use {'TimUntersberger/neogit', commit = '4cc4476acbbc772f29fd6c1ccee43f58a29a1b13'}
   -- use 'sindrets/diffview.nvim'
-  -- use 'lewis6991/gitsigns.nvim'
+  use 'lewis6991/gitsigns.nvim'
 
   -- operator & textobj
   use 'machakann/vim-sandwich'
-
-  use 'kana/vim-operator-user'
-  use {'kana/vim-operator-replace', config = function()
-    vim.keymap.set('n', 'R', '<Plug>(operator-replace)')
-    vim.keymap.set('x', 'A', '<Plug>(niceblock-A)')
-  end }
 
   use {'kana/vim-niceblock', config = function()
     vim.keymap.set('x', 'I', '<Plug>(niceblock-I)')

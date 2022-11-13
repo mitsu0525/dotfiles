@@ -7,7 +7,6 @@ local function telescope_buffer_dir()
   return vim.fn.expand('%:p:h')
 end
 
--- vim.g.sqlite_clib_path = "C://Users/55330/bin/sqlite3.dll"
 local fb_actions = require "telescope".extensions.file_browser.actions
 
 telescope.setup {
@@ -21,10 +20,6 @@ telescope.setup {
         ["<CR>"] = { "<esc>", type = "command" },
       }
     },
-    -- history = {
-    --   path = 'C://Users/55330/.config/nvim/telescope_history.sqlite3',
-    --   limit = 100,
-    -- },
     initial_mode = "normal",
   },
   extensions = {
@@ -114,7 +109,7 @@ vim.keymap.set("n", "[Space]o", function()
     respect_gitignore = false,
     hidden = true,
     grouped = true,
-    --previewer = false,
+    previewer = false,
     initial_mode = "normal",
     layout_config = { height = 40 }
   })

@@ -3,6 +3,57 @@ augroup MyAutoCmd
   autocmd!
 augroup END
 
+" dein.vim 関連 {{{
+" インストールディレクトリの指定 {{{
+let s:dein_dir = expand($XDG_DATA_HOME . '/dein')
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+" }}}
+
+" deinがインストールされているか確認 {{{
+if &runtimepath !~# '/dein.vim'
+  if !isdirectory(s:dein_repo_dir)
+    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+  endif
+  execute 'set runtimepath^=' . s:dein_repo_dir
+endif
+" }}}
+
+" deinの読み込み開始 {{{
+if dein#load_state(s:dein_dir)
+  call dein#begin(s:dein_dir)
+
+  " .tomlファイルの場所
+  let s:rc_dir = expand($XDG_CONFIG_HOME . '/nvim/rc/')
+  if !isdirectory(s:rc_dir)
+    call mkdir(s:rc_dir, 'p')
+  endif
+  let s:toml = s:rc_dir . '/dein.toml'
+  let s:lazy_toml = s:rc_dir . '/dein_lazy.toml'
+
+  " .tomlファイルを読み込む
+  call dein#load_toml(s:toml, {'lazy': 0})
+  call dein#load_toml(s:lazy_toml, {'lazy': 1})
+
+ " 終了
+  call dein#end()
+  call dein#save_state()
+endif
+" }}}
+
+" プラグインが不足していればインストールする {{{
+if dein#check_install()
+  call dein#install()
+endif
+" }}}
+
+" .tomlファイルに記述されていないプラグインを削除する {{{
+let s:removed_plugins = dein#check_clean()
+  if len(s:removed_plugins) > 0
+  call map(s:removed_plugins, "delete(v:val, 'rf')")
+  call dein#recache_runtimepath()
+endif
+" }}}
+
 let g:python3_host_prog = '/usr/bin/python3'
 
 lua require('plugins')
@@ -246,27 +297,28 @@ function! s:Repl()
 endfunction
 xmap <silent> <expr> p <SID>Repl()
 
-" runtime ./colors/solarized_true.vim
 set termguicolors
 " set winblend=0
 " set wildoptions=pum
 " set pumblend=5
 
 " Disable default plugins------------------
-" let g:loaded_2html_plugin      = 1
-" let g:loaded_logiPat           = 1
-" let g:loaded_getscriptPlugin   = 1
-" let g:loaded_gzip              = 1
-" let g:loaded_man               = 1
-" let g:loaded_matchit           = 1
-" let g:loaded_matchparen        = 1
-" let g:loaded_netrwFileHandlers = 1
-" let g:loaded_netrwPlugin       = 1
-" let g:loaded_netrwSettings     = 1
-" let g:loaded_rrhelper          = 1
-" let g:loaded_shada_plugin      = 1
-" let g:loaded_spellfile_plugin  = 1
-" let g:loaded_tarPlugin         = 1
-" let g:loaded_tutor_mode_plugin = 1
-" let g:loaded_vimballPlugin     = 1
-" let g:loaded_zipPlugin         = 1
+let g:did_install_default_menus = 1
+let g:did_install_syntax_menu   = 1
+let g:did_indent_on             = 1
+let g:did_load_filetypes        = 1
+" let g:did_load_ftplugin         = 1
+let g:loaded_2html_plugin       = 1
+let g:loaded_gzip               = 1
+let g:loaded_man                = 1
+let g:loaded_matchit            = 1
+let g:loaded_matchparen         = 1
+let g:loaded_netrwPlugin        = 1
+let g:loaded_remote_plugins     = 1
+let g:loaded_shada_plugin       = 1
+let g:loaded_spellfile_plugin   = 1
+let g:loaded_tarPlugin          = 1
+let g:loaded_tutor_mode_plugin  = 1
+let g:loaded_zipPlugin          = 1
+let g:skip_loading_mswin        = 1
+let g:do_legacy_filetype        = 1

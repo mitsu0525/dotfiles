@@ -1,0 +1,41 @@
+[[plugins]]
+repo = 'nvim-lualine/lualine.nvim'
+lua_add = '''
+'''
+
+[[plugins]]
+repo = 'nvim-lualine/lualine.nvim'
+lua_add = '''
+'''
+
+[[plugins]]
+repo = 'kyazdani42/nvim-web-devicons'
+
+[[plugins]]
+repo = 'nvim-telescope/telescope.nvim'
+lua_add = '''
+'''
+
+[[plugins]]
+ repo = 'neovim/nvim-lspconfig'
+
+[[plugins]]
+ repo = 'williamboman/mason.nvim'
+
+[[plugins]]
+ repo = 'williamboman/mason-lspconfig.nvim'
+
+[[plugins]]
+repo = 'lewis6991/gitsigns.nvim'
+lua_add = '''
+'''
+
+[[plugins]]
+repo = 'MunifTanjim/nui.nvim'
+
+[[plugins]]
+repo = 'rcarriga/nvim-notify'
+
+
+[[plugins]]
+repo = 'nvim-lua/plenary.nvim'
