@@ -1,3 +1,5 @@
+require("neodev").setup()
+
 -- 1. LSP Sever management
 require('mason').setup()
 require('mason-lspconfig').setup_handlers({ function(server)

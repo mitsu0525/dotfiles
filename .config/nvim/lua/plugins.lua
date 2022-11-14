@@ -37,6 +37,8 @@ require('jetpack.packer').startup(function(use)
   use 'williamboman/mason.nvim'
   use 'williamboman/mason-lspconfig.nvim'
 
+  use 'folke/neodev.nvim'
+
   use 'tyru/capture.vim'
   -- use 'norcalli/nvim-colorizer.lua'
   use 'uga-rosa/ccc.nvim'
@@ -84,4 +86,5 @@ require('jetpack.packer').startup(function(use)
   use 'akinsho/toggleterm.nvim'
   use 'gbprod/yanky.nvim'
   use 'gbprod/substitute.nvim'
+
 end)
