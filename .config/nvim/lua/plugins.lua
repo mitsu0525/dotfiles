@@ -47,19 +47,19 @@ require('jetpack.packer').startup(function(use)
   use 'hrsh7th/cmp-vsnip'
   use 'hrsh7th/vim-vsnip'
 
-  -- use 'tpope/vim-fugitive'
-  -- ddc.vim
-  -- if executable 'deno' then
-  --   use 'vim-denops/denops.vim'
-  --   use 'lambdalisue/gin.vim'
-  --   -- use 'lambdalisue/guise.vim'
-  -- end
+  if executable 'deno' then
+    use 'vim-denops/denops.vim'
 
-  -- use 'Shougo/ddc.vim'
-  -- use 'Shougo/ddc-nvim-lsp'
+    -- ddu.vim
+    use 'Shougo/ddu.vim'
+    use 'Shougo/ddu-ui-ff'
+    use 'shun/ddu-source-rg'
+    use 'Shougo/ddu-source-file_rec'
+    use 'Shougo/ddu-filter-matcher_substring'
+    use 'Shougo/ddu-kind-file'
+  end
 
   use 'MunifTanjim/nui.nvim'
-  -- use 'nvim-neo-tree/neo-tree.nvim'
 
   use 'folke/noice.nvim'
   use {'rainbowhxch/accelerated-jk.nvim', config = function()
