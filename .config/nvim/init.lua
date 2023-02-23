@@ -14,9 +14,10 @@ opt.list = true
 opt.listchars = {tab="▸-", trail="-", extends="»", precedes="«", nbsp="%"}
 opt.laststatus = 3
 opt.hidden = true
+opt.wrap = false
 
 --HELP
-opt.helplang = "ja", "en"
+opt.helplang = {"ja", "en"}
 
 --TAB/INDENT
 opt.expandtab = true
@@ -69,7 +70,7 @@ if in_wsl then
     cache_enable = 0,
   }
 end
-opt.clipboard:append{"unnamedplus"}
+-- opt.clipboard:append{"unnamedplus"}
 -- opt.clipboard:append "unnamedplus"
 -- vim.opt.shortmess:append("c")
 
@@ -122,15 +123,15 @@ vim.g.mapleader = " "
 --vim.g.mapleader = escape("<Space>")
 
 --COMMAND LINE
-map("n", "<leader><Space>", ":")
-map("n", "<C-a>", "<Home>")
-map("n", "<C-b>", "<Left>")
-map("n", "<C-d>", "<Del>")
-map("n", "<C-e>", "<End>")
-map("n", "<C-f>", "<Right>")
-map("n", "<C-n>", "<Down>")
-map("n", "<C-p>", "<Up>")
-map("n", "<C-q>", "<C-c>")
+map("n", "<leader><Space>", ":", {silent = false})
+map("c", "<C-a>", "<Home>")
+map("c", "<C-b>", "<Left>")
+map("c", "<C-d>", "<Del>")
+map("c", "<C-e>", "<End>")
+map("c", "<C-f>", "<Right>")
+map("c", "<C-n>", "<Down>")
+map("c", "<C-p>", "<Up>")
+map("c", "<C-q>", "<C-c>")
 --ESC
 map("i", "jj", "<ESC>")
 map("i", "j<Space>", "j")
@@ -142,8 +143,8 @@ map("n", "<leader>w", ":<C-u>w<CR>")
 map("n", "<leader>q", ":<C-u>qa<CR>")
 map("n", "<leader>Q", ":<C-u>q!<CR>")
 
-map("n", "sg", ":<C-u>%s//g<Left><Left>")
-map("x", "sg", ":s//g<Left><Left>")
+map("n", "sg", ":<C-u>%s//g<Left><Left>", {silent = false})
+map("x", "sg", ":s//g<Left><Left>", {silent = false})
 
 -- better indenting
 map("n", ">", ">>")
@@ -162,35 +163,32 @@ map("n", "<C-q>", ":<C-u>bdelete<CR>", {silent = true})
 
 --SPLIT
 map("n", "sv", ":<C-u>vsplit<CR>", {silent = true})
-map("n", "sp", ":<C-u>split<CR>", {silent =true})
-map("n", "so", ":<C-u>only<CR>", {silent =true})
+map("n", "sp", ":<C-u>split<CR>", {silent = true})
+map("n", "so", ":<C-u>only<CR>", {silent = true})
 map("n", "<Tab>", ":wincmd w<CR>", {silent =true})
+map("n", "Q", "winnr('$') != 1 ? ':<C-u>close<CR>' : ''", { expr = true, silent = true })
 
 --NOP
-map("n", "<MiddleMouse>", "<Nop>")
-map("n", "<2-MiddleMouse>", "<Nop>")
-map("n", "<3-MiddleMouse>", "<Nop>")
-map("n", "<4-MiddleMouse>", "<Nop>")
-map("i", "<1-MiddleMouse>", "<Nop>")
-map("i", "<2-MiddleMouse>", "<Nop>")
-map("i", "<3-MiddleMouse>", "<Nop>")
-map("i", "<4-MiddleMouse>", "<Nop>")
+-- map("n", "<MiddleMouse>", "<Nop>")
+-- map("i", "<1-MiddleMouse>", "<Nop>")
+-- map({"i", "n"}, "<2-MiddleMouse>", "<Nop>")
+-- map({"i", "n"}, "<3-MiddleMouse>", "<Nop>")
+-- map({"i", "n"}, "<4-MiddleMouse>", "<Nop>")
 map("n", "ZZ", "<Nop>")
 map("n", "ZQ", "<Nop>")
 map("n", "<C-z>", "<Nop>")
 map("n", "<F1>", "<Nop>")
-map("n", "x", '"_x')
-map("v", "x", '"_x')
+map({"n", "x"}, "x", '"_x')
 map("n", "s", '"_s')
 
 --MOVE
 -- better up/down
-map("n", "<C-j>", "max([winheight(0) - 2, 1]) . '<C-d>' . (line('w$') >= line('$') ? 'L' : 'M')", { expr = true, silent = true })
-map("n", "<C-k>", "max([winheight(0) - 2, 1]) . '<C-u>' . (line('w0') <= 1 ? 'H' : 'M')", { expr = true, silent = true })
-map("n", "<leader>h", "^")
-map("n", "<leader>l", "$")
-map("n", "H", "^")
-map("n", "L", "$")
+map({"n", "x"}, "<C-j>", "max([winheight(0)-2, 1]) . '<C-d>' . (line('w$') >= line('$') ? 'L' : 'M')", { expr = true, silent = true })
+map({"n", "x"}, "<C-k>", "max([winheight(0)-2, 1]) . '<C-u>' . (line('w0') <= 1 ? 'H' : 'M')", { expr = true, silent = true })
+map({"n", "x"}, "<leader>h", "^")
+map({"n", "x"}, "<leader>l", "$")
+-- map("n", "H", "^")
+-- map("n", "L", "$")
 
 --COPY
 -- vim.keymap.set('n', 'p', ']p')
