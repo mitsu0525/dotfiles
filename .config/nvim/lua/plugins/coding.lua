@@ -1,10 +1,5 @@
 return {
 
--- {"hrsh7th/cmp-vsnip", event = "InsertEnter"},
--- {"hrsh7th/cmp-cmdline", event = "ModeChanged"},
--- {"onsails/lspkind.nvim", event = "InsertEnter"},
--- {"hrsh7th/vim-vsnip", event = "InsertEnter"},
-
   -- auto completion
   {
     "hrsh7th/nvim-cmp",
@@ -258,4 +253,3 @@ return {
     end,
   },
 }
-

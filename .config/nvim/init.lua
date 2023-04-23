@@ -70,7 +70,7 @@ if in_wsl then
     cache_enable = 0,
   }
 end
--- opt.clipboard:append{"unnamedplus"}
+opt.clipboard:append{"unnamedplus"}
 -- opt.clipboard:append "unnamedplus"
 -- vim.opt.shortmess:append("c")
 
@@ -115,13 +115,16 @@ end
 --  end
 --end
 local function map(mode, lhs, rhs, opts)
-	opts = opts or {}
-	opts.silent = opts.silent == nil and true or opts.silent
-	vim.keymap.set(mode, lhs, rhs, opts)
+  opts = opts or {}
+  opts.silent = opts.silent == nil and true or opts.silent
+  vim.keymap.set(mode, lhs, rhs, opts)
 end
 vim.g.mapleader = " "
---vim.g.mapleader = escape("<Space>")
+-- vim.g.mapleader = escape("<Space>")
 
+opt.autochdir = true
+map("n", "<leader>t", ":<C-u>!atcoder-tools test<CR>")
+map("n", "<leader>s", ":<C-u>!atcoder-tools submit -u")
 --COMMAND LINE
 map("n", "<leader><Space>", ":", {silent = false})
 map("c", "<C-a>", "<Home>")
@@ -149,8 +152,8 @@ map("x", "sg", ":s//g<Left><Left>", {silent = false})
 -- better indenting
 map("n", ">", ">>")
 map("n", "<", "<<")
-map("v", "<", "<gv")
-map("v", ">", ">gv")
+map("x", "<", "<gv")
+map("x", ">", ">gv")
 
 map("n", "Y", "y$")
 
@@ -166,7 +169,7 @@ map("n", "sv", ":<C-u>vsplit<CR>", {silent = true})
 map("n", "sp", ":<C-u>split<CR>", {silent = true})
 map("n", "so", ":<C-u>only<CR>", {silent = true})
 map("n", "<Tab>", ":wincmd w<CR>", {silent =true})
-map("n", "Q", "winnr('$') != 1 ? ':<C-u>close<CR>' : ''", { expr = true, silent = true })
+map("n", "q", "winnr('$') != 1 ? ':<C-u>close<CR>' : ''", { expr = true, silent = true })
 
 --NOP
 -- map("n", "<MiddleMouse>", "<Nop>")

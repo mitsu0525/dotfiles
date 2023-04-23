@@ -17,4 +17,17 @@ return {
       })
     end,
   },
+
+  {
+    "uga-rosa/ccc.nvim",
+    event = { "BufRead", "BufNewFile" },
+    keys = {
+      { mode = "n", "<leader>c", "<cmd>CccPick<cr>", desc = "Toggle colorizer" }
+    },
+    opts = {
+      highlighter = {
+        auto_enable = true,
+      },
+    },
+  }
 }

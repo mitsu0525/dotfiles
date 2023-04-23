@@ -9,6 +9,7 @@ return {
       { "williamboman/mason.nvim" },
       { "williamboman/mason-lspconfig.nvim" },
       { "hrsh7th/cmp-nvim-lsp" },
+      { 'SmiteshP/nvim-navic' },
     },
     ---@class PluginLspOpts
     opts = {
@@ -16,7 +17,8 @@ return {
       diagnostics = {
         underline = true,
         update_in_insert = false,
-        virtual_text = { spacing = 4, prefix = "●" },
+        -- virtual_text = { spacing = 4, prefix = "●" },
+        virtual_text = false,
         severity_sort = true,
       },
       -- Automatically format on save
@@ -70,7 +72,7 @@ return {
       -- end)
 
       -- diagnostics
-      signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+      local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
       -- for name, icon in pairs(require("lazyvim.config").icons.diagnostics) do
       for name, icon in pairs(signs) do
         name = "DiagnosticSign" .. name
@@ -169,4 +171,20 @@ return {
       end
     end,
   },
+
+  {
+    -- Load from lspconfig
+    "SmiteshP/nvim-navic",
+    -- config = function()
+    --   require("nvim-navic").setup({
+    --     icons = codicons,
+    --   })
+    -- end,
+  },
+
+  -- {
+  --   "Maan2003/lsp_lines.nvim",
+  --   config = true,
+  --   event = { "BufRead", "BufNewFile" },
+  -- },
 }
