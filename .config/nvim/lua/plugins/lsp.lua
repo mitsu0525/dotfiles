@@ -11,6 +11,9 @@ return {
       { "hrsh7th/cmp-nvim-lsp" },
       { 'SmiteshP/nvim-navic' },
     },
+    keys = {
+      { "(", vim.diagnostic.open_float, desc = "Line Diagnostics" },
+    },
     ---@class PluginLspOpts
     opts = {
       -- options for vim.diagnostic.config()

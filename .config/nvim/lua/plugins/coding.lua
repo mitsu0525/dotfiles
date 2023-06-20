@@ -4,21 +4,39 @@ return {
   {
     "hrsh7th/nvim-cmp",
     version = false, -- last release is way too old
-    event = "InsertEnter, CmdlineEnter",
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
+      'hrsh7th/cmp-vsnip',
+      'hrsh7th/vim-vsnip',
+      'hrsh7th/vim-vsnip-integ',
+      'onsails/lspkind.nvim',
     },
+    event = "InsertEnter, CmdlineEnter",
     opts = function()
+      local feedkey = function(key, mode)
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
+      end
+
       local cmp = require("cmp")
+      local lspkind = require('lspkind')
+
       return {
+        window = {
+          -- completion = cmp.config.window.bordered({
+          --   border = 'single'
+          -- }),
+          documentation = cmp.config.window.bordered({
+            border = 'single'
+          }),
+        },
         completion = {
           completeopt = "menu,menuone,noinsert",
         },
         snippet = {
           expand = function(args)
-            require("luasnip").lsp_expand(args.body)
+            vim.fn['vsnip#anonymous'](args.body)
           end,
         },
         mapping = cmp.mapping.preset.insert({
@@ -28,23 +46,43 @@ return {
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
           ["<C-Space>"] = cmp.mapping.complete(),
           ["<C-e>"] = cmp.mapping.abort(),
-          ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+          ['<CR>'] = cmp.mapping(function(fallback)
+            if cmp.visible() and cmp.get_selected_entry() then
+              cmp.confirm({ select = true })
+            else
+              fallback()
+            end
+          end),
+          ['<Tab>'] = cmp.mapping(function(fallback)
+            -- if cmp.visible() and cmp.get_selected_entry() then
+            --   cmp.confirm({ select = true })
+            if vim.fn["vsnip#available"]() == 1 then
+              feedkey("<Plug>(vsnip-expand-or-jump)", "")
+            else
+              fallback()
+            end
+          end, { 'i', 's' }),
+          ['<S-Tab>'] = cmp.mapping(function(fallback)
+            if vim.fn["vsnip#jumpable"](-1) == 1 then
+              feedkey("<Plug>(vsnip-jump-prev)", "")
+            else
+              fallback()
+            end
+          end, { 'i', 's' }),
         }),
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
-          -- { name = "luasnip" },
+          { name = "vsnip" },
           { name = "buffer" },
           { name = "path" },
         }),
-        -- formatting = {
-        --   format = function(_, item)
-        --     local icons = require("lazyvim.config").icons.kinds
-        --     if icons[item.kind] then
-        --       item.kind = icons[item.kind] .. item.kind
-        --     end
-        --     return item
-        --   end,
-        -- },
+        formatting = {
+          format = lspkind.cmp_format({
+            mode = 'symbol',
+            maxwidth = 50,
+            ellipsis_char = '...',
+          })
+        },
         experimental = {
           ghost_text = {
             hl_group = "LspCodeLens",
@@ -54,13 +92,33 @@ return {
     end,
   },
 
-  -- auto pairs
   {
-    "windwp/nvim-autopairs",
-    config = true,
-    event = "InsertEnter"
+    'hrsh7th/cmp-vsnip',
+    event = 'InsertEnter'
   },
 
+  {
+    'hrsh7th/vim-vsnip',
+    event = 'InsertEnter',
+    init = function()
+      vim.g.vsnip_snippet_dir = vim.fn.expand("~/.config/nvim/vsnip")
+      vim.g.vsnip_filetypes = {
+        typescript = { 'javascript' },
+        typescriptreact = { 'javascript' },
+        javascriptreact = { 'javascript' },
+      }
+    end,
+  },
+
+  {
+    'hrsh7th/vim-vsnip-integ',
+    event = 'InsertEnter'
+  },
+
+  {
+    'onsails/lspkind.nvim',
+    event = 'InsertEnter'
+  },
 
   -- surround
   {
@@ -145,8 +203,6 @@ return {
     },
   },
 
-  -- better text-objects
-
   -- edgemotion
   {
     'haya14busa/vim-edgemotion',
@@ -187,7 +243,8 @@ return {
     },
   },
 
-  { "gbprod/yanky.nvim",
+  {
+    "gbprod/yanky.nvim",
     dependencies = { "nvim-telescope/telescope.nvim" },
     cmd = { "YankyClearHistory", "YankyRingHistory" },
     keys = {
@@ -238,7 +295,8 @@ return {
     end
   },
 
-  { "gbprod/substitute.nvim",
+  {
+    "gbprod/substitute.nvim",
     dependencies = { "gbprod/yanky.nvim" },
     keys = {
       { mode = "n", "R", "<cmd>lua require('substitute').operator()<cr>", desc = "substitute" },
@@ -249,6 +307,74 @@ return {
     config = function()
       require("substitute").setup({
         on_substitute = require("yanky.integration").substitute(),
+      })
+    end,
+  },
+
+  {
+    "hrsh7th/nvim-insx",
+    event = {"InsertEnter"},
+    config = function(_, opts)
+      require('insx.preset.standard').setup()
+      local insx = require('insx')
+      local fast_wrap = require('insx.recipe.fast_wrap')
+
+      for open, close in pairs({ ["("] = ")", ["["] = "]", ["{"] = "}" }) do
+        -- fast wrap
+        insx.add('<C-w>', insx.with(fast_wrap({ close = close }), { insx.with.undopoint() }))
+      end
+    end,
+  },
+
+  -- better text-objects
+  { 'kana/vim-textobj-user' },
+
+  {
+    'kana/vim-textobj-entire',
+    dependencies = {
+      { 'kana/vim-textobj-user' },
+    },
+    event = { 'ModeChanged' },
+    init = function()
+      vim.g.textobj_entire_no_default_key_mappings = true
+
+      vim.keymap.set({ 'o', 'x' }, 'ie', '<Plug>(textobj-entire-i)')
+      vim.keymap.set({ 'o', 'x' }, 'ae', '<Plug>(textobj-entire-a)')
+    end,
+  },
+
+  {
+    'kana/vim-textobj-line',
+    dependencies = {
+      { 'kana/vim-textobj-user' },
+    },
+    event = { 'ModeChanged' },
+    init = function()
+      vim.g.textobj_line_no_default_key_mappings = true
+
+      vim.keymap.set({ 'o', 'x' }, 'il', '<Plug>(textobj-line-i)')
+      vim.keymap.set({ 'o', 'x' }, 'al', '<Plug>(textobj-line-a)')
+    end,
+  },
+
+  -- better increase/descrease
+  {
+    "monaqa/dial.nvim",
+    -- stylua: ignore
+    keys = {
+      { "<C-a>", function() return require("dial.map").inc_normal() end, expr = true, desc = "Increment" },
+      { "<C-x>", function() return require("dial.map").dec_normal() end, expr = true, desc = "Decrement" },
+    },
+    config = function()
+      local augend = require("dial.augend")
+      require("dial.config").augends:register_group({
+        default = {
+          augend.integer.alias.decimal,
+          augend.integer.alias.hex,
+          augend.date.alias["%Y/%m/%d"],
+          augend.constant.alias.bool,
+          augend.semver.alias.semver,
+        },
       })
     end,
   },

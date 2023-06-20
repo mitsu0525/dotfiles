@@ -3,53 +3,20 @@ return {
   -- fuzzy finder
   {
     "nvim-telescope/telescope.nvim",
-    cmd = "Telescope",
     version = false, -- telescope did only one release, so use HEAD for now
+    dependencies = { "nvim-lua/plenary.nvim" },
+    cmd = "Telescope",
     keys = {
       { ";;", function() require("telescope.builtin").resume() end, mode = "n"},
-      { ";f", "<Cmd>lua require('telescope').extensions.frecency.frecency()<CR>", mode = "n", noremap = true, silent = true},
-      { ";o",
-        function()
-          require("telescope").extensions.file_browser.file_browser({
-            path = "%:p:h",
-            cwd = vim.fn.expand('%:p:h'),
-            respect_gitignore = false,
-            hidden = true,
-            grouped = true,
-            --previewer = false,
-            initial_mode = "normal",
-            layout_config = { height = 40 }
-          })
-        end,
-        mode = "n",
-      },
-      { "<leader>o",
-        function()
-          require("telescope").extensions.file_browser.file_browser({
-            path = "%:p:h",
-            cwd = vim.fn.expand('%:p:h'),
-            respect_gitignore = false,
-            hidden = true,
-            grouped = true,
-            previewer = false,
-            initial_mode = "normal",
-            layout_config = { height = 40 }
-          })
-        end,
-        mode = "n",
-      },
+      { ";g", function() require("telescope.builtin").live_grep() end, mode = "n"},
+      { ";h", function() require("telescope.builtin").help_tags() end, mode = "n"},
+      { ";m", "<Cmd>lua require('telescope').extensions.frecency.frecency()<CR>", mode = "n", noremap = true, silent = true },
+      { "<leader>o", "<Cmd>lua require('telescope').extensions.file_browser.file_browser()<CR>", mode = "n", noremap = true, silent = true },
     },
-    -- opts = {
     config = function()
-      local status, telescope = pcall(require, "telescope")
-      local actions = require('telescope.actions')
-      local builtin = require("telescope.builtin")
-
-      local function telescope_buffer_dir()
-        return vim.fn.expand('%:p:h')
-      end
-
-      local fb_actions = require "telescope".extensions.file_browser.actions
+      local telescope = require("telescope")
+      local actions = require("telescope.actions")
+      local fb_actions = require("telescope").extensions.file_browser.actions
 
       telescope.setup({
         defaults = {
@@ -66,10 +33,15 @@ return {
         },
         extensions = {
           file_browser = {
+            path = "%:p:h",
+            cwd = vim.fn.expand('%:p:h'),
             theme = "dropdown",
-            initial_mode = "normal",
-            -- disables netrw and use telescope-file-browser in its place
-            hijack_netrw = true,
+            previewer = false,
+            hijack_netrw = true, -- disables netrw and use telescope-file-browser in its place
+            respect_gitignore = false,
+            hidden = true,
+            grouped = true,
+            layout_config = { height = 40 },
             mappings = {
               -- your custom insert mode mappings
               ["i"] = {
@@ -86,21 +58,36 @@ return {
               },
             },
           },
+          frecency = {
+            db_root = "~/.config/nvim",
+            show_scores = false,
+            show_unindexed = true,
+            ignore_patterns = {"*.git/*", "*/tmp/*"},
+            disable_devicons = false,
+            -- workspaces = {
+            --   ["conf"]    = "/home/my_username/.config",
+            --   ["data"]    = "/home/my_username/.local/share",
+            --   ["project"] = "/home/my_username/projects",
+            --   ["wiki"]    = "/home/my_username/wiki"
+          },
         },
       })
-      telescope.load_extension("file_browser")
+      require("telescope").load_extension("file_browser")
     end,
-    -- },
   },
 
   {
     "nvim-telescope/telescope-file-browser.nvim",
-    event = "VeryLazy"
+    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
   },
 
   {
     "nvim-telescope/telescope-frecency.nvim",
-    event = "VeryLazy"
+    dependencies = { "kkharji/sqlite.lua" },
+    event = "VeryLazy",
+    config = function()
+      require("telescope").load_extension("frecency")
+    end,
   },
 
   -- git signs
