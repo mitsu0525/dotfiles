@@ -8,10 +8,10 @@ return {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
-      'hrsh7th/cmp-vsnip',
-      'hrsh7th/vim-vsnip',
-      'hrsh7th/vim-vsnip-integ',
-      'onsails/lspkind.nvim',
+      "hrsh7th/cmp-vsnip",
+      "hrsh7th/vim-vsnip",
+      "hrsh7th/vim-vsnip-integ",
+      "onsails/lspkind.nvim",
     },
     event = "InsertEnter, CmdlineEnter",
     opts = function()
@@ -20,7 +20,7 @@ return {
       end
 
       local cmp = require("cmp")
-      local lspkind = require('lspkind')
+      local lspkind = require("lspkind")
 
       return {
         window = {
@@ -28,7 +28,8 @@ return {
           --   border = 'single'
           -- }),
           documentation = cmp.config.window.bordered({
-            border = 'single'
+            border = "rounded",
+            winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
           }),
         },
         completion = {
@@ -36,39 +37,37 @@ return {
         },
         snippet = {
           expand = function(args)
-            vim.fn['vsnip#anonymous'](args.body)
+            vim.fn["vsnip#anonymous"](args.body)
           end,
         },
         mapping = cmp.mapping.preset.insert({
-          ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-          ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+          ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+          ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
           ["<C-b>"] = cmp.mapping.scroll_docs(-4),
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
           ["<C-Space>"] = cmp.mapping.complete(),
           ["<C-e>"] = cmp.mapping.abort(),
-          ['<CR>'] = cmp.mapping(function(fallback)
+          ["<CR>"] = cmp.mapping(function(fallback)
             if cmp.visible() and cmp.get_selected_entry() then
               cmp.confirm({ select = true })
             else
               fallback()
             end
           end),
-          ['<Tab>'] = cmp.mapping(function(fallback)
-            -- if cmp.visible() and cmp.get_selected_entry() then
-            --   cmp.confirm({ select = true })
+          ["<Tab>"] = cmp.mapping(function(fallback)
             if vim.fn["vsnip#available"]() == 1 then
-              feedkey("<Plug>(vsnip-expand-or-jump)", "")
+              feedkey("<Plug>(vsnip-jump-next)", "")
             else
               fallback()
             end
-          end, { 'i', 's' }),
-          ['<S-Tab>'] = cmp.mapping(function(fallback)
+          end, { "i", "s" }),
+          ["<S-Tab>"] = cmp.mapping(function(fallback)
             if vim.fn["vsnip#jumpable"](-1) == 1 then
               feedkey("<Plug>(vsnip-jump-prev)", "")
             else
               fallback()
             end
-          end, { 'i', 's' }),
+          end, { "i", "s" }),
         }),
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
@@ -78,10 +77,10 @@ return {
         }),
         formatting = {
           format = lspkind.cmp_format({
-            mode = 'symbol',
+            mode = "symbol",
             maxwidth = 50,
-            ellipsis_char = '...',
-          })
+            ellipsis_char = "...",
+          }),
         },
         experimental = {
           ghost_text = {
@@ -93,60 +92,60 @@ return {
   },
 
   {
-    'hrsh7th/cmp-vsnip',
-    event = 'InsertEnter'
+    "hrsh7th/cmp-vsnip",
+    event = "InsertEnter",
   },
 
   {
-    'hrsh7th/vim-vsnip',
-    event = 'InsertEnter',
+    "hrsh7th/vim-vsnip",
+    event = "InsertEnter",
     init = function()
       vim.g.vsnip_snippet_dir = vim.fn.expand("~/.config/nvim/vsnip")
       vim.g.vsnip_filetypes = {
-        typescript = { 'javascript' },
-        typescriptreact = { 'javascript' },
-        javascriptreact = { 'javascript' },
+        typescript = { "javascript" },
+        typescriptreact = { "javascript" },
+        javascriptreact = { "javascript" },
       }
     end,
   },
 
   {
-    'hrsh7th/vim-vsnip-integ',
-    event = 'InsertEnter'
+    "hrsh7th/vim-vsnip-integ",
+    event = "InsertEnter",
   },
 
   {
-    'onsails/lspkind.nvim',
-    event = 'InsertEnter'
+    "onsails/lspkind.nvim",
+    event = "InsertEnter",
   },
 
   -- surround
   {
     "machakann/vim-sandwich",
-  --   dependencies = {
-  --     { 'machakann/vim-textobj-functioncall' },
-  --     { 'kana/vim-textobj-entire' },
-  --     { 'kana/vim-textobj-line' },
-  --     { 'thinca/vim-textobj-between' },
-  --     { 'yuki-yano/vim-textobj-cursor-context' },
-  --   },
+    --   dependencies = {
+    --     { 'machakann/vim-textobj-functioncall' },
+    --     { 'kana/vim-textobj-entire' },
+    --     { 'kana/vim-textobj-line' },
+    --     { 'thinca/vim-textobj-between' },
+    --     { 'yuki-yano/vim-textobj-cursor-context' },
+    --   },
     event = { "ModeChanged" },
     keys = {
-      { "si", "<Plug>(sandwich-add)i",           mode = { 'n', 'x' }, silent = true },
-      { "sa", "<Plug>(sandwich-add)a",           mode = { 'n', 'x' }, silent = true },
-      { "sD", "<Plug>(sandwich-delete)",         mode = { 'n', 'x' }, silent = true },
-      { "sd", "<Plug>(sandwich-delete-auto)",    mode = { 'n', 'x' }, silent = true },
-      { "sR", "<Plug>(sandwich-replace)",        mode = { 'n', 'x' }, silent = true },
-      { "sr", "<Plug>(sandwich-replace-auto)",   mode = { 'n', 'x' }, silent = true },
-      { "ib", "<Plug>(textobj-sandwich-auto-i)", mode = { 'o', 'x' }, silent = true },
-      { "ab", "<Plug>(textobj-sandwich-auto-a)", mode = { 'o', 'x' }, silent = true },
+      { "si", "<Plug>(sandwich-add)i", mode = { "n", "x" }, silent = true },
+      { "sa", "<Plug>(sandwich-add)a", mode = { "n", "x" }, silent = true },
+      { "sD", "<Plug>(sandwich-delete)", mode = { "n", "x" }, silent = true },
+      { "sd", "<Plug>(sandwich-delete-auto)", mode = { "n", "x" }, silent = true },
+      { "sR", "<Plug>(sandwich-replace)", mode = { "n", "x" }, silent = true },
+      { "sr", "<Plug>(sandwich-replace-auto)", mode = { "n", "x" }, silent = true },
+      { "ib", "<Plug>(textobj-sandwich-auto-i)", mode = { "o", "x" }, silent = true },
+      { "ab", "<Plug>(textobj-sandwich-auto-a)", mode = { "o", "x" }, silent = true },
     },
     init = function()
-      vim.g.sandwich_no_default_key_mappings             = 1
+      vim.g.sandwich_no_default_key_mappings = 1
       vim.g.textobj_functioncall_no_default_key_mappings = 1
     end,
     config = function()
-      vim.fn["operator#sandwich#set"]('add', 'char', 'skip_space', 1)
+      vim.fn["operator#sandwich#set"]("add", "char", "skip_space", 1)
       vim.g["sandwich#recipes"] = vim.deepcopy(vim.g["sandwich#default_recipes"])
     end,
   },
@@ -165,36 +164,36 @@ return {
       ignore = nil,
       ---LHS of toggle mappings in NORMAL mode
       toggler = {
-          ---Line-comment toggle keymap
-          line = 'gcc',
-          ---Block-comment toggle keymap
-          block = 'gbc',
+        ---Line-comment toggle keymap
+        line = "gcc",
+        ---Block-comment toggle keymap
+        block = "gbc",
       },
       ---LHS of operator-pending mappings in NORMAL and VISUAL mode
       opleader = {
-          ---Line-comment keymap
-          line = 'gc',
-          ---Block-comment keymap
-          block = 'gb',
+        ---Line-comment keymap
+        line = "gc",
+        ---Block-comment keymap
+        block = "gb",
       },
       ---LHS of extra mappings
       extra = {
-          ---Add comment on the line above
-          above = 'gcO',
-          ---Add comment on the line below
-          below = 'gco',
-          ---Add comment at the end of line
-          eol = 'gcA',
+        ---Add comment on the line above
+        above = "gcO",
+        ---Add comment on the line below
+        below = "gco",
+        ---Add comment at the end of line
+        eol = "gcA",
       },
       ---Enable keybindings
       ---NOTE: If given `false` then the plugin won't create any mappings
       mappings = {
-          ---Operator-pending mapping; `gcc` `gbc` `gc[count]{motion}` `gb[count]{motion}`
-          basic = true,
-          ---Extra mapping; `gco`, `gcO`, `gcA`
-          extra = true,
-          ---Extended mapping; `g>` `g<` `g>[count]{motion}` `g<[count]{motion}`
-          extended = false,
+        ---Operator-pending mapping; `gcc` `gbc` `gc[count]{motion}` `gb[count]{motion}`
+        basic = true,
+        ---Extra mapping; `gco`, `gcO`, `gcA`
+        extra = true,
+        ---Extended mapping; `g>` `g<` `g>[count]{motion}` `g<[count]{motion}`
+        extended = false,
       },
       ---Function to call before (un)comment
       pre_hook = nil,
@@ -205,22 +204,22 @@ return {
 
   -- edgemotion
   {
-    'haya14busa/vim-edgemotion',
+    "haya14busa/vim-edgemotion",
     keys = {
-      { '<Leader>j', mode = { 'n', 'o', 'x' } },
-      { '<Leader>k', mode = { 'n', 'o', 'x' } },
+      { "<Leader>j", mode = { "n", "o", "x" } },
+      { "<Leader>k", mode = { "n", "o", "x" } },
     },
     config = function()
-      vim.keymap.set({ 'n' }, '<Leader>j', function()
-        return 'm`' .. vim.fn['edgemotion#move'](1)
+      vim.keymap.set({ "n" }, "<Leader>j", function()
+        return "m`" .. vim.fn["edgemotion#move"](1)
       end, { silent = true, expr = true })
 
-      vim.keymap.set({ 'o', 'x' }, '<Leader>j', function()
-        return vim.fn['edgemotion#move'](1)
+      vim.keymap.set({ "o", "x" }, "<Leader>j", function()
+        return vim.fn["edgemotion#move"](1)
       end, { silent = true, expr = true })
 
-      vim.keymap.set({ 'n', 'o', 'x' }, '<Leader>k', function()
-        return vim.fn['edgemotion#move'](0)
+      vim.keymap.set({ "n", "o", "x" }, "<Leader>k", function()
+        return vim.fn["edgemotion#move"](0)
       end, { silent = true, expr = true })
     end,
   },
@@ -267,32 +266,32 @@ return {
     config = function(_, opts)
       local yanky = require("yanky")
 
-      vim.keymap.set('n', '<C-p>', function()
+      vim.keymap.set("n", "<C-p>", function()
         if yanky.can_cycle() then
-          return '<Plug>(YankyCycleForward)'
+          return "<Plug>(YankyCycleForward)"
         else
-          return '<C-p>'
+          return "<C-p>"
         end
       end, { silent = true, expr = true })
 
-      vim.keymap.set('n', '<C-n>', function()
+      vim.keymap.set("n", "<C-n>", function()
         if yanky.can_cycle() then
-          return '<Plug>(YankyCycleBackward)'
+          return "<Plug>(YankyCycleBackward)"
         else
-          return '<C-n>'
+          return "<C-n>"
         end
       end, { silent = true, expr = true })
 
-      local function set_yanky_hl()
-        vim.api.nvim_set_hl(0, "YankyPut", { link = "DiffAdd" })
-        vim.api.nvim_set_hl(0, "YankyYanked", { link = "DiffChange" })
-      end
+      -- local function set_yanky_hl()
+      --   vim.api.nvim_set_hl(0, "YankyPut", { link = "DiffAdd" })
+      --   vim.api.nvim_set_hl(0, "YankyYanked", { link = "DiffChange" })
+      -- end
 
       -- set_yanky_hl()
       -- require("pokerus.callback").colorscheme(set_yanky_hl)
       require("yanky").setup(opts)
       require("telescope").load_extension("yank_history")
-    end
+    end,
   },
 
   {
@@ -313,47 +312,47 @@ return {
 
   {
     "hrsh7th/nvim-insx",
-    event = {"InsertEnter"},
+    event = { "InsertEnter" },
     config = function(_, opts)
-      require('insx.preset.standard').setup()
-      local insx = require('insx')
-      local fast_wrap = require('insx.recipe.fast_wrap')
+      require("insx.preset.standard").setup()
+      local insx = require("insx")
+      local fast_wrap = require("insx.recipe.fast_wrap")
 
       for open, close in pairs({ ["("] = ")", ["["] = "]", ["{"] = "}" }) do
         -- fast wrap
-        insx.add('<C-w>', insx.with(fast_wrap({ close = close }), { insx.with.undopoint() }))
+        insx.add("<C-w>", insx.with(fast_wrap({ close = close }), { insx.with.undopoint() }))
       end
     end,
   },
 
   -- better text-objects
-  { 'kana/vim-textobj-user' },
+  { "kana/vim-textobj-user" },
 
   {
-    'kana/vim-textobj-entire',
+    "kana/vim-textobj-entire",
     dependencies = {
-      { 'kana/vim-textobj-user' },
+      { "kana/vim-textobj-user" },
     },
-    event = { 'ModeChanged' },
+    event = { "ModeChanged" },
     init = function()
       vim.g.textobj_entire_no_default_key_mappings = true
 
-      vim.keymap.set({ 'o', 'x' }, 'ie', '<Plug>(textobj-entire-i)')
-      vim.keymap.set({ 'o', 'x' }, 'ae', '<Plug>(textobj-entire-a)')
+      vim.keymap.set({ "o", "x" }, "ie", "<Plug>(textobj-entire-i)")
+      vim.keymap.set({ "o", "x" }, "ae", "<Plug>(textobj-entire-a)")
     end,
   },
 
   {
-    'kana/vim-textobj-line',
+    "kana/vim-textobj-line",
     dependencies = {
-      { 'kana/vim-textobj-user' },
+      { "kana/vim-textobj-user" },
     },
-    event = { 'ModeChanged' },
+    event = { "ModeChanged" },
     init = function()
       vim.g.textobj_line_no_default_key_mappings = true
 
-      vim.keymap.set({ 'o', 'x' }, 'il', '<Plug>(textobj-line-i)')
-      vim.keymap.set({ 'o', 'x' }, 'al', '<Plug>(textobj-line-a)')
+      vim.keymap.set({ "o", "x" }, "il", "<Plug>(textobj-line-i)")
+      vim.keymap.set({ "o", "x" }, "al", "<Plug>(textobj-line-a)")
     end,
   },
 

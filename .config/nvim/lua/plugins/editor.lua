@@ -7,11 +7,41 @@ return {
     dependencies = { "nvim-lua/plenary.nvim" },
     cmd = "Telescope",
     keys = {
-      { ";;", function() require("telescope.builtin").resume() end, mode = "n"},
-      { ";g", function() require("telescope.builtin").live_grep() end, mode = "n"},
-      { ";h", function() require("telescope.builtin").help_tags() end, mode = "n"},
-      { ";m", "<Cmd>lua require('telescope').extensions.frecency.frecency()<CR>", mode = "n", noremap = true, silent = true },
-      { "<leader>o", "<Cmd>lua require('telescope').extensions.file_browser.file_browser()<CR>", mode = "n", noremap = true, silent = true },
+      {
+        ";;",
+        function()
+          require("telescope.builtin").resume()
+        end,
+        mode = "n",
+      },
+      {
+        ";g",
+        function()
+          require("telescope.builtin").live_grep()
+        end,
+        mode = "n",
+      },
+      {
+        ";h",
+        function()
+          require("telescope.builtin").help_tags()
+        end,
+        mode = "n",
+      },
+      {
+        ";m",
+        "<Cmd>lua require('telescope').extensions.frecency.frecency()<CR>",
+        mode = "n",
+        noremap = true,
+        silent = true,
+      },
+      {
+        "<leader>o",
+        "<Cmd>lua require('telescope').extensions.file_browser.file_browser()<CR>",
+        mode = "n",
+        noremap = true,
+        silent = true,
+      },
     },
     config = function()
       local telescope = require("telescope")
@@ -27,14 +57,14 @@ return {
             },
             i = {
               ["<CR>"] = { "<esc>", type = "command" },
-            }
+            },
           },
           initial_mode = "normal",
         },
         extensions = {
           file_browser = {
             path = "%:p:h",
-            cwd = vim.fn.expand('%:p:h'),
+            cwd = vim.fn.expand("%:p:h"),
             theme = "dropdown",
             previewer = false,
             hijack_netrw = true, -- disables netrw and use telescope-file-browser in its place
@@ -45,7 +75,9 @@ return {
             mappings = {
               -- your custom insert mode mappings
               ["i"] = {
-                ["<C-w>"] = function() vim.cmd('normal vbd') end,
+                ["<C-w>"] = function()
+                  vim.cmd("normal vbd")
+                end,
               },
               ["n"] = {
                 -- your custom normal mode mappings
@@ -53,16 +85,16 @@ return {
                 ["h"] = fb_actions.goto_parent_dir,
                 ["l"] = actions.select_default,
                 ["/"] = function()
-                  vim.cmd('startinsert')
+                  vim.cmd("startinsert")
                 end,
               },
             },
           },
           frecency = {
-            db_root = "~/.config/nvim",
+            db_root = "~/.local/share/nvim",
             show_scores = false,
             show_unindexed = true,
-            ignore_patterns = {"*.git/*", "*/tmp/*"},
+            ignore_patterns = { "*.git/*", "*/tmp/*" },
             disable_devicons = false,
             -- workspaces = {
             --   ["conf"]    = "/home/my_username/.config",
@@ -78,7 +110,7 @@ return {
 
   {
     "nvim-telescope/telescope-file-browser.nvim",
-    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
   },
 
   {
@@ -98,8 +130,8 @@ return {
       signs = {
         add = { text = "▎" },
         change = { text = "▎" },
-        delete       = { text = '_' },
-        topdelete    = { text = '‾' },
+        delete = { text = "_" },
+        topdelete = { text = "‾" },
         -- delete = { text = "契" },
         -- topdelete = { text = "契" },
         changedelete = { text = "▎" },

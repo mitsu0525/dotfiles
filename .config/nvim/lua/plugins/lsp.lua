@@ -26,6 +26,9 @@ return {
       },
       -- Automatically format on save
       autoformat = true,
+      -- Enable this to show formatters used in a notification
+      -- Useful for debugging formatter issues
+      format_notify = false,
       -- options for vim.lsp.buf.format
       -- `bufnr` and `filter` is handled by the LazyVim formatter,
       -- but can be also overridden when specified
@@ -66,13 +69,13 @@ return {
     },
     ---@param opts PluginLspOpts
     config = function(plugin, opts)
-      -- -- setup autoformat
-      -- require("lazyvim.plugins.lsp.format").autoformat = opts.autoformat
-      -- -- setup formatting and keymaps
-      -- require("lazyvim.util").on_attach(function(client, buffer)
-      --   require("lazyvim.plugins.lsp.format").on_attach(client, buffer)
-      --   require("lazyvim.plugins.lsp.keymaps").on_attach(client, buffer)
-      -- end)
+      local Util = require("util")
+      -- setup autoformat
+      require("plugins.lsp.format").setup(opts)
+      -- setup formatting and keymaps
+      Util.on_attach(function(client, buffer)
+        require("plugins.lsp.keymaps").on_attach(client, buffer)
+      end)
 
       -- diagnostics
       local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
@@ -141,8 +144,8 @@ return {
       local nls = require("null-ls")
       return {
         sources = {
-          -- nls.builtins.formatting.prettierd,
           nls.builtins.formatting.stylua,
+          nls.builtins.formatting.black,
           nls.builtins.diagnostics.flake8,
         },
       }
@@ -176,18 +179,54 @@ return {
   },
 
   {
-    -- Load from lspconfig
-    "SmiteshP/nvim-navic",
-    -- config = function()
-    --   require("nvim-navic").setup({
-    --     icons = codicons,
-    --   })
-    -- end,
+      "glepnir/lspsaga.nvim",
+      event = "LspAttach",
+      dependencies = {
+        {"nvim-tree/nvim-web-devicons"},
+        --Please make sure you install markdown and markdown_inline parser
+        {"nvim-treesitter/nvim-treesitter"}
+      },
+      config = function()
+          require("lspsaga").setup({
+            ui = {
+              theme = 'round',
+              border = 'rounded',
+              title = false,
+              -- winblend = 0,
+              -- expand = '>',
+              -- collapse = 'v',
+              -- preview = '< ',
+              -- hover = diagnostic_icons.hint,
+              -- code_action = lsp_icons.code_action,
+              -- diagnostic = lsp_icons.diagnostic,
+              -- incoming = lsp_icons.incoming,
+              -- outgoing = lsp_icons.outgoing,
+              -- -- NOTE: from: `require('catppuccin.groups.integrations.lsp_saga').custom_colors()`
+              -- colors = {
+              --   normal_bg = color.base().black,
+              --   title_bg = color.base().green,
+              --   black = color.base().empty,
+              --   white = color.base().white, -- TODO: change to text
+              --   red = color.base().red,
+              --   blue = color.base().blue,
+              --   green = color.base().green,
+              --   yellow = color.base().yellow,
+              --   cyan = color.base().cyan, -- TODO: change to sky
+              --   magenta = color.base().magenta, -- TODO: change to maroon
+              --   orange = color.base().orange,
+              --   purple = color.base().purple,
+              -- },
+            },
+          })
+          vim.keymap.set({ 'n' }, 'K', function()
+            local ft = vim.o.filetype
+            if ft == 'vim' or ft == 'help' then
+              vim.cmd([[execute 'h ' . expand('<cword>') ]])
+            else
+              vim.cmd([[Lspsaga hover_doc]])
+            end
+          end)
+      end,
   },
 
-  -- {
-  --   "Maan2003/lsp_lines.nvim",
-  --   config = true,
-  --   event = { "BufRead", "BufNewFile" },
-  -- },
 }

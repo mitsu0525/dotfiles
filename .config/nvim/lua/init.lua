@@ -1,0 +1,209 @@
+-- -- require("lazy").setup({ 
+-- return {
+-- defaults = {lazy = true},
+-- -- {"nvim-lualine/lualine.nvim", event = "VeryLazy"},
+-- {"nvim-telescope/telescope.nvim", cmd = "Telescope"},
+-- {"nvim-telescope/telescope-file-browser.nvim", event = "VeryLazy"},
+-- {"lewis6991/gitsigns.nvim", config = true, event = "BufNewFile, BufRead"},
+-- -- {"ryanoasis/vim-devicons", event = "VeryLazy"},
+-- {"nvim-tree/nvim-web-devicons", event = "VeryLazy"},
+-- {"williamboman/mason.nvim", event = "BufRead", cmd = {"Mason", "MasonInstall"},},
+-- {"neovim/nvim-lspconfig", event = "LspAttach"},
+-- -- {"williamboman/mason-lspconfig.nvim", event = "LspAttach"},
+-- -- {"jay-babu/mason-null-ls.nvim", evtnt = "BufRead", cmd = {"NullInstall", "NullUninstall"},},
+-- -- {"jose-elias-alvarez/null-ls.nvim", event = "LspAttach"},
+-- -- {"j-hui/fidget.nvim", config = true, event = "LspAttach"},
+-- -- {"sainnhe/edge", event = "VeryLazy"},
+-- {"nvim-lua/plenary.nvim", event = "VeryLazy"},
+-- {"stevearc/dressing.nvim", event = "VeryLazy"},
+-- {"hrsh7th/nvim-cmp", event = "InsertEnter, CmdlineEnter"},
+-- {"hrsh7th/cmp-nvim-lsp", event = "InsertEnter"}, 
+-- {"hrsh7th/cmp-buffer", event = "InsertEnter"},
+-- {"hrsh7th/cmp-path", event = "InsertEnter"},
+-- {"hrsh7th/cmp-vsnip", event = "InsertEnter"},
+-- {"hrsh7th/cmp-cmdline", event = "ModeChanged"},
+-- -- {"hrsh7th/cmp-nvim-lsp-signature-help", event = "InsertEnter"},
+-- -- {"hrsh7th/cmp-nvim-lsp-document-symbol", event = "InsertEnter"},
+-- -- {"hrsh7th/cmp-calc", event = "InsertEnter"},
+-- {"onsails/lspkind.nvim", event = "InsertEnter"},
+-- {"hrsh7th/vim-vsnip", event = "InsertEnter"},
+-- -- {"hrsh7th/vim-vsnip-integ", event = "InsertEnter"},
+-- -- {"rafamadriz/friendly-snippets", event = "InsertEnter"},
+-- {"nvim-treesitter/nvim-treesitter", event = "BufNewFile, BufRead"},
+-- -- {"yioneko/nvim-yati", event = "VeryLazy"},
+-- {"windwp/nvim-autopairs", config = true, event = "InsertEnter"},
+-- -- {"andymass/vim-matchup", event = "VeryLazy"},
+-- -- {"Maan2003/lsp_lines.nvim", config = true, event = "BufNewFile, BufRead"},
+-- -- {"lambdalisue/suda.vim", cmd = {"SudaWrite", "SudaRead"},},
+-- -- {"norcalli/nvim-colorizer.lua", event = "BufNewFile, BufRead"},
+-- -- {"lukas-reineke/indent-blankline.nvim", event = "BufNewFile, BufRead"},
+-- -- {"kevinhwang91/nvim-hlslens", event = "BufNewFile, BufRead"},
+-- {"numToStr/Comment.nvim", config = true, event = "VeryLazy"},
+-- -- {"rhysd/clever-f.vim", event = "VeryLazy"},
+-- -- {"luochen1990/rainbow", event = "BufNewFile, BufRead"},
+-- 
+-- -- {"echasnovski/mini.surround", event = "ModeChanged"},
+-- -- {"echasnovski/mini.ai", event = "ModeChanged"},
+-- -- {"mvllow/modes.nvim", event = "BufNewFile, BufRead"},
+-- -- {"monaqa/dial.nvim", event = "VeryLazy"},
+-- {"tpope/vim-repeat", event = "VeryLazy"},
+-- -- {"petertriho/nvim-scrollbar", event = "BufNewFile, BufRead"},
+-- -- {"dstein64/vim-startuptime", cmd = "StartupTime"},
+-- -- {"vim-jp/vimdoc-ja", ft = "help"},
+-- 
+-- --non-lazy
+-- -- {'vim-denops/denops.vim', lazy = false},
+-- -- {'yuki-yano/fuzzy-motion.vim', lazy = false},
+-- -- {'lambdalisue/gin.vim', lazy = false},
+-- -- {'rbtnn/vim-ambiwidth', lazy = false},
+-- -- {'lambdalisue/kensaku-search.vim', lazy = false},
+-- -- {'lambdalisue/kensaku.vim', lazy = false},
+-- 
+-- --disable default plugins
+--   performance = {
+--     rtp = {
+--       disable_plugins = {
+--         'netrw',
+--         'netrwPlugin',
+--         'netrwSettings',
+--         'netrwFileHandlers',
+--         'gzip',
+--         'zip',
+--         'zipPlugin',
+--         'tar',
+--         'tarPlugin',
+--         'getscript',
+--         'getscriptPlugin',
+--         'vimball',
+--         'vimballPlugin',
+--         '2html_plugin',
+--         'logipat',
+--         'rrhelper',
+--         'spellfile_plugin',
+--         'sql_completion',
+--       },
+--     },
+--   },
+-- }
+-- 
+-- 
+-- 
+-- 
+-- --telescope
+-- local status, telescope = pcall(require, "telescope")
+-- if (not status) then return end
+-- local actions = require('telescope.actions')
+-- local builtin = require("telescope.builtin")
+-- 
+-- local function telescope_buffer_dir()
+--   return vim.fn.expand('%:p:h')
+-- end
+-- 
+-- local fb_actions = require "telescope".extensions.file_browser.actions
+-- 
+-- telescope.setup {
+--   defaults = {
+--     mappings = {
+--       n = {
+--         ["q"] = actions.close,
+--           ["l"] = actions.select_default,
+--       },
+--       i = {
+--         ["<CR>"] = { "<esc>", type = "command" },
+--       }
+--     },
+--     initial_mode = "normal",
+--   },
+--   extensions = {
+--     file_browser = {
+--       theme = "dropdown",
+--       initial_mode = "normal",
+--       -- disables netrw and use telescope-file-browser in its place
+--       hijack_netrw = true,
+--       mappings = {
+--         -- your custom insert mode mappings
+--         ["i"] = {
+--           ["<C-w>"] = function() vim.cmd('normal vbd') end,
+--         },
+--         ["n"] = {
+--           -- your custom normal mode mappings
+--           ["N"] = fb_actions.create,
+--           ["h"] = fb_actions.goto_parent_dir,
+--           ["l"] = actions.select_default,
+--           ["/"] = function()
+--             vim.cmd('startinsert')
+--           end
+--         },
+--       },
+--     },
+--     -- frecency = {
+--     --   initial_mode = "insert",
+--     --   show_scores = false,
+--     --   show_unindexed = true,
+--     --   ignore_patterns = {"*.git/*", "*/tmp/*"},
+--     --   disable_devicons = false,
+--     --   -- workspaces = {
+--     --   --   ["conf"]    = "/home/my_username/.config",
+--     --   --   ["data"]    = "/home/my_username/.local/share",
+--     --   --   ["project"] = "/home/my_username/projects",
+--     --   --   ["wiki"]    = "/home/my_username/wiki"
+--     --   },
+--     -- },
+--   }
+-- }
+-- 
+-- telescope.load_extension("file_browser")
+-- -- telescope.load_extension("frecency")
+-- -- telescope.load_extension('smart_history')
+-- 
+-- -- vim.api.nvim_set_keymap("n", "-f",
+-- -- "<Cmd>lua require('telescope').extensions.frecency.frecency()<CR>",
+-- -- {noremap = true, silent = true})
+-- 
+-- -- vim.keymap.set('n', ';f',
+-- --   function()
+-- --     builtin.find_files({
+-- --       no_ignore = false,
+-- --       hidden = true
+-- --     })
+-- --   end)
+-- -- vim.keymap.set('n', ';r', function()
+-- --   builtin.live_grep()
+-- -- end)
+-- -- vim.keymap.set('n', '\\\\', function()
+-- --   builtin.buffers()
+-- -- end)
+-- -- vim.keymap.set('n', ';t', function()
+-- --   builtin.help_tags()
+-- -- end)
+-- vim.keymap.set('n', ';;', function()
+--   builtin.resume()
+-- end)
+-- -- vim.keymap.set('n', ';e', function()
+-- --   builtin.diagnostics()
+-- -- end)
+-- vim.keymap.set("n", ";o", function()
+--   telescope.extensions.file_browser.file_browser({
+--     path = "%:p:h",
+--     cwd = telescope_buffer_dir(),
+--     respect_gitignore = false,
+--     hidden = true,
+--     grouped = true,
+--     --previewer = false,
+--     initial_mode = "normal",
+--     layout_config = { height = 40 }
+--   })
+-- end)
+-- 
+-- vim.keymap.set("n", "<leader>o", function()
+--   telescope.extensions.file_browser.file_browser({
+--     path = "%:p:h",
+--     cwd = telescope_buffer_dir(),
+--     respect_gitignore = false,
+--     hidden = true,
+--     grouped = true,
+--     previewer = false,
+--     initial_mode = "normal",
+--     layout_config = { height = 40 }
+--   })
+-- end)

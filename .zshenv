@@ -10,6 +10,7 @@ path=( \
     ~/.poetry/bin(N-/) \
     ~/.deno/bin(N-/) \
     ~/.cargo/bin(N-/) \
+    /snap/bin(N-/) \
     "$path[@]" \
     )
 

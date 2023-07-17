@@ -1,0 +1,1871 @@
+{
+  "ans": {
+    "prefix": "ans",
+    "description": "",
+    "body": [
+      "ll ans = ${1:0};"
+    ]
+  },
+  "ans ll": {
+    "prefix": "ansl",
+    "body": [
+      "ll ans = 0;"
+    ]
+  },
+  "all": {
+    "prefix": "al",
+    "body": [
+      "${1:a}.begin(), ${1:a}.end()"
+    ]
+  },
+  "can": {
+    "prefix": "can",
+    "body": [
+      "bool can = ${1:false};"
+    ]
+  },
+  "cin": {
+    "prefix": "ci",
+    "body": [
+      "cin >> ${1:n};"
+    ]
+  },
+  "cin2": {
+    "prefix": "ci2",
+    "body": [
+      "cin >> ${1:n} >> ${2:m};"
+    ]
+  },
+  "cin3": {
+    "prefix": "ci3",
+    "body": [
+      "cin >> ${1:n} >> ${2:m} >> $3;"
+    ]
+  },
+  "cin4": {
+    "prefix": "ci4",
+    "body": [
+      "cin >> ${1:n} >> ${2:m} >> $3 >> $4;"
+    ]
+  },
+  "cin vector": {
+    "prefix": "civ",
+    "description": "",
+    "body": [
+      "for (ll i = 0; i < ${2:n}; i++) {",
+      "    cin >> ${1:a}[i];",
+      "}"
+    ]
+  },
+  "cin vector of vector": {
+    "prefix": "civv",
+    "description": "",
+    "body": [
+      "for (ll i = 0; i < ${2:n}; i++) {",
+      "    for (ll j = 0; j < ${3:m}; j++) {",
+      "        cin >> ${1:a}[i][j];",
+      "    }",
+      "}"
+    ]
+  },
+  "cout": {
+    "prefix": "co",
+    "description": "",
+    "body": [
+      "cout << ${1:ans}$0 << '\\n';"
+    ]
+  },
+  "cout short 2": {
+    "prefix": "cos2",
+    "description": "",
+    "body": [
+      "cout << $1 << $2 << '\\n';"
+    ]
+  },
+  "cout short 3": {
+    "prefix": "cos3",
+    "description": "",
+    "body": [
+      "cout << $1 << $2 << $3 << '\\n';"
+    ]
+  },
+  "count": {
+    "prefix": "cnt",
+    "description": "",
+    "body": [
+      "ll cnt = 0;"
+    ]
+  },
+  "for": {
+    "prefix": "fo",
+    "description": "",
+    "body": [
+      "for (ll ${2:l} = 0; ${2:l} < ${3:n}; ${2:l}++) {",
+      "\t$0",
+      "}"
+    ]
+  },
+  "for auto": {
+    "prefix": "fa",
+    "description": "",
+    "body": [
+      "for (auto&& ${2:x} : ${1:a}) {",
+      "\t$0",
+      "}"
+    ]
+  },
+  "for for": {
+    "prefix": "ff",
+    "description": "",
+    "body": [
+      "for (ll i = 0; i < ${1:n}; i++) {",
+      "    for (ll j = 0; j < ${2:m}; j++) {",
+      "        $0",
+      "    }",
+      "}"
+    ]
+  },
+  "for i 0": {
+    "prefix": "fi",
+    "description": "",
+    "body": [
+      "for (ll i = 0; i < ${1:n}; i++) {",
+      "    $0",
+      "}"
+    ]
+  },
+  "for i 1": {
+    "prefix": "fi1",
+    "description": "",
+    "body": [
+      "for (ll i = 1; i <= ${1:n}; i++) {",
+      "    $0",
+      "}"
+    ]
+  },
+  "for j 0": {
+    "prefix": "fj",
+    "description": "",
+    "body": [
+      "for (ll j = 0; j < ${1:m}; j++) {",
+      "    $0",
+      "}"
+    ]
+  },
+  "for j 1": {
+    "prefix": "fj1",
+    "description": "",
+    "body": [
+      "for (ll j = 1; j <= ${1:m}; j++) {",
+      "    $0",
+      "}"
+    ]
+  },
+  "int in": {
+    "prefix": "i",
+    "description": "",
+    "body": [
+      "int ${1:n};",
+      "cin >> ${1:n};"
+    ]
+  },
+  "int in2": {
+    "prefix": "i2",
+    "description": "",
+    "body": [
+      "int ${1:n}, ${2:m};",
+      "cin >> ${1:n} >> ${2:m};"
+    ]
+  },
+  "int in3": {
+    "prefix": "i3",
+    "description": "",
+    "body": [
+      "int ${1:n}, ${2:m}, $3;",
+      "cin >> ${1:n} >> ${2:m} >> $3;"
+    ]
+  },
+  "int in4": {
+    "prefix": "i4",
+    "description": "",
+    "body": [
+      "int ${1:n}, ${2:m}, $3, $4;",
+      "cin >> ${1:n} >> ${2:m} >> $3 >> $4;"
+    ]
+  },
+  "ll in1": {
+    "prefix": "l",
+    "description": "",
+    "body": [
+      "ll ${1:n};",
+      "cin >> ${1:n};"
+    ]
+  },
+  "ll in2": {
+    "prefix": "l2",
+    "description": "",
+    "body": [
+      "ll ${1:n}, ${2:m};",
+      "cin >> ${1:n} >> ${2:m};"
+    ]
+  },
+  "ll in3": {
+    "prefix": "l3",
+    "description": "",
+    "body": [
+      "ll ${1:n}, ${2:m}, $3;",
+      "cin >> ${1:n} >> ${2:m} >> $3;"
+    ]
+  },
+  "ll in4": {
+    "prefix": "l4",
+    "description": "",
+    "body": [
+      "ll ${1:n}, ${2:m}, $3, $4;",
+      "cin >> ${1:n} >> ${2:m} >> $3 >> $4;"
+    ]
+  },
+  "map of int for int": {
+    "prefix": "map",
+    "description": "",
+    "body": [
+      "map<${1:ll}, ${2:ll}> ${3:mp};"
+    ]
+  },
+  "return0": {
+    "prefix": "re0",
+    "description": "",
+    "body": [
+      "return 0;"
+    ]
+  },
+  "reverse": {
+    "prefix": "rev",
+    "body": "reverse(${1:a}.begin(), ${1:a}.end());",
+    "description": ""
+  },
+  "set of standard": {
+    "prefix": "si",
+    "body": [
+      "set<${1:int}> ${1:X};"
+    ]
+  },
+  "set of int": {
+    "prefix": "si",
+    "body": [
+      "set<int> ${1:X};"
+    ]
+  },
+  "set of ll": {
+    "prefix": "sl",
+    "body": [
+      "set<ll> ${1:X};"
+    ]
+  },
+  "sort": {
+    "prefix": "so",
+    "body": "sort(${1:a}.begin(), ${1:a}.end());",
+    "description": ""
+  },
+  "string cin": {
+    "prefix": "st",
+    "description": "",
+    "body": [
+      "string ${1:s};",
+      "cin >> ${1:s};"
+    ]
+  },
+  "string cin2": {
+    "prefix": "st2",
+    "description": "",
+    "body": [
+      "string ${1:s}, ${2:t};",
+      "cin >> ${1:s} >> ${2:t};"
+    ]
+  },
+  "string cin3": {
+    "prefix": "st3",
+    "description": "",
+    "body": [
+      "string ${1:s}, ${2:t}, $3;",
+      "cin >> ${1:s} >> ${2:t} >> $3;"
+    ]
+  },
+  "string cin4": {
+    "prefix": "st4",
+    "description": "",
+    "body": [
+      "string ${1:s}, ${2:t}, $3, $4;",
+      "cin >> ${1:s} >> ${2:t} >> $3 >> $4;"
+    ]
+  },
+  "unordered_map": {
+    "prefix": "um",
+    "description": "",
+    "body": [
+      "unordered_map<${1:ll}, ${2:ll}> um;"
+    ]
+  },
+  "basic vector": {
+    "prefix": "v",
+    "body": [
+      "vector<${1:int}> ${2:a}(${3:n});"
+    ]
+  },
+  "vector of bool": {
+    "prefix": "vb",
+    "body": [
+      "vector<bool> ${1:a}(${2:n});"
+    ]
+  },
+  "vector of char": {
+    "prefix": "vc",
+    "body": [
+      "vector<char> ${1:a}(${2:n});"
+    ]
+  },
+  "vector pair char,int": {
+    "prefix": "vci",
+    "description": "",
+    "body": [
+      "vector<pair<char ,int>> ${0:a}(n);"
+    ]
+  },
+  "vector of int": {
+    "prefix": "vi",
+    "body": [
+      "vector<int> ${1:a}(${2:n});"
+    ]
+  },
+  "vector pair int,int": {
+    "prefix": "vii",
+    "description": "",
+    "body": [
+      "vector<pair<int, int>> ${1:a}(${2:n});"
+    ]
+  },
+  "vector of ll": {
+    "prefix": "vl",
+    "description": "",
+    "body": [
+      "vector<ll> ${1:a}(${2:n});",
+      "for (ll i = 0; i < ${2:n}; i++) {",
+      "    cin >> ${1:a}[i];",
+      "} "
+    ]
+  },
+  "vector pair ll,ll": {
+    "prefix": "vll",
+    "body": "vector<pair<ll,ll>> ${1:a}(${2:n});",
+    "description": ""
+  },
+  "vector of string": {
+    "prefix": "vs",
+    "body": [
+      "vector<string> ${1:a}(${2:n});"
+    ]
+  },
+  "vector of vector of standard": {
+    "prefix": "vv",
+    "description": "",
+    "body": [
+      "vector ${2:a}(${3:n}, vector<${1:int}>(${4:m}));"
+    ]
+  },
+  "vector of vector of bool": {
+    "prefix": "vvb",
+    "description": "",
+    "body": [
+      "vector ${1:a}(${2:n}, vector<bool>(${3:m}));"
+    ]
+  },
+  "vector of vector of int": {
+    "prefix": "vvi",
+    "description": "",
+    "body": [
+      "vector ${1:a}(${2:n}, vector<int>(${3:m}));"
+    ]
+  },
+  "vector of vector of string": {
+    "prefix": "vvs",
+    "description": "",
+    "body": [
+      "vector ${1:a}(${2:n}, vector<string>(${3:m});"
+    ]
+  },
+  "vector of vector of ll": {
+    "prefix": "vvl",
+    "description": "",
+    "body": [
+      "vector ${1:a}(${2:n}, vector<ll>(${3:m}));"
+    ]
+  },
+  "while": {
+    "prefix": "wh",
+    "description": "",
+    "body": [
+      "while ($1) {",
+      "    $0",
+      "}"
+    ]
+  },
+  "YesNo": {
+    "prefix": "yn",
+    "description": "",
+    "body": [
+      "if (${1:can})",
+      "    cout << \"Yes\" << '\\n';",
+      "else",
+      "    cout << \"No\" << '\\n';"
+    ]
+  },
+  "xy4": {
+    "prefix": "xy4",
+    "description": "座標探索",
+    "body": [
+      "vector<ll> dy(4);",
+      "dy = {0, 0, 1, -1};",
+      "vector<ll> dx(4);",
+      "dx = {1, -1, 0, 0};"
+    ]
+  },
+  "int gcd": {
+    "prefix": "gcd",
+    "description": "",
+    "body": [
+      "int gcd(int a, int b) {",
+      "    if (b == 0) {",
+      "        return a;",
+      "    }",
+      "    return gcd(b, a % b);",
+      "}",
+      ""
+    ]
+  },
+  "int lcm": {
+    "prefix": "lcm",
+    "description": "",
+    "body": [
+      "int gcd(int a, int b) {",
+      "    if (b == 0) {",
+      "        return a;",
+      "    }",
+      "    return gcd(b, a % b);",
+      "}",
+      "",
+      "int lcm(int a, int b) {",
+      "    return a / gcd(a, b) * b;",
+      "}",
+      ""
+    ]
+  },
+  "combNotMod": {
+    "prefix": "combination",
+    "description": "返り値は vector 型であり、[n][r]成分が nCr となる.",
+    "body": [
+      "// 計算量 O(n^2)",
+      "vector<vector<long long>> combi(int n, int r) {",
+      "    vector<vector<long long>> v(n + 1, vector<long long>(n + 1, 0));",
+      "    for (int i = 0; i < v.size(); i++) {",
+      "        v[i][0] = 1;",
+      "        v[i][i] = 1;",
+      "    }",
+      "    for (int j = 1; j < v.size(); j++) {",
+      "        for (int k = 1; k < j; k++) {",
+      "        v[j][k] = (v[j - 1][k - 1] + v[j - 1][k]);",
+      "        }",
+      "    }",
+      "    return v;",
+      "}",
+      ""
+    ]
+  },
+  "run length encoding": {
+    "prefix": "runlength",
+    "description": "ランレングス圧縮を行う",
+    "body": [
+      "vector<pair<char, ll>> runlength(const string &str) {",
+      "    ll n = (ll)str.size();",
+      "    vector<pair<char, ll>> ret;",
+      "    for (ll l = 0; l < n;) {",
+      "        ll r = l + 1;",
+      "        for (; r < n && str[l] == str[r]; r++) {",
+      "        };",
+      "        ret.push_back({str[l], r - l});",
+      "        l = r;",
+      "    }",
+      "    return ret;",
+      "}",
+      "//**** 使用例) str = \"RLLRRRLL\" -> runlength(str) = {('R', 1), ('L', 2), ('R', 3), ('L', 2)}",
+      "//**** 添え字の操作) now = 0, 1, 3, 6, 8",
+      "//     ll now = 0;",
+      "//     for (ll i = 0; i < runlength.size(); i++) {",
+      "//         now += runlength[i].second;",
+      "//     }",
+      ""
+    ]
+  },
+  "run length decode": {
+    "prefix": "runlengthdecode",
+    "description": "ランレングス圧縮の復元を行う",
+    "body": [
+      "string runlengthdecode(const vector<pair<char, int>>& code) {",
+      "    string ret = \"\";",
+      "    for (auto p : code) {",
+      "        for (int i = 0; i < p.second; i++) {",
+      "            ret.push_back(p.first);",
+      "        }",
+      "    }",
+      "    return ret;",
+      "}",
+      ""
+    ]
+  },
+  "combination": {
+    "prefix": "com",
+    "description": "二項係数を1000000007で割ったあまり",
+    "body": [
+      "// const int MOD = 1e9 + 7;",
+      "// const int MOD = 998244353;",
+      "const int MAX = 510000; // 問題による",
+      "long long fac[MAX], finv[MAX], inv[MAX];",
+      "",
+      "// テーブルを作る前処理 O(n) = O(MAX)",
+      "void COMinit() {",
+      "    fac[0] = fac[1] = 1;",
+      "    finv[0] = finv[1] = 1;",
+      "    inv[1] = 1;",
+      "    for (int i = 2; i < MAX; i++){",
+      "        fac[i] = fac[i - 1] * i % MOD;",
+      "        inv[i] = MOD - inv[MOD%i] * (MOD / i) % MOD;",
+      "        finv[i] = finv[i - 1] * inv[i] % MOD;",
+      "    }",
+      "}",
+      "",
+      "// 二項係数計算 O(1)",
+      "// 引数は ll型でよい",
+      "long long COM(int n, int k){",
+      "    if (n < k) return 0;",
+      "    if (n < 0 || k < 0) return 0;",
+      "    return fac[n] * (finv[k] * finv[n - k] % MOD) % MOD;",
+      "}",
+      ""
+    ]
+  },
+  "for j reverse": {
+    "prefix": "fjr",
+    "description": "",
+    "body": [
+      "for (ll j = ${1:n}; j >= 0; j--) {",
+      "    $0",
+      "}"
+    ]
+  },
+  "for i reverse": {
+    "prefix": "fir",
+    "description": "",
+    "body": [
+      "for (ll i = ${1:n}; i >= 0; i--) {",
+      "    $0",
+      "}"
+    ]
+  },
+  "for k 0": {
+    "prefix": "fk",
+    "description": "",
+    "body": [
+      "for (ll k = 0; k < ${1:n}; k++) {",
+      "    $0",
+      "}"
+    ]
+  },
+  "do while": {
+    "prefix": "do",
+    "description": "",
+    "body": [
+      "do {",
+      "    $0",
+      "} while (${1:});"
+    ]
+  },
+  "permutation serch": {
+    "prefix": "per",
+    "description": "順列全探索",
+    "body": [
+      "vector<ll> per(${1:n});",
+      "iota(per.begin(), per.end(), ${2:0}); // 0 based or 1 based",
+      "do {",
+      "    $0",
+      "} while (next_permutation(per.begin(), per.end()));",
+      ""
+    ]
+  },
+  "int 0 3": {
+    "prefix": "i03",
+    "description": "",
+    "body": [
+      "int ${1:n1} = 0, ${2:n2} = 0, ${3:n3} = 0;"
+    ]
+  },
+  "int 0 2": {
+    "prefix": "i02",
+    "description": "",
+    "body": [
+      "int ${1:n1} = 0, ${2:n2} = 0;"
+    ]
+  },
+  "dfs lambda": {
+    "prefix": "dfsf",
+    "description": "ラムダ式 DFS",
+    "body": [
+      "function<void(ll)> dfs = [&](ll ${1:k}) {",
+      "    &0",
+      "};",
+      ""
+    ]
+  },
+  "for i one line": {
+    "prefix": "fio",
+    "description": "for one line",
+    "body": [
+      "for (ll i = 0; i < ${1:n}; i++) "
+    ]
+  },
+  "for j one line": {
+    "prefix": "fjo",
+    "description": "",
+    "body": [
+      "for (ll j = 0; j < ${1:n}; j++) "
+    ]
+  },
+  "for k one line": {
+    "prefix": "fko",
+    "description": "",
+    "body": [
+      "for (ll k = 0; k < ${1:n}; k++) "
+    ]
+  },
+  "chmax": {
+    "prefix": "cha",
+    "description": "",
+    "body": [
+      "chmax(${1:ans}, ${2:cnt});"
+    ]
+  },
+  "chmin": {
+    "prefix": "chi",
+    "description": "",
+    "body": [
+      "chmin(${1:ans}, ${2:cnt});"
+    ]
+  },
+  "divisor": {
+    "prefix": "div",
+    "description": "約数列挙",
+    "body": [
+      "// 計算量 O(√N)",
+      "vector<ll> divisor(ll N) {",
+      "    vector<ll> res;",
+      "    for (ll i = 1; i * i <= N; ++i) {",
+      "        if (N % i == 0) {",
+      "            res.push_back(i);",
+      "            // 重複しないならば i の相方である N/i も push",
+      "            if (N / i != i) res.push_back(N / i);",
+      "        }",
+      "    }",
+      "    // 小さい順に並び替える",
+      "    sort(res.begin(), res.end());",
+      "    return res;",
+      "}"
+    ]
+  },
+  "unordered_set": {
+    "prefix": "us",
+    "description": "",
+    "body": [
+      "unordered_set<${1:ll}> st;"
+    ]
+  },
+  "pair int int": {
+    "prefix": "pii",
+    "body": "pair<int, int>",
+    "description": ""
+  },
+  "vector of int 2": {
+    "prefix": "vi2",
+    "description": "",
+    "body": [
+      "vector<int> ${1:a}(${3:n}), ${2:b}(${3:n});"
+    ]
+  },
+  "cin vector 2": {
+    "prefix": "civ2",
+    "description": "",
+    "body": [
+      "for (ll i = 0; i < ${3:n}; i++) {",
+      "    cin >> ${1:a}[i] >> ${2:b}[i];",
+      "}"
+    ]
+  },
+  "unordered_set pair int int": {
+    "prefix": "uspii",
+    "description": "",
+    "body": [
+      "unordered_set<pair<ll, ll>, phash> st;"
+    ]
+  },
+  "phash": {
+    "prefix": "ph",
+    "description": "",
+    "body": [
+      "struct phash{",
+      "    inline size_t operator()(const pair<int,int> & p) const{",
+      "        const auto h1 = hash<int>()(p.first);",
+      "        const auto h2 = hash<int>()(p.second);",
+      "        return h1 ^ (h2 << 1);",
+      "    }",
+      "};",
+      ""
+    ]
+  },
+  "graph": {
+    "prefix": "g",
+    "description": "グラフ",
+    "body": [
+      "vector<vector<ll>> g(n);"
+    ]
+  },
+  "queue": {
+    "prefix": "qu",
+    "description": "",
+    "body": [
+      "queue<${1:ll}> qu;"
+    ]
+  },
+  "deque": {
+    "prefix": "dq",
+    "description": "",
+    "body": [
+      "deque<${1:ll}> dq;"
+    ]
+  },
+  "lambda": {
+    "prefix": "lm",
+    "description": "ラムダ式",
+    "body": [
+      "auto ${1:check} = [&](${2:ll k}) {",
+      "    $0",
+      "};",
+      ""
+    ]
+  },
+  "binary search": {
+    "prefix": "bs",
+    "description": "めぐる式二分探索",
+    "body": [
+      "auto check = [&](ll x) -> bool {",
+      "    $0",
+      "};",
+      "",
+      "ll ok = ${1:-1}, ng = ${2:n};",
+      "while (abs(ok - ng) > 1) {",
+      "    ll mid = (ok + ng) / 2;",
+      "    if (check(mid))",
+      "        ok = mid;",
+      "    else",
+      "        ng = mid;",
+      "}"
+    ]
+  },
+  "xy8": {
+    "prefix": "xy8",
+    "description": "座標探索 ",
+    "body": [
+      "vector<ll> dy(8);",
+      "dy = {1, 1, 1, 0, 0, -1, -1, -1};",
+      "vector<ll> dx(8);",
+      "dx = {1, 0, -1, 1, -1, 1, 0, -1};"
+    ]
+  },
+  "prime_set": {
+    "prefix": "ps",
+    "description": "素数の集合",
+    "body": [
+      "unordered_set<int> prime_set(const int N) {",
+      "    vector<bool> is_prime( N + 1 );",
+      "    for(int i = 0; i <= N; i++) {",
+      "        is_prime[ i ] = true;",
+      "    }",
+      "    unordered_set<int> P;",
+      "    for(int i = 2;i <= N; i++) {",
+      "        if(is_prime[i]) {",
+      "            for(int j = 2 * i; j <= N; j += i) {",
+      "                is_prime[j] = false;",
+      "            }",
+      "            P.insert(i);",
+      "        }",
+      "    }",
+      "    return P;",
+      "}",
+      ""
+    ]
+  },
+  "__builtin_popcount": {
+    "prefix": "bpc",
+    "description": "立っているビットを数える",
+    "body": [
+      "__builtin_popcountll(${1:i})"
+    ]
+  },
+  "bit serch": {
+    "prefix": "bit",
+    "description": "ビット全探索",
+    "body": [
+      "for (int bit = 0; bit < (1 << ${1:n}); bit++) { // 2^n 通り",
+      "    for (int i = 0; i < ${1:n}; i++) {",
+      "        if (bit & (1 << i)) {  // i 番目のフラグが立っているか",
+      "            $0",
+      "        }",
+      "    }",
+      "}"
+    ]
+  },
+  "vector of vector of char": {
+    "prefix": "vvc",
+    "description": "",
+    "body": [
+      "vector ${1:s}(${2:h}, vector<char>(${3:w}));"
+    ]
+  },
+  "cout endl": {
+    "prefix": "coe",
+    "description": "改行",
+    "body": [
+      "cout << '\\n';"
+    ]
+  },
+  "cin vector 3": {
+    "prefix": "civ3",
+    "description": "",
+    "body": [
+      "for (ll i = 0; i < ${4:n}; i++) {",
+      "    cin >> ${1:a}[i] >> ${2:b}[i] >> ${3:c}[i];",
+      "}"
+    ]
+  },
+  "vector of int 3": {
+    "prefix": "vi3",
+    "description": "",
+    "body": [
+      "vector<int> ${1:a}(${4:n}), ${2:b}(${4:n}), ${3:c}(${4:n});"
+    ]
+  },
+  "vector of int 4": {
+    "prefix": "vi4",
+    "description": "",
+    "body": [
+      "vector<int> ${1:a}(${5:n}), ${2:b}(${5:n}), ${3:c}(${5:n}), ${4:d}(${5:n});"
+    ]
+  },
+  "vector of int 5": {
+    "prefix": "vi5",
+    "description": "",
+    "body": [
+      "vector<int> ${1:a}(${6:n}), ${2:b}(${6:n}), ${3:c}(${6:n}), ${4:d}(${6:n}), ${5:e}(${6:n});"
+    ]
+  },
+  "cin vector 4": {
+    "prefix": "civ4",
+    "description": "",
+    "body": [
+      "for (ll i = 0; i < ${5:n}; i++) {",
+      "    cin >> ${1:a}[i] >> ${2:b}[i] >> ${3:c}[i] >> ${4:d}[i];",
+      "}"
+    ]
+  },
+  "cin vector 5": {
+    "prefix": "civ5",
+    "description": "",
+    "body": [
+      "for (ll i = 0; i < ${6:n}; i++) {",
+      "    cin >> ${1:a}[i] >> ${2:b}[i] >> ${3:c}[i] >> ${4:d}[i] >> ${5:e}[i];",
+      "}"
+    ]
+  },
+  "vector of ll 2": {
+    "prefix": "vl2",
+    "description": "",
+    "body": [
+      "vector<ll> ${1:a}(${3:n}), ${2:b}(${3:n});",
+      "for (ll i = 0; i < ${3:n}; i++) {",
+      "    cin >> ${1:a}[i] >> ${2:b}[i];",
+      "}  // Aren't they one line?"
+    ]
+  },
+  "vector of ll 3": {
+    "prefix": "vl3",
+    "description": "",
+    "body": [
+      "vector<ll> ${1:a}(${4:n}), ${2:b}(${4:n}), ${3:c}(${4:n});",
+      "for (ll i = 0; i < ${4:n}; i++) {",
+      "    cin >> ${1:a}[i] >> ${2:b}[i] >> ${3:c}[i];",
+      "}  // Aren't they one line?"
+    ]
+  },
+  "atcoder": {
+    "prefix": "at",
+    "description": "ACL",
+    "body": [
+      "#include <atcoder/all>",
+      "using namespace atcoder;",
+      "// const int MOD = 1e9 + 7;",
+      "// using Modint = modint1000000007;",
+      "// ostream& operator<<(ostream& os, const Modint& N) {",
+      "//     return os << N.val();",
+      "// }",
+      "",
+      "// const int MOD = 998244353;",
+      "// using Modint = modint998244353;",
+      "// ostream& operator<<(ostream& os, const Modint& N) {",
+      "//     return os << N.val();",
+      "// }"
+    ]
+  },
+  "return": {
+    "prefix": "re",
+    "body": "return;",
+    "description": ""
+  },
+  "type vvi": {
+    "prefix": "vvit",
+    "body": "vector<vector<int>>",
+    "description": "型"
+  },
+  "type vvb": {
+    "prefix": "vvbt",
+    "body": "#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;  // int は 2 * 10^9 まで, ll は 9 * 10^18 まで\nconst int INF = 1e9 + 7;\nconst ll LINF = 1e18 + 7;\nconst int MOD = 1e9 + 7;\ntemplate<class T>bool chmax(T &a, const T &b) {if (a<b) {a=b; return 1;}return 0;}\ntemplate<class T>bool chmin(T &a, const T &b) {if (b<a) {a=b; return 1;}return 0;}\n\n\nint main() {\n    int h, w, a, b; cin >> h >> w >> a >> b;\n    vector<vector<bool>> room(h, vector<bool>(w));\n\n    int ans = 0;\n\n    function<void(int, int, int, int)> dfs = [&](int g, int r, int x, int y, vector<vector<int>>) {\n        if (g + 1 >= h && r >= w) {\n            ans++; \n            return;\n        }\n        if (r >= w) {\n            dfs(g + 1, 0, x, y);\n            return;\n        }\n        if (room[g][r] == true) {\n            dfs(g, r + 1, x, y);\n            return;\n        }\n        \n        room[g][r] = true;\n        \n        if (y > 0) dfs(g, r + 1, x, y - 1);\n\n        if (g + 1 < h && room[g + 1][r] == false && x > 0) {\n            room[g + 1][r] = true;\n            dfs(g, r + 1, x - 1, y);\n            room[g + 1][r] = false;\n        }\n\n        if (r + 1 < w && room[g][r + 1] == false && x > 0) {\n            room[g][r + 1] = true;\n            dfs(g, r + 2, x - 1, y);\n            room[g][r + 1] = false;\n        }\n\n        room[g][r] = false;\n    };\n    \n\n    dfs(0, 0, a, b);\n\n    cout << ans << endl;\n}\n",
+    "description": "型"
+  },
+  "type vb": {
+    "prefix": "vbt",
+    "body": "vector<bool>",
+    "description": "型"
+  },
+  "type vc": {
+    "prefix": "vct",
+    "body": "vector<char>",
+    "description": "型"
+  },
+  "type vi": {
+    "prefix": "vit",
+    "body": "vector<int>",
+    "description": "型"
+  },
+  "type vl": {
+    "prefix": "vlt",
+    "body": "vector<ll>",
+    "description": "型"
+  },
+  "type vs": {
+    "prefix": "vst",
+    "body": "vector<string>",
+    "description": "型"
+  },
+  "type vvc": {
+    "prefix": "vvct",
+    "body": "vector<vector<char>>",
+    "description": "型"
+  },
+  "type vvl": {
+    "prefix": "vvlt",
+    "body": "vector<vector<ll>>",
+    "description": "型"
+  },
+  "type vvs": {
+    "prefix": "vvst",
+    "body": "vector<vector<string>>",
+    "description": "型"
+  },
+  "type pii": {
+    "prefix": "piit",
+    "body": "pair<int, int>",
+    "description": "型"
+  },
+  "type pll": {
+    "prefix": "pllt",
+    "description": "型",
+    "body": [
+      "pair<ll, ll>"
+    ]
+  },
+  "type pci": {
+    "prefix": "pcit",
+    "body": "pair<char ,int>",
+    "description": "型"
+  },
+  "type vpci": {
+    "prefix": "vpcit",
+    "body": "vector<pair<char ,int>>",
+    "description": "型"
+  },
+  "type vpii": {
+    "prefix": "vpiit",
+    "body": "vector<pair<int, int>>",
+    "description": "型"
+  },
+  "type vpll": {
+    "prefix": "vpllt",
+    "body": "vector<pair<ll,ll>>",
+    "description": "型"
+  },
+  "sort reverse": {
+    "prefix": "sor",
+    "description": "降順ソート",
+    "body": [
+      "sort(${1:a}.begin(), ${1:a}.end(), std::greater{});"
+    ]
+  },
+  "int in5": {
+    "prefix": "i5",
+    "description": "",
+    "body": [
+      "int ${1:n}, ${2:m}, $3, $4, $5;",
+      "cin >> ${1:n} >> ${2:m} >> $3 >> $4 >> $5;"
+    ]
+  },
+  "ll in5": {
+    "prefix": "l5",
+    "description": "",
+    "body": [
+      "ll ${1:n}, ${2:m}, $3, $4, $5;",
+      "cin >> ${1:n} >> ${2:m} >> $3 >> $4 >> $5;"
+    ]
+  },
+  "ans double": {
+    "prefix": "ansd",
+    "description": "",
+    "body": [
+      "double ans = 0.0;"
+    ]
+  },
+  "int in6": {
+    "prefix": "i6",
+    "description": "",
+    "body": [
+      "int ${1:n}, ${2:m}, $3, $4, $5, $6;",
+      "cin >> ${1:n} >> ${2:m} >> $3 >> $4 >> $5 >> $6;"
+    ]
+  },
+  "double in1": {
+    "prefix": "d1",
+    "description": "",
+    "body": [
+      "double ${1:n};",
+      "cin >> ${1:n};"
+    ]
+  },
+  "double in2": {
+    "prefix": "d2",
+    "description": "",
+    "body": [
+      "double ${1:n}, ${2:m};",
+      "cin >> ${1:n} >> ${2:m};"
+    ]
+  },
+  "double in3": {
+    "prefix": "d3",
+    "description": "",
+    "body": [
+      "double ${1:n}, ${2:m}, $3;",
+      "cin >> ${1:n} >> ${2:m} >> $3;"
+    ]
+  },
+  "double in4": {
+    "prefix": "d4",
+    "description": "",
+    "body": [
+      "double ${1:n}, ${2:m}, $3, $4;",
+      "cin >> ${1:n} >> ${2:m} >> $3 >> $4;"
+    ]
+  },
+  "double in5": {
+    "prefix": "d5",
+    "description": "",
+    "body": [
+      "double ${1:n}, ${2:m}, $3, $4, $5;",
+      "cin >> ${1:n} >> ${2:m} >> $3 >> $4 >> $5;"
+    ]
+  },
+  "double in6": {
+    "prefix": "d6",
+    "description": "",
+    "body": [
+      "double ${1:n}, ${2:m}, $3, $4, $5, $6;",
+      "cin >> ${1:n} >> ${2:m} >> $3 >> $4 >> $5 >> $6;"
+    ]
+  },
+  "dfs l": {
+    "prefix": "dfs",
+    "description": "再帰ラムダ",
+    "body": [
+      "auto dfs = [&](auto&& self, ll$1) -> void { // self(self, );",
+      "    $0",
+      "};",
+      "// dfs(dfs, );"
+    ]
+  },
+  "self function": {
+    "prefix": "self",
+    "description": "",
+    "body": [
+      "self(self, $0);"
+    ]
+  },
+  "ans string": {
+    "prefix": "anss",
+    "body": "string ans = \"\";",
+    "description": ""
+  },
+  "ll in6": {
+    "prefix": "l6",
+    "description": "",
+    "body": [
+      "ll ${1:n}, ${2:m}, $3, $4, $5, $6;",
+      "cin >> ${1:n} >> ${2:m} >> $3 >> $4 >> $5 >> $6;"
+    ]
+  },
+  "for 1": {
+    "prefix": "fo1",
+    "description": "",
+    "body": [
+      "for (ll ${2:l} = 1; ${2:l} <= ${3:n}; ${2:l}++) {",
+      "\t$0",
+      "}"
+    ]
+  },
+  "for k 1": {
+    "prefix": "fk1",
+    "description": "",
+    "body": [
+      "for (ll k = 1; k <= ${1:m}; k++) {",
+      "    $0",
+      "}"
+    ]
+  },
+  "lower_bound": {
+    "prefix": "lb",
+    "description": "イテレータ",
+    "body": [
+      "auto ${3:itr} = lower_bound(${1:a}.begin(), ${1:a}.end(), $0); // set, mapは map.lower_bound(探したい数字)"
+    ]
+  },
+  "upper_bound": {
+    "prefix": "ub",
+    "description": "イテレータ",
+    "body": [
+      "auto ${3:itr} = upper_bound(${1:a}.begin(), ${1:a}.end(), ${0:});"
+    ]
+  },
+  "vector of double": {
+    "prefix": "vd",
+    "description": "",
+    "body": [
+      "vector<double> ${1:a}(${2:n});"
+    ]
+  },
+  "median": {
+    "prefix": "med",
+    "body": "// 元の vector を変更せずに中央値を返す O(N)\ntemplate <class T> double median(const vector<T> &v) {\n    vector<T> v_copy = v;  // v をコピー\n\n    int n = v_copy.size() / 2;\n    nth_element(v_copy.begin(), v_copy.begin() + n, v_copy.end());\n    // v_copy[n]がn番目に大きい値に\n    // n番目より前はv_copy[n]以下の値になる\n\n    double nth = v_copy[n];\n\n    if (v_copy.size() % 2 == 1) {\n        return nth;\n    }\n    else {\n        auto max_it = max_element(v_copy.begin(), v_copy.begin() + n);\n        // n-1番目までの最大値\n        return (*max_it + nth) / 2.0;\n    }\n}\n/**********  返り値double!!!!!  **********/\n",
+    "description": "返り値 double"
+  },
+  "type pss": {
+    "prefix": "psst",
+    "description": "型",
+    "body": [
+      "pair<string,string>"
+    ]
+  },
+  "type pcc": {
+    "prefix": "pcct",
+    "body": "pair<char, char>",
+    "description": "型"
+  },
+  "vvvl": {
+    "prefix": "vvvl",
+    "description": "三次元配列",
+    "body": [
+      "vector dp(${1:n}, vector(${2:m}, vector<ll>(${3:l})));"
+    ]
+  },
+  "compress": {
+    "prefix": "compress",
+    "description": "座標圧縮",
+    "body": [
+      "/* compress",
+      "    X を座標圧縮して書き換える（副作用）",
+      "    返り値: ソート済みの値",
+      "    計算量: O(n log n)",
+      "*/",
+      "template <typename T> vector<T> compress(vector<T> &X) {",
+      "    // ソートした結果を vals に",
+      "    vector<T> vals = X;",
+      "    sort(vals.begin(), vals.end());",
+      "    // 隣り合う重複を削除(unique), 末端のゴミを削除(erase)",
+      "    vals.erase(unique(vals.begin(), vals.end()), vals.end());",
+      "    // 各要素ごとに二分探索で位置を求める",
+      "    for (int i = 0; i < (int)X.size(); i++) {",
+      "        X[i] = lower_bound(vals.begin(), vals.end(), X[i]) - vals.begin();",
+      "    }",
+      "    return vals;",
+      "}",
+      "/*",
+      "  使用例　a = {6, 1, 7, 1, 2}",
+      "         compress(a) = {1, 2, 6, 7}",
+      "         a = {2, 0, 3, 0, 1}",
+      "",
+      "*/"
+    ]
+  },
+  "Bint": {
+    "prefix": "bint",
+    "description": "多倍長整数",
+    "body": [
+      "#include <boost/multiprecision/cpp_dec_float.hpp>",
+      "#include <boost/multiprecision/cpp_int.hpp>",
+      "namespace mp = boost::multiprecision;",
+      "// 任意長整数型",
+      "using Bint = mp::cpp_int;",
+      "// 仮数部が10進数で1024桁の浮動小数点数型(TLEしたら小さくする)",
+      "using Real = mp::number<mp::cpp_dec_float<1024>>;",
+      "",
+      "// https://qiita.com/tubo28/items/fa8ee013390184b0ba18"
+    ]
+  },
+  "graph with weight": {
+    "prefix": "gw",
+    "description": "重み付きグラフ",
+    "body": [
+      "struct edge {",
+      "    ll to; ",
+      "    ll w;",
+      "    // edge v;",
+      "    // v.to, v.w でメンバ変数を呼び出す",
+      "    edge(ll to, ll w) : to(to), w(w) {}",
+      "    // graph g(n); で n 頂点のグラフを宣言",
+      "    // graph[from].push_back(edge(to, w)) の形で使う",
+      "};",
+      "",
+      "using graph = vector<vector<edge>>;"
+    ]
+  },
+  "priority_queue": {
+    "prefix": "pq",
+    "description": "",
+    "body": [
+      "priority_queue<${1:ll}> qu; // 降順！！！"
+    ]
+  },
+  "top": {
+    "prefix": "tp",
+    "description": "top + pop",
+    "body": [
+      "ll tp = qu.top();",
+      "qu.pop();"
+    ]
+  },
+  "while queue": {
+    "prefix": "whq",
+    "description": "",
+    "body": [
+      "while (!qu.empty()) {",
+      "    $0",
+      "}"
+    ]
+  },
+  "priority_queue greater": {
+    "prefix": "pqg",
+    "description": "小さい順",
+    "body": [
+      "priority_queue<${1:ll}, vector<${1:ll}>, greater<${1:ll}>> qu;"
+    ]
+  },
+  "segtree": {
+    "prefix": "seg",
+    "description": "",
+    "body": [
+      "segtree<${2:ll}, op, e> seg(${1:n});"
+    ]
+  },
+  "op & e": {
+    "prefix": "ope",
+    "description": "segtree用",
+    "body": [
+      "${2:ll} op(${1:ll} a, ${1:ll} b) {",
+      "    return ;",
+      "}",
+      "",
+      "${1:ll} e() {",
+      "    return ;",
+      "}"
+    ]
+  },
+  "prime_table": {
+    "prefix": "pt",
+    "description": "素数テーブル",
+    "body": [
+      "// O(NloglogN) エラトステネスの篩",
+      "// 0 ~ n までの整数が素数か判定",
+      "vector<bool> prime_table(int n) {",
+      "    vector<bool> prime(n + 1, true);",
+      "    if (n >= 0) prime[0] = false;",
+      "    if (n >= 1) prime[1] = false;",
+      "    for (int i = 2; i * i <= n; i++) {",
+      "        if (!prime[i]) continue;",
+      "        for (int j = i + i; j <= n; j += i) {",
+      "            prime[j] = false;",
+      "        }",
+      "    }",
+      "    return prime;",
+      "}"
+    ]
+  },
+  "debug": {
+    "prefix": "d",
+    "description": "デバッグマクロ",
+    "body": [
+      "dbg(${1:a});"
+    ]
+  },
+  "visit4": {
+    "prefix": "visit4",
+    "description": "上下左右",
+    "body": [
+      "for (ll i = 0; i < 4; i++) {",
+      "    ll X = ${1:x} + dx[i], Y = ${2:y} + dy[i];",
+      "    if (X < 0 || h <= X || Y < 0 || w <= Y) continue;",
+      "    $0",
+      "}"
+    ]
+  },
+  "all_of": {
+    "prefix": "alo",
+    "description": "すべての～",
+    "body": [
+      "all_of(${1:a}.begin(), ${1:a}.end(), [&](ll z){return $0;})"
+    ]
+  },
+  "any_of": {
+    "prefix": "ano",
+    "description": "存在",
+    "body": [
+      "any_of(${1:a}.begin(), ${1:a}.end(), [&](ll z){return $0;})"
+    ]
+  },
+  "none_of": {
+    "prefix": "noo",
+    "description": "非存在",
+    "body": [
+      "none_of(${1:a}.begin(), ${1:a}.end(), [&](ll z){return $0;})"
+    ]
+  },
+  "max_element": {
+    "prefix": "mae",
+    "description": "最大値",
+    "body": [
+      "ll ma = *(max_element(${1:a}.begin(), ${1:a}.end()));"
+    ]
+  },
+  "min_element": {
+    "prefix": "mie",
+    "description": "最小値",
+    "body": [
+      "ll mi = *(min_element(${1:a}.begin(), ${1:a}.end()));"
+    ]
+  },
+  "partial_sum": {
+    "prefix": "psum",
+    "description": "累積和",
+    "body": [
+      "vector<ll> ${1:psum}(${2:a}.size());",
+      "partial_sum(${2:a}.begin(), ${2:a}.end(), ${1:psum}.begin());"
+    ]
+  },
+  "civ pair": {
+    "prefix": "civp",
+    "description": "vector<pair>型 入力",
+    "body": [
+      "for (auto&& [${2:f}, ${3:s}] : ${1:a}) {",
+      "    cin >> ${2:f} >> ${3:s};",
+      "}"
+    ]
+  },
+  "set": {
+    "prefix": "set",
+    "body": "set<ll> st;",
+    "description": "順序付き集合"
+  },
+  "accumulate": {
+    "prefix": "ac",
+    "description": "和",
+    "body": [
+      "accumulate(${1:a}.begin(), ${1:a}.end(), 0LL)"
+    ]
+  },
+  "vector of ll 4": {
+    "prefix": "vl4",
+    "description": "",
+    "body": [
+      "vector<ll> ${1:a}(${5:n}), ${2:b}(${5:n}), ${3:c}(${5:n}), ${4:d}(${5:n});",
+      "for (ll i = 0; i < ${5:n}; i++) {",
+      "    cin >> ${1:a}[i] >> ${2:b}[i] >> ${3:c}[i] >> ${4:d}[i];",
+      "}  // Aren't they one line?"
+    ]
+  },
+  "count_if": {
+    "prefix": "cntif",
+    "description": "",
+    "body": [
+      "count_if(${1:a}.begin(), ${1:a}.end(), [&](ll z) { return $0; })"
+    ]
+  },
+  "stol": {
+    "prefix": "stol",
+    "description": "進数変換",
+    "body": [
+      "stol(${1:a}, nullptr, ${2:k}) // k進数のa(string)を10進数に"
+    ]
+  },
+  "topological sort": {
+    "prefix": "topo",
+    "body": "//\n// 参考記事: https://qiita.com/Morifolium/items/6c8f0a188af2f9620db2\n//\n// グラフ、頂点の入次数、頂点数を受け取り、そのトポロジカルソート(辞書式順序)を記録した配列を返す関数\n// 頂点は 0 index, しがらみがなくなった頂点から queue に入れていく\nvector<ll> topological_sort(vector<vector<ll>>& G, vector<ll>& indegree, ll V) {\n    // トポロジカルソートを記録する配列\n    vector<ll> sorted_vertices;\n\n    // 入次数が0の頂点を発見したら、処理待ち頂点としてキューに追加する\n    priority_queue<ll, vector<ll>, greater<ll>> que;\n    for (ll i = 0; i < V; i++) {\n        if (indegree[i] == 0) {\n            que.push(i);\n        }\n    }\n\n    // キューが空になるまで、操作1~3を繰り返す\n    while (que.empty() == false) {\n        // キューの先頭の頂点を取り出す\n        ll v = que.top();\n        que.pop();\n\n        // その頂点と隣接している頂点の入次数を減らし、0になればキューに追加\n        for (ll i = 0; i < G[v].size(); i++) {\n            ll u = G[v][i];\n            indegree[u] -= 1;\n            if (indegree[u] == 0) que.push(u);\n        }\n        // 頂点vを配列の末尾に追加する\n        sorted_vertices.push_back(v);\n    }\n\n    // トポロジカルソートを返す\n    return sorted_vertices;\n}\n",
+    "description": "辞書式順序"
+  },
+  "for auto pair": {
+    "prefix": "fap",
+    "description": "",
+    "body": [
+      "for (auto&& [${2:x}, ${3:y}] : ${1:a}) {",
+      "\t$0",
+      "}"
+    ]
+  },
+  "cout space2": {
+    "prefix": "co2",
+    "description": "",
+    "body": [
+      "cout << $1 << \" \" << $2 << '\\n';"
+    ]
+  },
+  "cout space3": {
+    "prefix": "co3",
+    "description": "",
+    "body": [
+      "cout << $1 << \" \" << $2 << \" \" << $3 << '\\n';"
+    ]
+  },
+  "cout space4": {
+    "prefix": "co4",
+    "description": "",
+    "body": [
+      "cout << $1 << \" \" << $2 << \" \" << $3 << \" \" << $4 << '\\n';"
+    ]
+  },
+  "cout short 4": {
+    "prefix": "cos4",
+    "description": "",
+    "body": [
+      "cout << $1 << $2 << $3 << $4 << '\\n';"
+    ]
+  },
+  "1: osa_k_method": {
+    "prefix": "osak",
+    "description": "高速素因数分解 osa_k法",
+    "body": [
+      "// min_factor[i] = i を割り切る最小の数",
+      "// min_factor[i] == i なら i は素数（i = 0, 1 のときを除く）",
+      "vector<ll> set_sieve(ll N) {",
+      "    vector<ll> min_factor(N + 1);",
+      "    iota(min_factor.begin(), min_factor.end(), 0LL);",
+      "",
+      "    for (ll i = 2; i * i <= N; i++) {",
+      "        if (min_factor[i] != i) {",
+      "            continue;",
+      "        }",
+      "",
+      "        for (ll j = i * i; j <= N; j += i) {",
+      "            if (min_factor[j] == j) {",
+      "                min_factor[j] = i;",
+      "            }",
+      "        }",
+      "    }",
+      "",
+      "    return min_factor;",
+      "}",
+      "",
+      "// M を素因数分解した配列を返す．",
+      "vector<ll> factor(vector<ll>& min_factor, ll M) {",
+      "    ll Q = M;",
+      "    vector<ll> factor_M;",
+      "",
+      "    while (Q >= 2) {",
+      "        factor_M.push_back(min_factor[Q]);",
+      "        Q /= min_factor[Q];",
+      "    }",
+      "",
+      "    return factor_M;",
+      "}",
+      "",
+      "// M を素因数分解したペア型の配列を返す．",
+      "vector<pair<ll, ll>> prime_factors(vector<ll>& min_factor, ll M) {",
+      "    ll Q = M;",
+      "    vector<pair<ll, ll>> factor_M;",
+      "",
+      "    while (Q >= 2) {",
+      "        ll prime = min_factor[Q];",
+      "        ll exp = 0;",
+      "        while (min_factor[Q] == prime) {",
+      "            ++exp;",
+      "            Q /= prime;",
+      "        }",
+      "        factor_M.push_back(make_pair(prime, exp));",
+      "    }",
+      "",
+      "    return factor_M;",
+      "}",
+      "",
+      "/*",
+      "    高速素因数分解 前処理 O(NloglogN) クエリ処理 O(M)",
+      "    N 以下の整数を素因数分解可能",
+      "    M を素因数分解するのに O(M)",
+      "",
+      "    使い方",
+      "",
+      "    ll n = 100, m = 50;",
+      "    vector<ll> sieve = set_sieve(n);",
+      "    vector<ll> factor_m = factor(sieve, m);",
+      "      // 素因数の列挙 factor_m = {2, 5, 5}",
+      "",
+      "    vector<pair<ll, ll>> factors_m = prime_factors(sieve, m);",
+      "      // 素因数分解 factors_m = {(2, 1), (5, 2)}",
+      "*/"
+    ]
+  },
+  "1: com_bigint": {
+    "prefix": "comb",
+    "body": "// 計算量 O(Rlog(MOD)) MODは素数\nModint COM(ll N, ll R) {\n    Modint res = 1;\n    for (ll i = 1; i <= R; i++) {\n        res *= N - i + 1;\n        res /= i;\n    }\n    return res;\n}",
+    "description": ""
+  },
+  "1: prime_factor": {
+    "prefix": "pf",
+    "body": "// 素因数分解 計算量O(√N)\nmap<ll, ll> prime_factor(ll N) {\n    map<ll, ll> res;\n    for (ll i = 2; i * i <= N; i++) {\n        while (N % i == 0) {\n            res[i]++;\n            N /= i;\n        }\n    }\n\n    if (N != 1) {  // N が素数の場合\n        res[N] = 1;\n    }\n\n    return res;\n}",
+    "description": "素因数分解"
+  },
+  "modint": {
+    "prefix": "modint",
+    "description": "ACL",
+    "body": [
+      "#include <atcoder/modint>",
+      "#include <atcoder/math>",
+      "using namespace atcoder;",
+      "",
+      "// const int MOD = 1e9 + 7;",
+      "// using Modint = modint1000000007;",
+      "",
+      "// const int MOD = 998244353;",
+      "// using Modint = modint998244353;",
+      "",
+      "ostream& operator<<(ostream& os, const Modint& N) { return os << N.val(); }"
+    ]
+  },
+  "a": {
+    "prefix": "a",
+    "body": "std::cout",
+    "description": "a"
+  },
+  "1: BFS": {
+    "prefix": "bfs",
+    "description": "幅優先探索",
+    "body": [
+      "vector<ll> dist(${1:n}, -1);  // グラフの頂点数を合わせる．",
+      "queue<ll> qu;",
+      "",
+      "ll start_node = ${2:0}; // BFSの開始点を合わせる．",
+      "qu.push(start_node);",
+      "dist[start_node] = 0;",
+      "",
+      "while (!qu.empty()) {",
+      "    ll now_node = qu.front();",
+      "    qu.pop();",
+      "",
+      "    for (auto&& next_node : g[now_node]) {",
+      "        if (dist[next_node] != -1) continue;",
+      "",
+      "        dist[next_node] = dist[now_node] + 1;",
+      "        qu.push(next_node);",
+      "    }",
+      "}"
+    ]
+  },
+  "0: template": {
+    "prefix": "cc",
+    "description": "テンプレート",
+    "body": [
+      "#include <bits/stdc++.h>",
+      "using namespace std;",
+      "using ll = long long;",
+      "#ifdef MY_DEBUG",
+      "#define dbg(...) debug_out(__VA_ARGS__)",
+      "#define dbgn(var) debug_out(#var, \"=\", var)",
+      "#else",
+      "#define dbg(...)",
+      "#define dbgn(...)",
+      "#endif",
+      "void debug_out();",
+      "template <class Head, class... Tail> void debug_out(Head, Tail...);",
+      "template <class T> bool chmax(T&, const T&);",
+      "template <class T> bool chmin(T&, const T&);",
+      "template <class T> T pwr(T, ll);",
+      "template <class T> T squ(T x) { return x * x; }",
+      "ll fact(ll);",
+      "ll comb(ll, ll);",
+      "ll ctoll(char);",
+      "char lltoc(ll);",
+      "bool flg(ll b, ll i) { return ((b) >> (i)) & 1LL; } // flg(0b010, 1LL) -> true",
+      "const ll LINF = (ll)1e18 + 7;",
+      "const double EPS = 1e-9;",
+      "const int MAX_DUBUG_SIZE = 10;",
+      "",
+      "int main() {",
+      "    cin.tie(nullptr), ios::sync_with_stdio(false), cout << fixed << setprecision(12);",
+      "",
+      "    $0",
+      "}",
+      "",
+      "/*",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "-----------------------------------MY_FUNCTIONS------------------------------------ */",
+      "template <class First, class Second> ostream& operator<<(ostream& os, const pair<First, Second>& pp) {",
+      "    return os << \"{\" << pp.first << \",\" << pp.second << \"}\";",
+      "}",
+      "",
+      "template <class T> ostream& operator<<(ostream& os, const vector<T>& V) {",
+      "    if (V.empty()) return os << \"[]\";",
+      "    os << \"[\";",
+      "    for (ll i = 0; i < V.size(); i++) {",
+      "        os << V[i] << (i == int(V.size() - 1) ? \"]\" : \",\");",
+      "    }",
+      "    return os;",
+      "}",
+      "",
+      "template <class T> ostream& operator<<(ostream& os, const vector<vector<T>>& VV) {",
+      "    if (VV.empty()) return os << \"[[]]\";",
+      "    os << \"[\\n\";",
+      "    for (auto&& V : VV) {",
+      "        os << V << \"\\n\";",
+      "    }",
+      "    os << \"]\";",
+      "    return os;",
+      "}",
+      "",
+      "template <class T> ostream& operator<<(ostream& os, const vector<vector<vector<T>>>& VVV) {",
+      "    if (VVV.empty()) return os << \"[[[]]]\";",
+      "    os << \"[\"",
+      "       << \"\\n\";",
+      "    int cnt = 0;",
+      "    for (auto&& VV : VVV) {",
+      "        os << cnt++ << VV << \"\\n\\n\";",
+      "    }",
+      "    os << \"]\";",
+      "    return os;",
+      "}",
+      "",
+      "template <class T> ostream& operator<<(ostream& os, const set<T>& SS) {",
+      "    if (SS.empty()) return os << \"[]\";",
+      "    os << \"[\";",
+      "    auto ii = SS.begin();",
+      "    for (; ii != SS.end(); ii++) os << *ii << (ii == prev(SS.end()) ? \"]\" : \",\");",
+      "    return os;",
+      "}",
+      "",
+      "template <class Key, class Tp> ostream& operator<<(ostream& os, const map<Key, Tp>& MM) {",
+      "    if (MM.empty()) return os << \"[{:}]\";",
+      "    os << \"[\";",
+      "    auto ii = MM.begin();",
+      "    for (; ii != MM.end(); ii++)",
+      "        os << \"{\" << ii->first << \":\" << ii->second << \"}\" << (ii == prev(MM.end()) ? \"]\" : \",\");",
+      "    return os;",
+      "}",
+      "",
+      "void debug_out() { cout << endl; }",
+      "",
+      "void debug_out_vl(vector<ll> V) {",
+      "    const int MAX_SIZE = min((int)V.size(), MAX_DUBUG_SIZE);",
+      "",
+      "    cout << \"\\033[33m\";",
+      "    if (V.empty()) {",
+      "        cout << \"[]\" << endl;",
+      "        return;",
+      "    }",
+      "    cout << \"[\";",
+      "    for (int i = 0; i < MAX_SIZE; i++) {",
+      "        if (V[i] == LINF)",
+      "            cout << \"INF\";",
+      "        else",
+      "            cout << V[i];",
+      "",
+      "        if (i == (int)V.size() - 1)",
+      "            cout << \"]\\n\";",
+      "        else if (i == MAX_DUBUG_SIZE - 1)",
+      "            cout << \",...\\n\";",
+      "        else",
+      "            cout << \",\";",
+      "    }",
+      "    return;",
+      "}",
+      "",
+      "void debug_out_vvl(vector<vector<ll>> VV) {",
+      "    cout << \"\\033[33m\";",
+      "    if (VV.empty()) {",
+      "        cout << \"[[]]\" << endl;",
+      "        return;",
+      "    }",
+      "    cout << \"[\\n\";",
+      "",
+      "    int MAX_ROW = min((int)VV.size(), MAX_DUBUG_SIZE);",
+      "    for (int i = 0; i < MAX_ROW; i++) {",
+      "        const int MAX_COLUMN = min((int)VV[i].size(), MAX_DUBUG_SIZE);",
+      "        if (VV[i].empty()) {",
+      "            cout << \"[]\" << endl;",
+      "            continue;",
+      "        }",
+      "        cout << \"[\";",
+      "        for (int j = 0; j < MAX_COLUMN; j++) {",
+      "            if (VV[i][j] == LINF)",
+      "                cout << \"INF\";",
+      "            else",
+      "                cout << VV[i][j];",
+      "",
+      "            if (j == (int)VV[i].size() - 1)",
+      "                cout << \"]\\n\";",
+      "            else if (j == MAX_DUBUG_SIZE - 1)",
+      "                cout << \",...\\n\";",
+      "            else",
+      "                cout << \",\";",
+      "        }",
+      "",
+      "        if (i != (int)VV.size() - 1 and i == MAX_DUBUG_SIZE - 1) {",
+      "            cout << \":\\n:\\033[m\\n\";",
+      "            return;",
+      "        }",
+      "    }",
+      "",
+      "    cout << \"]\\033[m\\n\";",
+      "    return;",
+      "}",
+      "",
+      "template <class Head, class... Tail> void debug_out(Head H, Tail... T) {",
+      "    if constexpr (std::is_same_v<Head, vector<ll>>) {",
+      "        debug_out_vl(H);",
+      "    }",
+      "    else if constexpr (std::is_same_v<Head, vector<vector<ll>>>) {",
+      "        debug_out_vvl(H);",
+      "    }",
+      "    else {",
+      "        cout << \"\\033[33m\" << H << \"\\033[m \";",
+      "    }",
+      "",
+      "    debug_out(T...);",
+      "}",
+      "",
+      "template <class T> bool chmax(T& a, const T& b) {",
+      "    if (a < b) {",
+      "        a = b;",
+      "        return true;",
+      "    }",
+      "    return false;",
+      "}",
+      "",
+      "template <class T> bool chmin(T& a, const T& b) {",
+      "    if (b < a) {",
+      "        a = b;",
+      "        return true;",
+      "    }",
+      "    return false;",
+      "}",
+      "",
+      "template <class T> T pwr(T x, ll n) {",
+      "    T res = 1;",
+      "    for (int i = 0; i < n; i++) {",
+      "        res *= x;",
+      "    }",
+      "    return res;",
+      "}",
+      "",
+      "ll fact(ll n) {",
+      "    ll res = 1;",
+      "    for (ll i = 1; i <= n; i++) res *= i;",
+      "    return res;",
+      "}",
+      "",
+      "ll comb(ll n, ll r) {  // comb(60, 30)までオーバーフローなし",
+      "    ll res = 1;",
+      "    for (int i = 1; i <= r; i++) {",
+      "        res *= n--;",
+      "        res /= i;",
+      "    }",
+      "    return res;",
+      "}",
+      "",
+      "ll ctoll(char c) {",
+      "    if (c < '0' or '9' < c) {",
+      "        cerr << \"\\n\\033[33m ctoll に '0'~'9' 以外の文字が入りました．\\033[m\\n\" << endl;",
+      "    }",
+      "    return ll(c - '0');",
+      "}",
+      "",
+      "char lltoc(ll n) {",
+      "    if (n < 0 or 9 < n) {",
+      "        cerr << \"\\n\\033[33m lltoc に 0 ~ 9 以外の数字が入りました．\\033[m\\n\" << endl;",
+      "    }",
+      "    return char(n + '0');",
+      "}",
+      ""
+    ]
+  },
+  "cout vector": {
+    "prefix": "cov",
+    "description": "",
+    "body": [
+      "for (auto&& el : ${1:a}) {",
+      "    cout << el << ' ';",
+      "}",
+      "cout << '\\n';"
+    ]
+  }
+}

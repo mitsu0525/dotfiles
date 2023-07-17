@@ -3,7 +3,7 @@ local opt = vim.opt
 
 --CHAR
 opt.encoding = "utf-8"
-opt.fileencodings = {"utf-8", "iso-2022-jp", "cp932", "euc-jp", "sjis"}
+opt.fileencodings = { "utf-8", "iso-2022-jp", "cp932", "euc-jp", "sjis" }
 
 --DISPLAY
 opt.termguicolors = true
@@ -11,13 +11,13 @@ opt.cmdheight = 0
 opt.cursorline = true
 opt.showcmd = true
 opt.list = true
-opt.listchars = {tab="▸-", trail="-", extends="»", precedes="«", nbsp="%"}
+opt.listchars = { tab = "▸-", trail = "-", extends = "»", precedes = "«", nbsp = "%" }
 opt.laststatus = 3
 opt.hidden = true
 opt.wrap = false
 
 --HELP
-opt.helplang = {"ja", "en"}
+opt.helplang = { "ja", "en" }
 
 --TAB/INDENT
 opt.expandtab = true
@@ -26,6 +26,14 @@ opt.softtabstop = 2
 opt.autoindent = true
 opt.smartindent = true
 opt.shiftwidth = 2
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  pattern = { "cpp" },
+  callback = function()
+    opt.shiftwidth = 4
+    opt.tabstop = 4
+    opt.softtabstop = 4
+  end,
+})
 
 --SEARCH
 opt.incsearch = true
@@ -41,7 +49,7 @@ opt.backup = false
 opt.swapfile = false
 
 --CURSOR
-opt.backspace:append{"indent", "eol", "start"}
+opt.backspace:append({ "indent", "eol", "start" })
 -- set whichwrap=b,s,h,l,<,>,[,]
 opt.startofline = false
 
@@ -61,16 +69,16 @@ if in_wsl then
     name = "win32yank-wsl",
     copy = {
       ["+"] = "win32yank.exe -i --crlf",
-      ["*"] = "win32yank.exe -i --crlf"
+      ["*"] = "win32yank.exe -i --crlf",
     },
     paste = {
       ["+"] = "win32yank.exe -o --lf",
-      ["*"] = "win32yank.exe -o --lf"
+      ["*"] = "win32yank.exe -o --lf",
     },
     cache_enable = 0,
   }
 end
-opt.clipboard:append{"unnamedplus"}
+opt.clipboard:append({ "unnamedplus" })
 -- opt.clipboard:append "unnamedplus"
 -- vim.opt.shortmess:append("c")
 
@@ -104,7 +112,6 @@ opt.clipboard:append{"unnamedplus"}
 --     end,
 -- })
 
-
 ----KEY MAPPING
 --local function map(mode, lhs, rhs, opts)
 --  local keys = require("lazy.core.handler").handlers.keys
@@ -125,8 +132,9 @@ vim.g.mapleader = " "
 opt.autochdir = true
 map("n", "<leader>t", ":<C-u>!atcoder-tools test<CR>")
 map("n", "<leader>s", ":<C-u>!atcoder-tools submit -u")
+map("n", "<leader>c", ":<C-u>!atcoder-tools test<CR>")
 --COMMAND LINE
-map("n", "<leader><Space>", ":", {silent = false})
+map("n", "<leader><Space>", ":", { silent = false })
 map("c", "<C-a>", "<Home>")
 map("c", "<C-b>", "<Left>")
 map("c", "<C-d>", "<Del>")
@@ -146,8 +154,8 @@ map("n", "<leader>w", ":<C-u>w<CR>")
 map("n", "<leader>q", ":<C-u>qa<CR>")
 map("n", "<leader>Q", ":<C-u>q!<CR>")
 
-map("n", "sg", ":<C-u>%s//g<Left><Left>", {silent = false})
-map("x", "sg", ":s//g<Left><Left>", {silent = false})
+map("n", "sg", ":<C-u>%s//g<Left><Left>", { silent = false })
+map("x", "sg", ":s//g<Left><Left>", { silent = false })
 
 -- better indenting
 map("n", ">", ">>")
@@ -157,18 +165,18 @@ map("x", ">", ">gv")
 
 map("n", "Y", "y$")
 
-map("n", "<CR>", ":<C-u>call append(line('.'), '')<CR><Down>", {silent = true})
+map("n", "<CR>", ":<C-u>call append(line('.'), '')<CR><Down>", { silent = true })
 
 --BUFFER
-map("n", "<C-l>", ":<C-u>bnext<CR>", {silent = true})
-map("n", "<C-h>", ":<C-u>bprev<CR>", {silent = true})
-map("n", "<C-q>", ":<C-u>bdelete<CR>", {silent = true})
+map("n", "<C-l>", ":<C-u>bnext<CR>", { silent = true })
+map("n", "<C-h>", ":<C-u>bprev<CR>", { silent = true })
+map("n", "<C-q>", ":<C-u>bdelete<CR>", { silent = true })
 
 --SPLIT
-map("n", "sv", ":<C-u>vsplit<CR>", {silent = true})
-map("n", "sp", ":<C-u>split<CR>", {silent = true})
-map("n", "so", ":<C-u>only<CR>", {silent = true})
-map("n", "<Tab>", ":wincmd w<CR>", {silent =true})
+map("n", "sv", ":<C-u>vsplit<CR>", { silent = true })
+map("n", "sp", ":<C-u>split<CR>", { silent = true })
+map("n", "so", ":<C-u>only<CR>", { silent = true })
+map("n", "<Tab>", ":wincmd w<CR>", { silent = true })
 map("n", "q", "winnr('$') != 1 ? ':<C-u>close<CR>' : ''", { expr = true, silent = true })
 
 --NOP
@@ -181,15 +189,25 @@ map("n", "ZZ", "<Nop>")
 map("n", "ZQ", "<Nop>")
 map("n", "<C-z>", "<Nop>")
 map("n", "<F1>", "<Nop>")
-map({"n", "x"}, "x", '"_x')
+map({ "n", "x" }, "x", '"_x')
 map("n", "s", '"_s')
 
 --MOVE
 -- better up/down
-map({"n", "x"}, "<C-j>", "max([winheight(0)-2, 1]) . '<C-d>' . (line('w$') >= line('$') ? 'L' : 'M')", { expr = true, silent = true })
-map({"n", "x"}, "<C-k>", "max([winheight(0)-2, 1]) . '<C-u>' . (line('w0') <= 1 ? 'H' : 'M')", { expr = true, silent = true })
-map({"n", "x"}, "<leader>h", "^")
-map({"n", "x"}, "<leader>l", "$")
+map(
+  { "n", "x" },
+  "<C-j>",
+  "max([winheight(0)-2, 1]) . '<C-d>' . (line('w$') >= line('$') ? 'L' : 'M')",
+  { expr = true, silent = true }
+)
+map(
+  { "n", "x" },
+  "<C-k>",
+  "max([winheight(0)-2, 1]) . '<C-u>' . (line('w0') <= 1 ? 'H' : 'M')",
+  { expr = true, silent = true }
+)
+map({ "n", "x" }, "<leader>h", "^")
+map({ "n", "x" }, "<leader>l", "$")
 -- map("n", "H", "^")
 -- map("n", "L", "$")
 
@@ -214,6 +232,6 @@ if not vim.loop.fs_stat(lazypath) then
   })
 end
 vim.opt.rtp:prepend(lazypath)
-require("lazy").setup("plugins")
+require("lazy").setup("plugins", { ui = { border = "rounded" } })
 
 vim.cmd("colorscheme tokyonight")
