@@ -1,3 +1,0 @@
-[language.python]
-command = "pyls"
-install = [["pip3", "install", "python-language-server"]]
